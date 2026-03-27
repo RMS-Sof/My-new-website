@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -7,52 +7,110 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     /* ══════════════════════════════════════════════════════
-       CORE STYLES
+       THEME TOKENS — light (default)
     ══════════════════════════════════════════════════════ */
     :root {
-      --moss:   #2d4a22;
-      --fern:   #4a7c3f;
-      --leaf:   #6aab5e;
-      --sage:   #a8c5a0;
-      --cream:  #f4f0e6;
-      --bark:   #3b2a1a;
-      --soil:   #7a5c3a;
-      --mist:   #e8f0e5;
-      --white:  #ffffff;
-      --shadow: rgba(45,74,34,.18);
+      /* greens */
+      --c-deep:    #1a5c32;
+      --c-mid:     #2e8b57;
+      --c-bright:  #52b374;
+      --c-soft:    #b3d9c2;
+      --c-mist:    #eaf4ee;
+
+      /* neutrals */
+      --c-page:    #f3f8f5;
+      --c-surface: #ffffff;
+      --c-panel-l: #eaf2ec;
+      --c-panel-m: #eef5f0;
+      --c-panel-r: #f3f8f5;
+      --c-border:  #cce4d6;
+      --c-divider: #b8d9c5;
+
+      /* text */
+      --c-text:    #132319;
+      --c-sub:     #3d6b50;
+      --c-muted:   #7aa88e;
+
+      /* shadows / overlays */
+      --c-shadow:  rgba(26,92,50,.15);
+      --c-overlay: rgba(26,92,50,.55);
+
+      /* scrollbar */
+      --sb-thumb:  var(--c-soft);
+      --sb-track:  transparent;
+      --sb-thumb-m:#2e8b57;
+      --sb-track-m:#cce4d6;
+
+      /* misc */
       --photo-w: 288px;
       --photo-h: 384px;
+      --radius-lg: 12px;
+      --radius-sm: 8px;
+      --transition: .2s ease;
     }
 
+    /* ══════════════════════════════════════════════════════
+       THEME TOKENS — dark
+    ══════════════════════════════════════════════════════ */
+    [data-theme="dark"] {
+      --c-deep:    #34c97a;
+      --c-mid:     #28a762;
+      --c-bright:  #5ee89e;
+      --c-soft:    #265c3d;
+      --c-mist:    #1e3829;
+
+      --c-page:    #0e1a13;
+      --c-surface: #162419;
+      --c-panel-l: #19291e;
+      --c-panel-m: #1b2c21;
+      --c-panel-r: #162319;
+      --c-border:  #264535;
+      --c-divider: #2e5540;
+
+      --c-text:    #ceeada;
+      --c-sub:     #87c4a2;
+      --c-muted:   #4d7a60;
+
+      --c-shadow:  rgba(0,0,0,.4);
+      --c-overlay: rgba(0,0,0,.65);
+
+      --sb-thumb:  #2e5540;
+      --sb-track:  transparent;
+      --sb-thumb-m:#34c97a;
+      --sb-track-m:#1b2c21;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       RESET & BASE
+    ══════════════════════════════════════════════════════ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html, body {
-      height: 100%;
-      overflow: hidden;
-    }
+    html, body { height: 100%; overflow: hidden; }
     body {
       font-family: 'DM Sans', sans-serif;
-      background: var(--cream);
-      color: var(--bark);
+      background: var(--c-page);
+      color: var(--c-text);
       display: flex;
       flex-direction: column;
+      transition: background var(--transition), color var(--transition);
     }
 
-    /* ── BANNER ─────────────────────────────────────────────── */
+    /* ── HEADER ─────────────────────────────────────────── */
     header {
       flex-shrink: 0;
-      background: linear-gradient(135deg, var(--moss) 0%, var(--fern) 55%, var(--leaf) 100%);
+      background: linear-gradient(135deg, var(--c-deep) 0%, var(--c-mid) 55%, var(--c-bright) 100%);
       padding: 0 2rem;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 3px 18px var(--shadow);
+      box-shadow: 0 3px 18px var(--c-shadow);
     }
     header::before {
       content: '';
       position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 60% 80% at 80% 50%, rgba(106,171,94,.22) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 80% at 80% 50%, rgba(82,179,116,.22) 0%, transparent 70%),
         url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
     }
     .banner-inner {
       position: relative;
@@ -63,392 +121,433 @@
     .banner-text h1 {
       font-family: 'Playfair Display', serif;
       font-size: clamp(1.25rem, 2.2vw, 1.9rem);
-      font-weight: 900; color: var(--white);
+      font-weight: 900; color: #fff;
       letter-spacing: -.3px; line-height: 1.1;
       text-shadow: 0 2px 10px rgba(0,0,0,.22);
     }
-    .banner-text p { color: var(--mist); font-size: .85rem; font-weight: 400; margin-top: .12rem; }
-    
-    .banner-links {
-      display: flex;
-      gap: 0.6rem;
+    .banner-text p { color: var(--c-mist); font-size: .85rem; font-weight: 400; margin-top: .12rem; }
+
+    /* banner right cluster */
+    .banner-right {
+      display: flex; align-items: center; gap: .6rem;
       margin-left: auto;
-      margin-right: 1.2rem;
-      align-items: center;
     }
+    .banner-links { display: flex; gap: .6rem; align-items: center; }
+
     .banner-link-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      text-decoration: none;
-      color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.22);
+      text-decoration: none; color: #fff;
       backdrop-filter: blur(6px);
-      transition: all 0.2s ease;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
     }
     .banner-link-icon:hover {
-      background: rgba(255, 255, 255, 0.25);
+      background: rgba(255,255,255,.25);
       transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 4px 8px rgba(0,0,0,.15);
     }
     .banner-badge {
       background: rgba(255,255,255,.12);
       border: 1px solid rgba(255,255,255,.22);
-      color: var(--white); padding: .3rem .85rem; border-radius: 50px;
+      color: #fff; padding: .3rem .85rem; border-radius: 50px;
       font-size: .68rem; font-weight: 500; letter-spacing: .8px;
       text-transform: uppercase; backdrop-filter: blur(6px); white-space: nowrap;
     }
 
-    /* ── SEARCH BAR ─────────────────────────────────────────── */
+    /* ── DARK/LIGHT TOGGLE ──────────────────────────────── */
+    #themeToggle {
+      display: flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.28);
+      color: #fff; cursor: pointer; font-size: 1rem;
+      backdrop-filter: blur(6px);
+      transition: background var(--transition), transform var(--transition);
+      flex-shrink: 0;
+    }
+    #themeToggle:hover { background: rgba(255,255,255,.3); transform: scale(1.1) rotate(20deg); }
+    /* show correct icon per theme */
+    #themeToggle .icon-sun  { display: none; }
+    #themeToggle .icon-moon { display: block; }
+    [data-theme="dark"] #themeToggle .icon-sun  { display: block; }
+    [data-theme="dark"] #themeToggle .icon-moon { display: none; }
+
+    /* ── SEARCH BAR ─────────────────────────────────────── */
     .search-bar-wrap {
       flex-shrink: 0;
-      background: var(--moss);
+      background: var(--c-deep);
       padding: .5rem 2rem;
       display: flex; justify-content: center;
-      border-bottom: 2px solid var(--fern);
+      border-bottom: 2px solid var(--c-mid);
+      transition: background var(--transition);
     }
     .search-container {
       display: flex; align-items: center;
-      background: var(--white); border-radius: 50px;
+      background: var(--c-surface); border-radius: 50px;
       overflow: hidden; width: 100%; max-width: 540px;
       box-shadow: 0 2px 10px rgba(0,0,0,.18);
-      border: 2px solid transparent; transition: border-color .2s;
+      border: 2px solid transparent;
+      transition: border-color var(--transition), background var(--transition);
     }
-    .search-container:focus-within { border-color: var(--leaf); }
-    .search-icon { padding: 0 .65rem 0 .9rem; color: var(--fern); font-size: .95rem; flex-shrink: 0; }
+    .search-container:focus-within { border-color: var(--c-bright); }
+    .search-icon { padding: 0 .65rem 0 .9rem; color: var(--c-mid); font-size: .95rem; flex-shrink: 0; }
     #searchInput {
       flex: 1; border: none; outline: none;
-      font-family: 'DM Sans', sans-serif; font-size: .85rem; color: var(--bark);
+      font-family: 'DM Sans', sans-serif; font-size: .85rem; color: var(--c-text);
       padding: .46rem 0; background: transparent;
+      transition: color var(--transition);
     }
-    #searchInput::placeholder { color: #aab; }
+    #searchInput::placeholder { color: var(--c-muted); }
     #voiceBtn {
-      background: var(--fern); border: none; color: var(--white);
+      background: var(--c-mid); border: none; color: #fff;
       padding: .46rem .85rem; cursor: pointer;
       display: flex; align-items: center; gap: .28rem;
       font-family: 'DM Sans', sans-serif; font-size: .74rem; font-weight: 500;
-      transition: background .2s; white-space: nowrap;
+      transition: background var(--transition); white-space: nowrap;
     }
-    #voiceBtn:hover { background: var(--leaf); }
+    #voiceBtn:hover { background: var(--c-bright); }
     #voiceBtn.listening { background: #c0392b; animation: pulse .9s infinite; }
     @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
-    .mic-dot { width: 6px; height: 6px; background: var(--white); border-radius: 50%; }
+    .mic-dot { width: 6px; height: 6px; background: #fff; border-radius: 50%; }
     #voiceBtn.listening .mic-dot { animation: blink .6s infinite alternate; }
     @keyframes blink { to{opacity:.15} }
     #voiceStatus {
-      text-align: center; color: var(--sage);
+      text-align: center; color: var(--c-soft);
       font-size: .7rem; margin-top: .18rem; min-height: .85em;
     }
 
-    /* ── MAIN CONTAINER ──────────────────────────────────────── */
+    /* ── MAIN LAYOUT ─────────────────────────────────────── */
     main {
-      flex: 1;
-      min-height: 0;
-      display: flex;
-      overflow: hidden;
-      position: relative;
+      flex: 1; min-height: 0;
+      display: flex; overflow: hidden; position: relative;
     }
 
-    /* ── PANELS ──────────────────────────────────────────────── */
+    /* ── PANELS ──────────────────────────────────────────── */
     .panel {
-      overflow-y: auto;
-      overflow-x: hidden;
-      min-width: 120px;
+      overflow-y: auto; overflow-x: hidden; min-width: 120px;
       scrollbar-width: thin;
-      scrollbar-color: var(--sage) transparent;
+      scrollbar-color: var(--sb-thumb) var(--sb-track);
+      transition: background var(--transition);
     }
     .panel::-webkit-scrollbar { width: 5px; }
-    .panel::-webkit-scrollbar-thumb { background: var(--sage); border-radius: 4px; }
+    .panel::-webkit-scrollbar-thumb { background: var(--sb-thumb); border-radius: 4px; }
 
-    #panelLeft {
-      background: var(--mist);
-      display: flex; flex-direction: column;
-      padding: .85rem .8rem; gap: .8rem;
-    }
+    #panelLeft  { background: var(--c-panel-l); display: flex; flex-direction: column; padding: .85rem .8rem; gap: .8rem; }
+    #panelRight { background: var(--c-panel-r); padding: 1rem 1.1rem; display: flex; flex-direction: column; gap: .85rem; }
+
     #panelMid {
-      background: #f0f5ee;
-      padding: .85rem .75rem;
+      background: var(--c-panel-m); padding: .85rem .75rem;
       overflow-y: scroll;
       scrollbar-width: auto;
-      scrollbar-color: var(--fern) #d4e8ce;
+      scrollbar-color: var(--sb-thumb-m) var(--sb-track-m);
     }
     #panelMid::-webkit-scrollbar { width: 8px; }
-    #panelMid::-webkit-scrollbar-track { background: #d4e8ce; }
-    #panelMid::-webkit-scrollbar-thumb { background: var(--fern); border-radius: 4px; }
+    #panelMid::-webkit-scrollbar-track { background: var(--sb-track-m); }
+    #panelMid::-webkit-scrollbar-thumb { background: var(--sb-thumb-m); border-radius: 4px; }
 
-    #panelRight {
-      background: var(--cream);
-      padding: 1rem 1.1rem;
-      display: flex; flex-direction: column; gap: .85rem;
-    }
-
-    /* ── DRAG DIVIDERS ───────────────────────────────────────── */
+    /* ── DIVIDERS ────────────────────────────────────────── */
     .divider {
       width: 6px; flex-shrink: 0; cursor: col-resize;
-      background: #c9dcc4; position: relative;
+      background: var(--c-divider); position: relative;
       transition: background .15s; user-select: none;
       display: flex; align-items: center; justify-content: center;
     }
-    .divider:hover, .divider.dragging { background: var(--leaf); }
-    .divider::after { content: '⋮'; color: rgba(45,74,34,.45); font-size: .9rem; letter-spacing: -1px; pointer-events: none; }
-    .divider:hover::after, .divider.dragging::after { color: var(--moss); }
+    .divider:hover, .divider.dragging { background: var(--c-bright); }
+    .divider::after { content: '⋮'; color: var(--c-muted); font-size: .9rem; letter-spacing: -1px; pointer-events: none; }
+    .divider:hover::after, .divider.dragging::after { color: var(--c-deep); }
 
-    /* ── PHOTO PLACEHOLDER (3"×4") ───────────────────────────── */
+    /* ── PHOTO ───────────────────────────────────────────── */
     .photo-placeholder {
       width: var(--photo-w); height: var(--photo-h); max-width: 100%;
-      flex-shrink: 0; border-radius: 11px; overflow: hidden; position: relative;
-      border: 2px solid rgba(106,171,94,.38); box-shadow: 0 4px 16px var(--shadow);
+      flex-shrink: 0; border-radius: var(--radius-lg); overflow: hidden; position: relative;
+      border: 2px solid rgba(82,179,116,.38); box-shadow: 0 4px 16px var(--c-shadow);
       align-self: center;
     }
     .photo-placeholder img { width: 100%; height: 100%; display: block; object-fit: cover; }
     .photo-label {
       position: absolute; bottom: 0; left: 0; right: 0;
-      background: rgba(45,74,34,.65); color: var(--white);
+      background: rgba(26,92,50,.65); color: #fff;
       text-align: center; padding: .35rem; font-size: .7rem; font-weight: 500;
       letter-spacing: .3px; backdrop-filter: blur(4px);
     }
 
+    /* ── INTRO CARD ──────────────────────────────────────── */
     .intro-card {
-      background: var(--white); border-radius: 9px;
-      padding: .8rem .9rem; border: 1px solid #d5e8d0;
-      box-shadow: 0 1px 8px var(--shadow); flex-shrink: 0;
+      background: var(--c-surface); border-radius: var(--radius-sm);
+      padding: .8rem .9rem; border: 1px solid var(--c-border);
+      box-shadow: 0 1px 8px var(--c-shadow); flex-shrink: 0;
+      transition: background var(--transition), border-color var(--transition);
     }
-    .intro-card h2 { font-family: 'Playfair Display', serif; font-size: .95rem; color: var(--moss); margin-bottom: .35rem; font-weight: 700; }
-    .intro-card p { font-size: .78rem; color: var(--soil); line-height: 1.62; }
+    .intro-card h2 { font-family: 'Playfair Display', serif; font-size: .95rem; color: var(--c-deep); margin-bottom: .35rem; font-weight: 700; }
+    .intro-card p  { font-size: .78rem; color: var(--c-sub); line-height: 1.62; }
 
-    /* ── TREE ────────────────────────────────────────────────── */
+    /* ── TREE ────────────────────────────────────────────── */
     .tree-heading {
       font-family: 'Playfair Display', serif; font-size: .75rem; font-weight: 700;
-      color: var(--soil); letter-spacing: 1px; text-transform: uppercase;
-      margin-bottom: .55rem; padding-bottom: .32rem; border-bottom: 1px solid #c9dcc4;
+      color: var(--c-sub); letter-spacing: 1px; text-transform: uppercase;
+      margin-bottom: .55rem; padding-bottom: .32rem; border-bottom: 1px solid var(--c-border);
     }
     .tree ul { list-style: none; padding: 0; margin: 0; }
     .tree li { position: relative; }
     .tree > ul > li > .node-row {
-      background: var(--fern); color: var(--white);
+      background: var(--c-mid); color: #fff;
       border-radius: 6px; font-weight: 600; font-size: .84rem;
     }
-    .tree > ul > li > .node-row:hover { background: var(--moss); }
+    .tree > ul > li > .node-row:hover { background: var(--c-deep); }
     .tree > ul > li > ul > li > .node-row {
-      background: rgba(106,171,94,.14); color: var(--moss);
+      background: rgba(82,179,116,.14); color: var(--c-deep);
       border-radius: 5px; font-weight: 600; margin-left: 7px; font-size: .8rem;
     }
-    .tree > ul > li > ul > li > .node-row:hover { background: rgba(106,171,94,.27); }
+    .tree > ul > li > ul > li > .node-row:hover { background: rgba(82,179,116,.27); }
+    [data-theme="dark"] .tree > ul > li > ul > li > .node-row { color: var(--c-bright); }
     .node-row {
       display: flex; align-items: center; gap: .38rem;
       padding: .4rem .5rem; cursor: pointer; user-select: none;
       transition: background .14s; margin-bottom: 3px;
     }
     .toggle-icon { font-style: normal; font-size: .62rem; width: .85em; flex-shrink: 0; display: inline-block; transition: transform .2s; }
-    .node-label { flex: 1; }
+    .node-label  { flex: 1; }
     .sub-tree { overflow: hidden; max-height: 0; transition: max-height .35s ease; }
     .sub-tree.open { max-height: 5000px; }
     .leaf-link {
       display: flex; align-items: flex-start; gap: .35rem;
       padding: .35rem .35rem .35rem 2.2rem;
-      font-size: .75rem; color: var(--fern); text-decoration: none;
+      font-size: .75rem; color: var(--c-mid); text-decoration: none;
       border-radius: 4px; margin-bottom: 1px; line-height: 1.3;
       transition: background .12s, color .12s;
     }
-    .leaf-link:hover { background: rgba(106,171,94,.17); color: var(--moss); text-decoration: underline; }
+    .leaf-link:hover { background: rgba(82,179,116,.17); color: var(--c-deep); text-decoration: underline; }
     .leaf-link::before { content: '↗'; font-size: .62rem; opacity: .52; margin-top: 2px; }
-    
+    [data-theme="dark"] .leaf-link { color: var(--c-bright); }
+    [data-theme="dark"] .leaf-link:hover { color: #fff; }
     .hidden-filter { display: none !important; }
 
-    /* ── RIGHT CONTENT ───────────────────────────────────────── */
+    /* ── STATS / INFO CARDS ──────────────────────────────── */
     .stats-row { display: grid; grid-template-columns: repeat(3,1fr); gap: .65rem; }
     .stat-card {
-      background: var(--white); border-radius: 9px; padding: .75rem .9rem;
-      border: 1px solid #d5e8d0; text-align: center;
-      box-shadow: 0 1px 7px var(--shadow); transition: transform .18s, box-shadow .18s;
+      background: var(--c-surface); border-radius: var(--radius-sm); padding: .75rem .9rem;
+      border: 1px solid var(--c-border); text-align: center;
+      box-shadow: 0 1px 7px var(--c-shadow);
+      transition: transform .18s, box-shadow .18s, background var(--transition), border-color var(--transition);
     }
-    .stat-card:hover { transform: translateY(-2px); box-shadow: 0 5px 14px var(--shadow); }
-    .stat-num { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 900; color: var(--fern); }
-    .stat-label { font-size: .72rem; color: var(--soil); margin-top: .12rem; font-weight: 500; }
+    .stat-card:hover { transform: translateY(-2px); box-shadow: 0 5px 14px var(--c-shadow); }
+    .stat-num   { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 900; color: var(--c-mid); }
+    .stat-label { font-size: .72rem; color: var(--c-sub); margin-top: .12rem; font-weight: 500; }
 
     .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .65rem; }
-    .info-card { background: var(--white); border-radius: 9px; padding: .78rem .9rem; border: 1px solid #d5e8d0; box-shadow: 0 1px 7px var(--shadow); }
-    .info-card h4 { font-family: 'Playfair Display', serif; font-size: .88rem; color: var(--moss); margin-bottom: .3rem; }
-    .info-card p { font-size: .77rem; color: var(--soil); line-height: 1.58; }
-
-    /* ── FOOTER ──────────────────────────────────────────────── */
-    footer {
-      flex-shrink: 0; background: var(--bark); color: var(--sage);
-      padding: .5rem 2rem; display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: .4rem; font-size: .72rem;
+    .info-card {
+      background: var(--c-surface); border-radius: var(--radius-sm);
+      padding: .78rem .9rem; border: 1px solid var(--c-border);
+      box-shadow: 0 1px 7px var(--c-shadow);
+      transition: background var(--transition), border-color var(--transition);
     }
-    footer .footer-brand { font-family: 'Playfair Display', serif; color: var(--white); font-size: .84rem; font-weight: 700; }
+    .info-card h4 { font-family: 'Playfair Display', serif; font-size: .88rem; color: var(--c-deep); margin-bottom: .3rem; }
+    .info-card p  { font-size: .77rem; color: var(--c-sub); line-height: 1.58; }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer {
+      flex-shrink: 0;
+      background: var(--c-deep);
+      color: var(--c-soft);
+      padding: .5rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: .4rem; font-size: .72rem;
+      transition: background var(--transition);
+    }
+    [data-theme="dark"] footer { background: #0b1510; }
+    footer .footer-brand { font-family: 'Playfair Display', serif; color: #fff; font-size: .84rem; font-weight: 700; }
     footer .footer-links { display: flex; gap: 1rem; }
-    footer .footer-links a { color: var(--sage); text-decoration: none; transition: color .15s; }
-    footer .footer-links a:hover { color: var(--leaf); }
+    footer .footer-links a { color: var(--c-soft); text-decoration: none; transition: color .15s; }
+    footer .footer-links a:hover { color: var(--c-bright); }
     footer .footer-copy { opacity: .68; }
 
+    /* cursor override during resize */
     body.col-resizing { cursor: col-resize !important; }
     body.col-resizing * { pointer-events: none !important; user-select: none !important; }
     body.col-resizing .divider { pointer-events: auto !important; }
 
     /* ══════════════════════════════════════════════════════
-       CHATBOT STYLES
+       CHATBOT
     ══════════════════════════════════════════════════════ */
     #eco-chat-fab {
       position: fixed; bottom: 28px; right: 28px; z-index: 9999;
       width: 62px; height: 62px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--fern), var(--moss)); border: none; cursor: pointer;
+      background: linear-gradient(135deg, var(--c-mid), var(--c-deep));
+      border: none; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 6px 28px rgba(45,74,34,0.45), 0 2px 8px rgba(0,0,0,0.3);
-      transition: transform 0.3s cubic-bezier(.2,.8,.2,1), box-shadow 0.3s ease;
-      animation: fabPop 0.5s cubic-bezier(.2,.8,.2,1) both;
+      box-shadow: 0 6px 28px rgba(26,92,50,.45), 0 2px 8px rgba(0,0,0,.3);
+      transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s ease;
+      animation: fabPop .5s cubic-bezier(.2,.8,.2,1) both;
     }
-    @keyframes fabPop { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-    #eco-chat-fab:hover { transform: scale(1.12); box-shadow: 0 10px 36px rgba(45,74,34,0.55), 0 4px 12px rgba(0,0,0,0.4); }
-    #eco-chat-fab svg { transition: transform 0.4s ease; }
+    @keyframes fabPop { from{transform:scale(0);opacity:0} to{transform:scale(1);opacity:1} }
+    #eco-chat-fab:hover { transform: scale(1.12); box-shadow: 0 10px 36px rgba(26,92,50,.55), 0 4px 12px rgba(0,0,0,.4); }
+    #eco-chat-fab svg { transition: transform .4s ease; }
     #eco-chat-fab.open svg.chat-icon  { display: none; }
     #eco-chat-fab.open svg.close-icon { display: block !important; }
     #eco-chat-fab::after {
       content: ''; position: absolute; top: 4px; right: 4px;
-      width: 13px; height: 13px; border-radius: 50%; background: #6aab5e;
-      border: 2px solid #2d4a22; animation: blinkFab 2.5s infinite;
+      width: 13px; height: 13px; border-radius: 50%;
+      background: var(--c-bright); border: 2px solid var(--c-deep);
+      animation: blinkFab 2.5s infinite;
     }
     #eco-chat-fab.open::after { display: none; }
-    @keyframes blinkFab { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+    @keyframes blinkFab { 0%,100%{opacity:1} 50%{opacity:.3} }
 
     #eco-chat-panel {
       position: fixed; bottom: 102px; right: 28px; z-index: 9998;
       width: 380px; max-height: 580px; height: calc(100vh - 140px); border-radius: 16px;
-      background: var(--white); border: 1px solid var(--sage);
-      box-shadow: 0 15px 40px rgba(45,74,34,0.25), 0 0 20px rgba(0,0,0,0.1);
+      background: var(--c-surface); border: 1px solid var(--c-border);
+      box-shadow: 0 15px 40px var(--c-shadow), 0 0 20px rgba(0,0,0,.1);
       display: flex; flex-direction: column; overflow: hidden;
-      transform: scale(0.85) translateY(30px); opacity: 0; pointer-events: none;
-      transition: transform 0.35s cubic-bezier(.2,.8,.2,1), opacity 0.3s ease; transform-origin: bottom right;
+      transform: scale(.85) translateY(30px); opacity: 0; pointer-events: none;
+      transition: transform .35s cubic-bezier(.2,.8,.2,1), opacity .3s ease;
+      transform-origin: bottom right;
     }
     #eco-chat-panel.visible { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
 
     .eco-chat-header {
-      padding: 16px; background: linear-gradient(135deg, var(--fern), var(--moss));
+      padding: 16px;
+      background: linear-gradient(135deg, var(--c-mid), var(--c-deep));
       display: flex; align-items: center; gap: 12px; flex-shrink: 0;
     }
     .eco-chat-avatar {
       width: 36px; height: 36px; border-radius: 50%;
-      background: var(--leaf); display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem; box-shadow: 0 0 10px rgba(0,0,0,0.2); flex-shrink: 0;
+      background: var(--c-bright); display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; box-shadow: 0 0 10px rgba(0,0,0,.2); flex-shrink: 0;
     }
     .eco-chat-header-text { flex: 1; min-width: 0; }
-    .eco-chat-header-text h4 { font-size: 0.95rem; font-weight: 700; color: var(--white); margin: 0 0 2px; }
-    .eco-chat-header-text span { font-size: 0.75rem; color: var(--mist); display: flex; align-items: center; gap: 5px; }
+    .eco-chat-header-text h4 { font-size: .95rem; font-weight: 700; color: #fff; margin: 0 0 2px; }
+    .eco-chat-header-text span { font-size: .75rem; color: var(--c-mist); display: flex; align-items: center; gap: 5px; }
     .eco-status-dot {
-      width: 7px; height: 7px; border-radius: 50%; background: #a8c5a0;
-      display: inline-block; box-shadow: 0 0 6px #a8c5a0; animation: blinkFab 2.5s infinite;
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--c-soft); display: inline-block;
+      box-shadow: 0 0 6px var(--c-soft); animation: blinkFab 2.5s infinite;
     }
     .eco-chat-clear-btn {
-      background: none; border: none; color: var(--mist); cursor: pointer; font-size: 0.75rem;
-      padding: 4px 8px; border-radius: 8px; transition: all 0.2s; flex-shrink: 0;
+      background: none; border: none; color: var(--c-mist); cursor: pointer;
+      font-size: .75rem; padding: 4px 8px; border-radius: 8px;
+      transition: all .2s; flex-shrink: 0;
     }
-    .eco-chat-clear-btn:hover { color: #fff; background: rgba(255,255,255,0.15); }
+    .eco-chat-clear-btn:hover { color: #fff; background: rgba(255,255,255,.15); }
 
-    /* ── API KEY MODAL ───────────────────────────────────────── */
+    /* API KEY MODAL */
     #eco-apikey-overlay {
       position: fixed; inset: 0; z-index: 10000;
-      background: rgba(45,74,34,0.55); backdrop-filter: blur(4px);
+      background: var(--c-overlay); backdrop-filter: blur(4px);
       display: flex; align-items: center; justify-content: center;
       opacity: 0; pointer-events: none; transition: opacity .25s;
     }
     #eco-apikey-overlay.visible { opacity: 1; pointer-events: all; }
     #eco-apikey-modal {
-      background: var(--white); border-radius: 16px; padding: 1.8rem 1.6rem;
-      width: min(420px, 92vw); box-shadow: 0 20px 60px rgba(45,74,34,0.35);
+      background: var(--c-surface); border-radius: 16px; padding: 1.8rem 1.6rem;
+      width: min(420px, 92vw); box-shadow: 0 20px 60px var(--c-shadow);
       display: flex; flex-direction: column; gap: 1rem;
       transform: scale(.92) translateY(12px); transition: transform .25s;
     }
     #eco-apikey-overlay.visible #eco-apikey-modal { transform: scale(1) translateY(0); }
-    .apikey-modal-icon { font-size: 2rem; text-align: center; }
-    .apikey-modal-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--moss); text-align: center; }
-    .apikey-modal-desc { font-size: .82rem; color: var(--soil); text-align: center; line-height: 1.6; }
-    .apikey-modal-desc a { color: var(--fern); }
+    .apikey-modal-icon  { font-size: 2rem; text-align: center; }
+    .apikey-modal-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--c-deep); text-align: center; }
+    .apikey-modal-desc  { font-size: .82rem; color: var(--c-sub); text-align: center; line-height: 1.6; }
+    .apikey-modal-desc a { color: var(--c-mid); }
     #eco-apikey-input {
-      width: 100%; padding: .65rem .85rem; border: 1.5px solid var(--sage);
-      border-radius: 10px; font-size: .88rem; color: var(--bark);
-      font-family: 'DM Sans', sans-serif; outline: none; transition: border-color .2s;
-      background: var(--mist);
+      width: 100%; padding: .65rem .85rem;
+      border: 1.5px solid var(--c-border); border-radius: 10px;
+      font-size: .88rem; color: var(--c-text);
+      font-family: 'DM Sans', sans-serif; outline: none;
+      transition: border-color .2s, background .2s;
+      background: var(--c-mist);
     }
-    #eco-apikey-input:focus { border-color: var(--fern); background: var(--white); }
-    #eco-apikey-input::placeholder { color: #aab; letter-spacing: .5px; }
+    #eco-apikey-input:focus { border-color: var(--c-mid); background: var(--c-surface); }
+    #eco-apikey-input::placeholder { color: var(--c-muted); letter-spacing: .5px; }
     .apikey-modal-actions { display: flex; gap: .6rem; }
     #eco-apikey-save {
-      flex: 1; background: linear-gradient(135deg, var(--fern), var(--moss));
-      color: var(--white); border: none; border-radius: 10px; padding: .65rem;
+      flex: 1;
+      background: linear-gradient(135deg, var(--c-mid), var(--c-deep));
+      color: #fff; border: none; border-radius: 10px; padding: .65rem;
       font-family: 'DM Sans', sans-serif; font-size: .88rem; font-weight: 600;
       cursor: pointer; transition: opacity .2s;
     }
     #eco-apikey-save:hover { opacity: .88; }
     #eco-apikey-cancel {
-      background: var(--mist); color: var(--soil); border: 1px solid #d5e8d0;
-      border-radius: 10px; padding: .65rem 1rem;
-      font-family: 'DM Sans', sans-serif; font-size: .88rem; cursor: pointer; transition: background .2s;
+      background: var(--c-mist); color: var(--c-sub);
+      border: 1px solid var(--c-border); border-radius: 10px; padding: .65rem 1rem;
+      font-family: 'DM Sans', sans-serif; font-size: .88rem; cursor: pointer;
+      transition: background .2s;
     }
-    #eco-apikey-cancel:hover { background: #ddecd8; }
+    #eco-apikey-cancel:hover { background: var(--c-border); }
     .apikey-error { color: #c0392b; font-size: .78rem; text-align: center; min-height: 1em; }
 
+    /* MESSAGES */
     #eco-chat-messages {
       flex: 1; overflow-y: auto; padding: 16px 14px;
-      display: flex; flex-direction: column; gap: 10px; background: #f9fbf8;
+      display: flex; flex-direction: column; gap: 10px;
+      background: var(--c-page);
     }
     #eco-chat-messages::-webkit-scrollbar { width: 5px; }
-    #eco-chat-messages::-webkit-scrollbar-thumb { background: var(--sage); border-radius: 4px; }
+    #eco-chat-messages::-webkit-scrollbar-thumb { background: var(--sb-thumb); border-radius: 4px; }
 
     .eco-msg {
       max-width: 85%; padding: 10px 14px; border-radius: 12px;
-      font-size: 0.85rem; line-height: 1.5; animation: msgIn 0.3s cubic-bezier(.2,.8,.2,1) both; word-break: break-word;
+      font-size: .85rem; line-height: 1.5;
+      animation: msgIn .3s cubic-bezier(.2,.8,.2,1) both; word-break: break-word;
     }
-    @keyframes msgIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    .eco-msg.bot { align-self: flex-start; background: #e8f0e5; color: var(--bark); border: 1px solid #d4e8ce; border-bottom-left-radius: 4px; }
-    .eco-msg.user { align-self: flex-end; background: var(--fern); color: var(--white); border-bottom-right-radius: 4px; box-shadow: 0 4px 10px rgba(74,124,63,0.2); }
-    .eco-msg a { color: var(--fern); text-decoration: underline; }
-    .eco-msg.user a { color: #d4e8ce; }
+    @keyframes msgIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+    .eco-msg.bot  { align-self: flex-start; background: var(--c-mist); color: var(--c-text); border: 1px solid var(--c-border); border-bottom-left-radius: 4px; }
+    .eco-msg.user { align-self: flex-end; background: var(--c-mid); color: #fff; border-bottom-right-radius: 4px; box-shadow: 0 4px 10px rgba(46,139,87,.2); }
+    .eco-msg a { color: var(--c-mid); text-decoration: underline; }
+    .eco-msg.user a { color: var(--c-mist); }
 
     .eco-typing {
-      align-self: flex-start; background: #e8f0e5; border: 1px solid #d4e8ce;
+      align-self: flex-start; background: var(--c-mist); border: 1px solid var(--c-border);
       border-radius: 12px; border-bottom-left-radius: 4px; padding: 12px 18px;
-      display: flex; gap: 5px; align-items: center; animation: msgIn 0.3s ease both;
+      display: flex; gap: 5px; align-items: center; animation: msgIn .3s ease both;
     }
-    .eco-typing span { width: 7px; height: 7px; background: var(--leaf); border-radius: 50%; animation: typeBounce 1.2s infinite; }
-    .eco-typing span:nth-child(2) { animation-delay: 0.2s; }
-    .eco-typing span:nth-child(3) { animation-delay: 0.4s; }
-    @keyframes typeBounce { 0%,80%,100% { transform: translateY(0); opacity: 0.5; } 40% { transform: translateY(-6px); opacity: 1; } }
+    .eco-typing span { width: 7px; height: 7px; background: var(--c-bright); border-radius: 50%; animation: typeBounce 1.2s infinite; }
+    .eco-typing span:nth-child(2) { animation-delay: .2s; }
+    .eco-typing span:nth-child(3) { animation-delay: .4s; }
+    @keyframes typeBounce { 0%,80%,100%{transform:translateY(0);opacity:.5} 40%{transform:translateY(-6px);opacity:1} }
 
     .eco-chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 2px 0 4px; align-self: flex-start; }
     .eco-chip {
-      background: var(--white); border: 1px solid var(--sage); color: var(--fern);
-      border-radius: 20px; padding: 5px 12px; font-size: 0.75rem; cursor: pointer; transition: all 0.2s ease;
+      background: var(--c-surface); border: 1px solid var(--c-border); color: var(--c-mid);
+      border-radius: 20px; padding: 5px 12px; font-size: .75rem; cursor: pointer;
+      transition: all .2s ease;
     }
-    .eco-chip:hover { background: var(--mist); color: var(--moss); border-color: var(--fern); transform: translateY(-1px); }
+    .eco-chip:hover { background: var(--c-mist); color: var(--c-deep); border-color: var(--c-mid); transform: translateY(-1px); }
 
     .eco-chat-footer {
-      padding: 12px 14px 14px; border-top: 1px solid #d5e8d0; background: var(--white);
+      padding: 12px 14px 14px; border-top: 1px solid var(--c-border);
+      background: var(--c-surface);
       display: flex; gap: 8px; align-items: flex-end; flex-shrink: 0;
+      transition: background var(--transition), border-color var(--transition);
     }
     #eco-chat-input {
-      flex: 1; background: #f9fbf8; border: 1px solid var(--sage); border-radius: 14px;
-      color: var(--bark); padding: 10px 14px; font-size: 0.85rem; outline: none; resize: none;
-      min-height: 42px; max-height: 110px; line-height: 1.4; font-family: inherit; transition: border-color 0.3s;
+      flex: 1; background: var(--c-page); border: 1px solid var(--c-border);
+      border-radius: 14px; color: var(--c-text);
+      padding: 10px 14px; font-size: .85rem; outline: none; resize: none;
+      min-height: 42px; max-height: 110px; line-height: 1.4;
+      font-family: inherit; transition: border-color .3s, background var(--transition);
     }
-    #eco-chat-input:focus { border-color: var(--fern); box-shadow: 0 0 0 3px rgba(106,171,94,0.15); }
+    #eco-chat-input:focus { border-color: var(--c-mid); box-shadow: 0 0 0 3px rgba(82,179,116,.15); }
     #eco-chat-send {
-      width: 42px; height: 42px; border-radius: 12px; background: var(--fern); border: none; cursor: pointer;
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: transform 0.2s, box-shadow 0.2s;
+      width: 42px; height: 42px; border-radius: 12px;
+      background: var(--c-mid); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: transform .2s, box-shadow .2s;
     }
-    #eco-chat-send:hover:not(:disabled) { transform: scale(1.05); box-shadow: 0 4px 12px rgba(74,124,63,0.4); }
-    #eco-chat-send:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+    #eco-chat-send:hover:not(:disabled) { transform: scale(1.05); box-shadow: 0 4px 12px rgba(46,139,87,.4); }
+    #eco-chat-send:disabled { opacity: .45; cursor: not-allowed; transform: none; }
     #eco-chat-send svg { width: 18px; height: 18px; }
-
   </style>
 </head>
 <body>
 
-<div id="hidden-data-source" style="display: none;">
+<!-- ═══════════════════════════════════════════
+     HIDDEN DATA SOURCE (unchanged)
+════════════════════════════════════════════ -->
+<div id="hidden-data-source" style="display:none;">
   <div class="card"><div class="icon">🔒</div><h2 class="card-title">Ideation & Feedback</h2><div class="links-section"><a href="https://docs.google.com/document/d/1tYExkgcirqx9sW1ogmsP6Ir47vBIOXeasuVIYc0G5jo/edit?usp=sharing" class="link-item">A brief introduction to EcoSystem</a><a href=" https://rms-sof.github.io/AI-Tutor-EcoSystem/" class="link-item">AI Tutor for IT Students</a>
 <a href="https://drive.google.com/file/d/1sIG0DJ4pVMEnCjhA6iWgMznBFDzcPBqz/view?usp=sharing" class="link-item">इकोसिस्टिम २०२६ - मराठीतून ओळख</a><a href="https://script.google.com/macros/s/AKfycbyU5_GsvOnqekKqvzl0dhVMR-zmHADQlAl8X03Nlk3DC2GL-97EdG_TMq4xCIzpbOoc5A/exec" class="link-item">Schedule an appointment with Rahul</a><a href="https://script.google.com/macros/u/1/s/AKfycbxGjLmRWBSVMcPyjkGm347aQ7Sk_kqBjhGABKcMSkBQcMV4DfNh5MfuvCKRVQoLTZM/exec" class="link-item">Minutes of the Meetings</a><a href="https://forms.gle/v12gqr4TcRCrnXHx6" class="link-item">Give feedback to make your EcoSystem 2026 better</a><a href="https://script.google.com/macros/s/AKfycbzg61qEsbHp_GoMcC0TfS2PFc-wULBpK9DdLyrLsPcTkGDQqWhDBXt_1Z0YceYSgAR9MA/exec" class="link-item">Leave Sanction System - IT Students</a><a href="https://script.google.com/macros/s/AKfycbz2ntoxSg_UZnpwHOGy24salxjy0M7S-Ah-a3izbS0ngDPOBXxpzp4sM_gv8w33zHhw/exec" class="link-item">Minutes of Meeting MOM system</a><a href="https://docs.google.com/presentation/d/1q0uj6WFhEyIu0OjAUSAsaz-ZGhdyWaclLpX6W3q1v5w/edit?usp=sharing" class="link-item">NBNSTIC IT Progress Book (प्रगती पुस्तक)</a><a href="https://script.google.com/macros/s/AKfycbyY9nciONqljNLQa6FkgZii5LDC-ZtX7CPKNQfopGIlyf4qxQF6F8nYRp5JGlGqMGUz/exec" class="link-item">Rate your IT Department</a><a href="https://forms.gle/JRVFWbPZZei44Jjo6" class="link-item">Register to receive Happy Birthday Card from your IT Dept.</a>
 <a href=" https://rms-sof.github.io/AI-Tutor-EcoSystem/" class="link-item">AI Tutor for IT Students</a>
@@ -482,51 +581,66 @@
 <a href="https://rms-sof.github.io/Marathi-assistant/" class="link-item">EcoSystem मदतनीस</a>
 </div></div>
   <div class="card"><div class="icon">🔒</div><h2 class="card-title">Automated Workflows for ITD</h2><div class="links-section"><a href="https://script.google.com/macros/u/1/s/AKfycbxGjLmRWBSVMcPyjkGm347aQ7Sk_kqBjhGABKcMSkBQcMV4DfNh5MfuvCKRVQoLTZM/exec" class="link-item">MoM Distribution System</a>
-<a href="https://rms-sof.github.io/Notice-Generator/" class="link-item">IT Notices Generator </a> 
+<a href="https://rms-sof.github.io/Notice-Generator/" class="link-item">IT Notices Generator </a>
 <a href="https://script.google.com/macros/s/AKfycbzg61qEsbHp_GoMcC0TfS2PFc-wULBpK9DdLyrLsPcTkGDQqWhDBXt_1Z0YceYSgAR9MA/exec" class="link-item">Leave Application System</a><a href="https://docs.google.com/document/d/10I6DXo6a9Lrq9qS_VWfQ63fxOdFG8fu2UglVdGdDw48/edit?usp=sharing" class="link-item">Read NBNSTIC-IT Newsletters</a><a href="https://script.google.com/macros/s/AKfycbwLND-1SZ5Kt5yp-6Kcptuiy6sfDxwubyp0zqjIIDXOxfR1hADmsSDw0u1XRZdBmvMx5g/exec" class="link-item">Mark your Presence</a><a href="https://docs.google.com/spreadsheets/u/3/d/1OVzWzKBKbYcmwCc3rM2INpl3b9J3qZAko6iL_adhfRk/edit?usp=sharing" class="link-item">Check your Presence</a><a href="https://script.google.com/macros/s/AKfycbyRYZb72HCV3jNuTUDPueCQuXeJhTck00-TkSNTXDNnFN13Lq5zvXoqCzFNpLGdZQdr/exec" class="link-item">IT Dept Internal Results Portal</a>
 <a href=" https://rms-sof.github.io/AI-Tutor-EcoSystem/" class="link-item">AI Tutor for IT Students</a>
-
 </div></div>
   <div class="card"><div class="icon">📅</div><h2 class="card-title">Games</h2><div class="links-section"><a href="https://rms-sof.github.io/Game-design/" class="link-item">Game Design with Pychology & Computer Science</a><a href="https://rms-sof.github.io/PuzzleParadise/" class="link-item">Puzzles Games</a><a href="https://rms-sof.github.io/GameArcade/" class="link-item">Games for Dopamine Detox</a><a href="https://rms-sof.github.io/wordbuilder/" class="link-item">Word Builder Game</a><a href="https://rms-sof.github.io/scramble-game/" class="link-item">Unscramble Word Game</a><a href="https://rms-sof.github.io/PairTicTacToe/" class="link-item">Two player Game - Tic-Tac-Toe</a><a href="https://rms-sof.github.io/DotBox/" class="link-item">Two Player - Dot & Box Game</a></div></div>
   <div class="card"><div class="icon">📅</div><h2 class="card-title">Teaching aids</h2><div class="links-section"><a href="https://www.youtube.com/watch?v=J1SV4NwMf0Q" class="link-item">Bloom's Taxonomy for papaer setting</a><a href="https://www.youtube.com/watch?v=Fv1N5MJC5ic" class="link-item">Using AI in academic contents preparation</a></div></div>
   <div class="card"><div class="icon">⚡</div><h2 class="card-title">Philosophy</h2><div class="links-section"><a href="https://rms-sof.github.io/Geeta-geetai/" class="link-item">Geeta गीता-गीताई</a><a href="https://docs.google.com/document/d/1DHyQwn51LylEYqUL8uh24AKd0X7idMODNsGNDOiRKFw/edit?usp=sharing" class="link-item">Haripath हरिपाठ</a><a href="https://rms-sof.github.io/Life-Q/" class="link-item">Get Inspired!</a><a href="https://drive.google.com/file/d/1mEcYPX9ygsV5zyOH-i4xCbd6dGSMbZFS/view?usp=drive_link" class="link-item">Sanskrit संस्कृत श्लोक</a><a href="https://rms-sof.github.io/Profession-Q/" class="link-item">Professional Quotable Quotes</a><a href="https://rms-sof.github.io/Subhashite/" class="link-item">Subhashit Mala सुभाषित माला</a><a href="https://docs.google.com/document/d/1exG7ZGCgqFKhrN0szDHz9afUfGQL5XnSMcUKcadk2sU/edit?usp=sharing" class="link-item">Aarati Sangrah आरती संग्रह</a></div></div>
 </div>
 
+<!-- ═══════════════════════════════════════════
+     HEADER
+════════════════════════════════════════════ -->
 <header>
   <div class="banner-inner">
     <div class="banner-icon">🌳</div>
     <div class="banner-text">
       <h1>EcoSystem | Prof. Rahul M. Samant</h1>
-      <p> Explore · Discover · Grow </p>
-    </div>
-    
-    <div class="banner-links">
-      <a href="https://www.youtube.com/channel/UCCjMDE19CqLwCl-GsVBRRXg" class="banner-link-icon" title="My  Channel">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-      </a>
-      <a href="https://rms-sof.github.io/Self-Help-Students-Portal/" class="banner-link-icon" title="Mobile Friendly Site">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-      </a>
-      <a href="https://drive.google.com/file/d/1P363lfuMTHeeIIRnAoBSNoCp7iii4rLE/view" class="banner-link-icon" title="My Profile">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
-      </a>
-      <a href="https://drive.google.com/drive/folders/10qTQ-Xv5LcT96dAMdIqPxtpAiqxvLYDn?usp=sharing" class="banner-link-icon" title="IT Notices">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
-      </a>
-      <a href="https://drive.google.com/file/d/1P363lfuMTHeeIIRnAoBSNoCp7iii4rLE/view" class="banner-link-icon" title="Contact Me">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-      </a>
+      <p>Explore · Discover · Grow</p>
     </div>
 
-    <div class="banner-badge">🍃 Live &amp; Growing</div>
+    <div class="banner-right">
+      <div class="banner-links">
+        <a href="https://www.youtube.com/channel/UCCjMDE19CqLwCl-GsVBRRXg" class="banner-link-icon" title="My Channel">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </a>
+        <a href="https://rms-sof.github.io/Self-Help-Students-Portal/" class="banner-link-icon" title="Mobile Friendly Site">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </a>
+        <a href="https://drive.google.com/file/d/1P363lfuMTHeeIIRnAoBSNoCp7iii4rLE/view" class="banner-link-icon" title="My Profile">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </a>
+        <a href="https://drive.google.com/drive/folders/10qTQ-Xv5LcT96dAMdIqPxtpAiqxvLYDn?usp=sharing" class="banner-link-icon" title="IT Notices">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </a>
+        <a href="https://drive.google.com/file/d/1P363lfuMTHeeIIRnAoBSNoCp7iii4rLE/view" class="banner-link-icon" title="Contact Me">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+      </div>
+
+      <!-- ★ THEME TOGGLE — top-right of header ★ -->
+      <button id="themeToggle" title="Toggle dark / light mode" aria-label="Toggle theme">
+        <!-- moon = shown in light mode (click to go dark) -->
+        <span class="icon-moon">🌙</span>
+        <!-- sun  = shown in dark  mode (click to go light) -->
+        <span class="icon-sun">☀️</span>
+      </button>
+
+      <div class="banner-badge">🍃 Live &amp; Growing</div>
+    </div>
   </div>
 </header>
 
+<!-- ═══════════════════════════════════════════
+     SEARCH BAR
+════════════════════════════════════════════ -->
 <div class="search-bar-wrap">
   <div style="width:100%;max-width:540px;">
     <div class="search-container">
       <span class="search-icon">🔍</span>
-      <input type="text" id="searchInput" placeholder="Search ecosystems, species, resources…" autocomplete="off"/>
+      <input type="text" id="searchInput" placeholder="Search resources, exams, topics…" autocomplete="off"/>
       <button id="voiceBtn" title="Voice search" onclick="toggleVoice()">
         <span>🎙</span><div class="mic-dot"></div><span id="voiceLabel">Voice</span>
       </button>
@@ -535,15 +649,18 @@
   </div>
 </div>
 
+<!-- ═══════════════════════════════════════════
+     MAIN — three resizable panels
+════════════════════════════════════════════ -->
 <main id="mainContainer">
 
   <div class="panel" id="panelLeft">
     <div class="photo-placeholder">
-      <img src="website-picture.png" alt="Prof. Rahul M. Samant" />
+      <img src="website-picture.png" alt="Prof. Rahul M. Samant"/>
       <div class="photo-label">📷 Prof. Rahul M. Samant</div>
     </div>
     <div class="intro-card">
-      <h2>Welcome to EcoSystem </h2>
+      <h2>Welcome to EcoSystem</h2>
       <p>A comprehensive knowledge hub dedicated to mindful learning, academic planning, and student well-being. Browse the navigation tree to explore study resources, schedules, lab manuals, and much more.</p>
     </div>
   </div>
@@ -564,35 +681,20 @@
       <div class="stat-card"><div class="stat-num">100+</div><div class="stat-label">Mock Exams & Quizzes</div></div>
     </div>
     <div class="info-grid">
-      <div class="info-card">
-        <h4> 📚  Learning & Academics</h4>
-        <p>Access lab manuals, personalized learning paths, concept videos, subject overviews by AI, and historical timelines to deepen understanding across all IT subjects..</p>
-      </div>
-      <div class="info-card">
-        <h4> 📝 Exams & Assessments</h4>
-        <p>Prepare with subjective exams, mock oral vivas, online quizzes, paperless tests, and location-bound NBNSTIC-IT proctored MCQ exams.</p>
-      </div>
-      <div class="info-card">
-        <h4>🧘 Wellness & Growth</h4>
-        <p>Manage stress, cultivate digital wellness, build actionable study plans, and develop a strong growth mindset through curated video resources.</p>
-      </div>
-      <div class="info-card">
-        <h4> 💼 Career & Research</h4>
-        <p>Sharpen employability skills, crack technical interviews, explore research methodology, publish innovations, and learn about IPR & patents.</p>
-      </div>
-      <div class="info-card">
-        <h4> 🎮 Utilities & Games</h4>
-        <p>Explore productivity tools, dopamine-detox brain games, department automated workflows, and philosophy resources for a balanced student life.</p>
-      </div>
-      <div class="info-card">
-        <h4> 🔬 Special CS Topics</h4>
-        <p>Deep-dive into visualized algorithms, CS fundamentals, software engineering series, OS, DBMS, TOC, CG and mathematics through interactive tools.</p>
-      </div>
+      <div class="info-card"><h4>📚 Learning & Academics</h4><p>Access lab manuals, personalized learning paths, concept videos, subject overviews by AI, and historical timelines to deepen understanding across all IT subjects.</p></div>
+      <div class="info-card"><h4>📝 Exams & Assessments</h4><p>Prepare with subjective exams, mock oral vivas, online quizzes, paperless tests, and location-bound NBNSTIC-IT proctored MCQ exams.</p></div>
+      <div class="info-card"><h4>🧘 Wellness & Growth</h4><p>Manage stress, cultivate digital wellness, build actionable study plans, and develop a strong growth mindset through curated video resources.</p></div>
+      <div class="info-card"><h4>💼 Career & Research</h4><p>Sharpen employability skills, crack technical interviews, explore research methodology, publish innovations, and learn about IPR & patents.</p></div>
+      <div class="info-card"><h4>🎮 Utilities & Games</h4><p>Explore productivity tools, dopamine-detox brain games, department automated workflows, and philosophy resources for a balanced student life.</p></div>
+      <div class="info-card"><h4>🔬 Special CS Topics</h4><p>Deep-dive into visualized algorithms, CS fundamentals, software engineering series, OS, DBMS, TOC, CG and mathematics through interactive tools.</p></div>
     </div>
   </div>
 
 </main>
 
+<!-- ═══════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
 <footer>
   <div class="footer-brand">🌿 EcoSystem Portal 2026</div>
   <div class="footer-links">
@@ -605,30 +707,15 @@
   <div class="footer-copy">© 2026 EcoSystem | Designed by Prof. Rahul M. Samant | HOD-IT, NBNSTIC.</div>
 </footer>
 
-
-<div id="eco-apikey-overlay" role="dialog" aria-modal="true" aria-labelledby="apikey-title">
-  <div id="eco-apikey-modal">
-    <div class="apikey-modal-icon">🔑</div>
-    <div class="apikey-modal-title" id="apikey-title">Enter your Groq API Key</div>
-    <div class="apikey-modal-desc">
-      Your key is saved only in your browser (<code>localStorage</code>) and is never shared.<br>
-      Get a free key at <a href="https://console.groq.com/keys" target="_blank" rel="noopener">console.groq.com/keys</a>.
-    </div>
-    <input id="eco-apikey-input" type="password" placeholder="gsk_••••••••••••••••••••••••" autocomplete="off" spellcheck="false" />
-    <div class="apikey-error" id="eco-apikey-error"></div>
-    <div class="apikey-modal-actions">
-      <button id="eco-apikey-cancel">Cancel</button>
-      <button id="eco-apikey-save">Save &amp; Continue</button>
-    </div>
-  </div>
-</div>
-
+<!-- ═══════════════════════════════════════════
+     CHATBOT FAB + PANEL
+════════════════════════════════════════════ -->
 <button id="eco-chat-fab" title="Chat with EcoSystem Assistant" aria-label="Open chat">
   <svg class="chat-icon" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
   </svg>
   <svg class="close-icon" style="display:none" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-    <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
   </svg>
 </button>
 
@@ -644,44 +731,75 @@
   </div>
   <div id="eco-chat-messages" role="log" aria-live="polite"></div>
   <div class="eco-chat-footer">
-    <textarea id="eco-chat-input" placeholder="Ask me anything about EcoSystem..." rows="1"></textarea>
+    <textarea id="eco-chat-input" placeholder="Ask me anything about EcoSystem…" rows="1"></textarea>
     <button id="eco-chat-send" disabled title="Send message">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="22" y1="2" x2="11" y2="13"></line>
-        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
       </svg>
     </button>
   </div>
 </div>
 
+<!-- ═══════════════════════════════════════════
+     API KEY MODAL
+════════════════════════════════════════════ -->
+<div id="eco-apikey-overlay" role="dialog" aria-modal="true" aria-labelledby="apikey-title">
+  <div id="eco-apikey-modal">
+    <div class="apikey-modal-icon">🔑</div>
+    <div class="apikey-modal-title" id="apikey-title">Enter your Groq API Key</div>
+    <div class="apikey-modal-desc">
+      Your key is saved only in your browser (<code>localStorage</code>) and is never shared.<br>
+      Get a free key at <a href="https://console.groq.com/keys" target="_blank" rel="noopener">console.groq.com/keys</a>.
+    </div>
+    <input id="eco-apikey-input" type="password" placeholder="gsk_••••••••••••••••••••••••" autocomplete="off" spellcheck="false"/>
+    <div class="apikey-error" id="eco-apikey-error"></div>
+    <div class="apikey-modal-actions">
+      <button id="eco-apikey-cancel">Cancel</button>
+      <button id="eco-apikey-save">Save &amp; Continue</button>
+    </div>
+  </div>
+</div>
+
 <script>
+/* ══════════════════════════════════════════
+   DARK / LIGHT THEME TOGGLE
+══════════════════════════════════════════ */
+(function () {
+  const html = document.documentElement;
+  const btn  = document.getElementById('themeToggle');
+  const KEY  = 'ecosystem_theme';
+
+  // Apply saved or system preference
+  const saved = localStorage.getItem(KEY);
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (saved === 'dark' || (!saved && prefersDark)) html.setAttribute('data-theme', 'dark');
+
+  btn.addEventListener('click', () => {
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    const next   = isDark ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem(KEY, next);
+  });
+})();
+
 /* ══════════════════════════════════════════
    RESIZABLE PANELS
 ══════════════════════════════════════════ */
 (function () {
-  const container  = document.getElementById('mainContainer');
-  const pLeft      = document.getElementById('panelLeft');
-  const pMid       = document.getElementById('panelMid');
-  const pRight     = document.getElementById('panelRight');
-  const div1       = document.getElementById('divider1');
-  const div2       = document.getElementById('divider2');
-  const DIVW       = 6;
-  const MIN_PX     = 120;
-
+  const container = document.getElementById('mainContainer');
+  const pLeft     = document.getElementById('panelLeft');
+  const pMid      = document.getElementById('panelMid');
+  const pRight    = document.getElementById('panelRight');
+  const div1      = document.getElementById('divider1');
+  const div2      = document.getElementById('divider2');
+  const DIVW = 6, MIN_PX = 120;
   let wLeft = 320, wMid = 320;
 
   function applyWidths() {
-    const total   = container.offsetWidth;
-    const wRight  = total - wLeft - wMid - DIVW * 2;
-    pLeft.style.width  = wLeft  + 'px';
-    pLeft.style.flexShrink = '0';
-    pLeft.style.flexGrow   = '0';
-    pMid.style.width   = wMid   + 'px';
-    pMid.style.flexShrink  = '0';
-    pMid.style.flexGrow    = '0';
-    pRight.style.flex  = '1';
+    pLeft.style.cssText  += ';width:' + wLeft + 'px;flex-shrink:0;flex-grow:0';
+    pMid.style.cssText   += ';width:' + wMid  + 'px;flex-shrink:0;flex-grow:0';
+    pRight.style.flex = '1';
   }
-
   applyWidths();
   window.addEventListener('resize', applyWidths);
 
@@ -692,46 +810,30 @@
       startX = e.clientX;
       divider.classList.add('dragging');
       document.body.classList.add('col-resizing');
-
-      function onMove(e) {
-        const dx = e.clientX - startX;
-        startX = e.clientX;
-        onDrag(dx); applyWidths();
-      }
-      function onUp() {
+      const onMove = e => { const dx = e.clientX - startX; startX = e.clientX; onDrag(dx); applyWidths(); };
+      const onUp   = () => {
         divider.classList.remove('dragging');
         document.body.classList.remove('col-resizing');
         document.removeEventListener('mousemove', onMove);
-        document.removeEventListener('mouseup',   onUp);
-      }
+        document.removeEventListener('mouseup', onUp);
+      };
       document.addEventListener('mousemove', onMove);
-      document.addEventListener('mouseup',   onUp);
+      document.addEventListener('mouseup', onUp);
     });
   }
 
-  makeDraggable(div1, dx => {
-    const total  = container.offsetWidth;
-    const maxLeft = total - wMid - MIN_PX - DIVW * 2;
-    wLeft = Math.max(MIN_PX, Math.min(maxLeft, wLeft + dx));
-  });
-
-  makeDraggable(div2, dx => {
-    const total   = container.offsetWidth;
-    const maxMid  = total - wLeft - MIN_PX - DIVW * 2;
-    wMid = Math.max(MIN_PX, Math.min(maxMid, wMid + dx));
-  });
+  makeDraggable(div1, dx => { wLeft = Math.max(MIN_PX, Math.min(container.offsetWidth - wMid - MIN_PX - DIVW * 2, wLeft + dx)); });
+  makeDraggable(div2, dx => { wMid  = Math.max(MIN_PX, Math.min(container.offsetWidth - wLeft - MIN_PX - DIVW * 2, wMid  + dx)); });
 })();
 
 /* ══════════════════════════════════════════
-   TREE BUILD (Dynamic extraction)
+   TREE BUILD
 ══════════════════════════════════════════ */
 function makeRow(icon, text) {
   const div = document.createElement('div');
   div.className = 'node-row';
-  const tog = document.createElement('span');
-  tog.className = 'toggle-icon'; tog.textContent = '▶';
-  const lbl = document.createElement('span');
-  lbl.className = 'node-label'; lbl.textContent = `${icon} ${text}`;
+  const tog = Object.assign(document.createElement('span'), { className: 'toggle-icon', textContent: '▶' });
+  const lbl = Object.assign(document.createElement('span'), { className: 'node-label',  textContent: `${icon} ${text}` });
   div.appendChild(tog); div.appendChild(lbl);
   return div;
 }
@@ -739,104 +841,69 @@ function makeRow(icon, text) {
 function toggle(row, sub) {
   const open = sub.classList.toggle('open');
   const ic = row.querySelector('.toggle-icon');
-  if (ic) ic.style.transform = open ? 'rotate(90deg)' : 'rotate(0deg)';
+  if (ic) ic.style.transform = open ? 'rotate(90deg)' : '';
 }
 
-const root = document.createElement('ul');
-const rootLi = document.createElement('li');
-const rootRow = makeRow('🌐','EcoSystem Portal');
+const root    = document.createElement('ul');
+const rootLi  = document.createElement('li');
+const rootRow = makeRow('🌐', 'EcoSystem Portal');
 const rootSub = document.createElement('div');
-rootSub.className = 'sub-tree open'; // Opened by default
+rootSub.className = 'sub-tree open';
 rootRow.querySelector('.toggle-icon').style.transform = 'rotate(90deg)';
-
 rootRow.addEventListener('click', () => toggle(rootRow, rootSub));
 
-// Parse the hidden cards grid to build the tree
-const cards = document.querySelectorAll('#hidden-data-source .card');
-
-cards.forEach(card => {
+document.querySelectorAll('#hidden-data-source .card').forEach(card => {
   const titleText = card.querySelector('.card-title').textContent.trim();
-  const iconText = card.querySelector('.icon').textContent.trim();
-  const links = card.querySelectorAll('.link-item');
-
+  const iconText  = card.querySelector('.icon').textContent.trim();
   const sLi  = document.createElement('li');
-  sLi.className = "category-node";
+  sLi.className = 'category-node';
   const sRow = makeRow(iconText, titleText);
   const sSub = document.createElement('div');
   sSub.className = 'sub-tree';
-  
   sRow.addEventListener('click', e => { e.stopPropagation(); toggle(sRow, sSub); });
-  
+
   const leafUl = document.createElement('ul');
-  links.forEach(link => {
+  card.querySelectorAll('.link-item').forEach(link => {
     const li = document.createElement('li');
-    li.className = "leaf-node";
-    const a  = document.createElement('a');
-    a.className = 'leaf-link';
-    a.href = link.href;
-    a.target = '_blank';
-    a.rel = "noopener noreferrer";
-    a.textContent = link.textContent.trim();
-    li.appendChild(a);
-    leafUl.appendChild(li);
+    li.className = 'leaf-node';
+    const a = Object.assign(document.createElement('a'), {
+      className: 'leaf-link', href: link.href, target: '_blank',
+      rel: 'noopener noreferrer', textContent: link.textContent.trim()
+    });
+    li.appendChild(a); leafUl.appendChild(li);
   });
 
-  sSub.appendChild(leafUl); 
-  sLi.appendChild(sRow); 
-  sLi.appendChild(sSub);
+  sSub.appendChild(leafUl); sLi.appendChild(sRow); sLi.appendChild(sSub);
   rootSub.appendChild(sLi);
 });
 
-rootLi.appendChild(rootRow); 
-rootLi.appendChild(rootSub); 
-root.appendChild(rootLi);
+rootLi.appendChild(rootRow); rootLi.appendChild(rootSub); root.appendChild(rootLi);
 document.getElementById('ecoTree').appendChild(root);
 
 /* ══════════════════════════════════════════
-   SEARCH FILTER LOGIC
+   SEARCH FILTER
 ══════════════════════════════════════════ */
-const searchInput = document.getElementById('searchInput');
-
-searchInput.addEventListener('input', (e) => {
-    const term = e.target.value.toLowerCase().trim();
-    const categories = document.querySelectorAll('.category-node');
-    
-    categories.forEach(cat => {
-        let hasMatch = false;
-        const leaves = cat.querySelectorAll('.leaf-node');
-        
-        leaves.forEach(leaf => {
-            const text = leaf.textContent.toLowerCase();
-            if(term === "" || text.includes(term)) {
-                leaf.classList.remove('hidden-filter');
-                hasMatch = true;
-            } else {
-                leaf.classList.add('hidden-filter');
-            }
-        });
-
-        const subTree = cat.querySelector('.sub-tree');
-        const row = cat.querySelector('.node-row');
-
-        if(term !== "") {
-            if(hasMatch) {
-                cat.style.display = 'block';
-                // Auto-expand if not open
-                if(!subTree.classList.contains('open')) toggle(row, subTree);
-            } else {
-                cat.style.display = 'none';
-            }
-        } else {
-            // Reset to default
-            cat.style.display = 'block';
-            if(subTree.classList.contains('open')) toggle(row, subTree);
-        }
+document.getElementById('searchInput').addEventListener('input', function () {
+  const term = this.value.toLowerCase().trim();
+  document.querySelectorAll('.category-node').forEach(cat => {
+    let hasMatch = false;
+    cat.querySelectorAll('.leaf-node').forEach(leaf => {
+      const match = !term || leaf.textContent.toLowerCase().includes(term);
+      leaf.classList.toggle('hidden-filter', !match);
+      if (match) hasMatch = true;
     });
-
-    // Make sure root is open during search
-    if (term !== "" && !rootSub.classList.contains('open')) toggle(rootRow, rootSub);
+    const sub = cat.querySelector('.sub-tree');
+    const row = cat.querySelector('.node-row');
+    if (term) {
+      cat.style.display = hasMatch ? 'block' : 'none';
+      if (hasMatch && !sub.classList.contains('open')) toggle(row, sub);
+    } else {
+      cat.style.display = 'block';
+      if (sub.classList.contains('open')) toggle(row, sub);
+    }
+  });
+  if (term && !rootSub.classList.contains('open')) toggle(rootRow, rootSub);
 });
-
 
 /* ══════════════════════════════════════════
    VOICE SEARCH
@@ -844,7 +911,7 @@ searchInput.addEventListener('input', (e) => {
 let recognition = null, listening = false;
 function toggleVoice() {
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if (!SR) { setStatus("⚠️ Voice not supported in this browser."); return; }
+  if (!SR) { setStatus('⚠️ Voice not supported in this browser.'); return; }
   if (listening) { recognition.stop(); return; }
   recognition = new SR();
   recognition.lang = 'en-US'; recognition.interimResults = true;
@@ -852,17 +919,17 @@ function toggleVoice() {
     listening = true;
     document.getElementById('voiceBtn').classList.add('listening');
     document.getElementById('voiceLabel').textContent = 'Stop';
-    setStatus("🎙 Listening… speak now");
+    setStatus('🎙 Listening… speak now');
   };
   recognition.onresult = e => {
     const t = Array.from(e.results).map(r => r[0].transcript).join('');
-    document.getElementById('searchInput').value = t;
-    // Trigger the input event to run the filter logic
-    document.getElementById('searchInput').dispatchEvent(new Event('input'));
-    if (e.results[e.results.length-1].isFinal) setStatus(`✅ "${t}"`);
+    const si = document.getElementById('searchInput');
+    si.value = t;
+    si.dispatchEvent(new Event('input'));
+    if (e.results[e.results.length - 1].isFinal) setStatus(`✅ "${t}"`);
   };
   recognition.onerror = e => { setStatus(`⚠️ ${e.error}`); stopVoice(); };
-  recognition.onend   = () => stopVoice();
+  recognition.onend   = stopVoice;
   recognition.start();
 }
 function stopVoice() {
@@ -874,205 +941,132 @@ function stopVoice() {
 function setStatus(m) { document.getElementById('voiceStatus').textContent = m; }
 
 /* ══════════════════════════════════════════
-   CHATBOT WIDGET SCRIPT
+   CHATBOT
 ══════════════════════════════════════════ */
 (function () {
-  const GROQ_MODEL   = "llama-3.3-70b-versatile";
-  const GROQ_URL     = "https://api.groq.com/openai/v1/chat/completions";
-  const LS_KEY       = "ecosys_groq_api_key";
+  const GROQ_MODEL  = 'llama-3.3-70b-versatile';
+  const GROQ_URL    = 'https://api.groq.com/openai/v1/chat/completions';
+  const LS_KEY      = 'ecosys_groq_api_key';
+  const SYSTEM_PROMPT = 'You are the friendly AI assistant for EcoSystem 2026. Keep answers concise, helpful, and friendly. Guide students to the portal\'s resources.';
 
-  const SYSTEM_PROMPT = `You are the friendly AI assistant for EcoSystem 2026. Keep answers concise, helpful, and friendly. Guide students to the portal's resources.`;
+  let chatHistory = [], isProcessing = false;
 
-  let chatHistory   = [];
-  let isProcessing  = false;
+  const fab      = document.getElementById('eco-chat-fab');
+  const panel    = document.getElementById('eco-chat-panel');
+  const messages = document.getElementById('eco-chat-messages');
+  const input    = document.getElementById('eco-chat-input');
+  const sendBtn  = document.getElementById('eco-chat-send');
+  const clearBtn = document.getElementById('eco-clear-btn');
+  const keyBtn   = document.getElementById('eco-key-btn');
 
-  /* ── DOM refs ─────────────────────────────────────────────── */
-  const fab        = document.getElementById("eco-chat-fab");
-  const panel      = document.getElementById("eco-chat-panel");
-  const messages   = document.getElementById("eco-chat-messages");
-  const input      = document.getElementById("eco-chat-input");
-  const sendBtn    = document.getElementById("eco-chat-send");
-  const clearBtn   = document.getElementById("eco-clear-btn");
-  const keyBtn     = document.getElementById("eco-key-btn");
+  const overlay   = document.getElementById('eco-apikey-overlay');
+  const keyInput  = document.getElementById('eco-apikey-input');
+  const saveBtn   = document.getElementById('eco-apikey-save');
+  const cancelBtn = document.getElementById('eco-apikey-cancel');
+  const keyError  = document.getElementById('eco-apikey-error');
 
-  const overlay    = document.getElementById("eco-apikey-overlay");
-  const keyInput   = document.getElementById("eco-apikey-input");
-  const saveBtn    = document.getElementById("eco-apikey-save");
-  const cancelBtn  = document.getElementById("eco-apikey-cancel");
-  const keyError   = document.getElementById("eco-apikey-error");
+  const getKey  = ()  => localStorage.getItem(LS_KEY) || '';
+  const saveKey = k   => localStorage.setItem(LS_KEY, k.trim());
+  const hasKey  = ()  => getKey().length > 0;
 
-  /* ── API key helpers ──────────────────────────────────────── */
-  function getKey()       { return localStorage.getItem(LS_KEY) || ""; }
-  function saveKey(k)     { localStorage.setItem(LS_KEY, k.trim()); }
-  function hasKey()       { return getKey().length > 0; }
-
-  /* ── Modal open / close ───────────────────────────────────── */
-  let _afterSave = null; // callback to run after key is saved
-
+  let _afterSave = null;
   function openKeyModal(afterSave) {
     _afterSave = afterSave || null;
-    keyError.textContent = "";
-    keyInput.value = getKey(); // pre-fill if key already exists
-    overlay.classList.add("visible");
+    keyError.textContent = ''; keyInput.value = getKey();
+    overlay.classList.add('visible');
     setTimeout(() => keyInput.focus(), 200);
   }
+  function closeKeyModal() { overlay.classList.remove('visible'); keyInput.value = ''; keyError.textContent = ''; }
 
-  function closeKeyModal() {
-    overlay.classList.remove("visible");
-    keyInput.value = "";
-    keyError.textContent = "";
-  }
-
-  saveBtn.addEventListener("click", () => {
+  saveBtn.addEventListener('click', () => {
     const val = keyInput.value.trim();
-    if (!val || !val.startsWith("gsk_")) {
-      keyError.textContent = "⚠️ Key must start with gsk_ — check and try again.";
-      keyInput.focus();
-      return;
-    }
-    saveKey(val);
-    closeKeyModal();
-    if (typeof _afterSave === "function") _afterSave();
+    if (!val || !val.startsWith('gsk_')) { keyError.textContent = '⚠️ Key must start with gsk_ — check and try again.'; keyInput.focus(); return; }
+    saveKey(val); closeKeyModal();
+    if (typeof _afterSave === 'function') _afterSave();
   });
+  cancelBtn.addEventListener('click', closeKeyModal);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeKeyModal(); });
+  keyInput.addEventListener('keydown', e => { if (e.key === 'Enter') saveBtn.click(); });
 
-  cancelBtn.addEventListener("click", closeKeyModal);
-
-  // Also close on overlay backdrop click
-  overlay.addEventListener("click", e => { if (e.target === overlay) closeKeyModal(); });
-
-  // Allow Enter key in modal input
-  keyInput.addEventListener("keydown", e => { if (e.key === "Enter") saveBtn.click(); });
-
-  /* ── Chat helpers ─────────────────────────────────────────── */
   function appendMessage(role, html) {
-    const div = document.createElement("div");
-    div.className = "eco-msg " + role;
-    div.innerHTML = html;
-    messages.appendChild(div);
-    messages.scrollTop = messages.scrollHeight;
-    return div;
+    const div = Object.assign(document.createElement('div'), { className: 'eco-msg ' + role, innerHTML: html });
+    messages.appendChild(div); messages.scrollTop = messages.scrollHeight; return div;
   }
-
   function showTyping() {
-    const el = document.createElement("div");
-    el.className = "eco-typing";
-    el.id = "eco-typing-indicator";
-    el.innerHTML = "<span></span><span></span><span></span>";
-    messages.appendChild(el);
-    messages.scrollTop = messages.scrollHeight;
+    const el = Object.assign(document.createElement('div'), { className: 'eco-typing', id: 'eco-typing-indicator', innerHTML: '<span></span><span></span><span></span>' });
+    messages.appendChild(el); messages.scrollTop = messages.scrollHeight;
   }
-
-  function hideTyping() {
-    const el = document.getElementById("eco-typing-indicator");
-    if (el) el.remove();
-  }
-
+  function hideTyping() { document.getElementById('eco-typing-indicator')?.remove(); }
   function showChips(chips) {
-    const wrap = document.createElement("div");
-    wrap.className = "eco-chips";
+    const wrap = document.createElement('div');
+    wrap.className = 'eco-chips';
     chips.forEach(text => {
-      const btn = document.createElement("button");
-      btn.className = "eco-chip";
-      btn.textContent = text;
+      const btn = Object.assign(document.createElement('button'), { className: 'eco-chip', textContent: text });
       btn.onclick = () => { wrap.remove(); sendMessage(text); };
       wrap.appendChild(btn);
     });
-    messages.appendChild(wrap);
-    messages.scrollTop = messages.scrollHeight;
+    messages.appendChild(wrap); messages.scrollTop = messages.scrollHeight;
   }
-
   function showWelcome() {
-    messages.innerHTML = "";
-    appendMessage("bot", "👋 <strong>Welcome to EcoSystem!</strong><br>I'm your AI guide for Prof. Rahul M. Samant's portal. Need help finding study resources or exams?");
-    showChips(["📚 Study resources", "📝 Submit assignments", "🗓️ Timetable", "💼 Career"]);
+    messages.innerHTML = '';
+    appendMessage('bot', '👋 <strong>Welcome to EcoSystem!</strong><br>I\'m your AI guide for Prof. Rahul M. Samant\'s portal. Need help finding study resources or exams?');
+    showChips(['📚 Study resources', '📝 Submit assignments', '🗓️ Timetable', '💼 Career']);
     chatHistory = [];
   }
 
-  /* ── Groq API call ────────────────────────────────────────── */
   async function callGroq(userText) {
-    chatHistory.push({ role: "user", content: userText });
-    const response = await fetch(GROQ_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + getKey() },
-      body: JSON.stringify({
-        model: GROQ_MODEL, max_tokens: 700, temperature: 0.65,
-        messages: [{ role: "system", content: SYSTEM_PROMPT }, ...chatHistory]
-      })
+    chatHistory.push({ role: 'user', content: userText });
+    const res = await fetch(GROQ_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + getKey() },
+      body: JSON.stringify({ model: GROQ_MODEL, max_tokens: 700, temperature: 0.65, messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...chatHistory] })
     });
-    if (response.status === 401) {
-      // Invalid key — clear it and prompt again
-      localStorage.removeItem(LS_KEY);
-      throw new Error("invalid_key");
-    }
-    if (!response.ok) throw new Error("API error " + response.status);
-    const data = await response.json();
-    const reply = data.choices?.[0]?.message?.content || "Sorry, I couldn't generate a response.";
-    chatHistory.push({ role: "assistant", content: reply });
+    if (res.status === 401) { localStorage.removeItem(LS_KEY); throw new Error('invalid_key'); }
+    if (!res.ok) throw new Error('API error ' + res.status);
+    const data  = await res.json();
+    const reply = data.choices?.[0]?.message?.content || 'Sorry, I couldn\'t generate a response.';
+    chatHistory.push({ role: 'assistant', content: reply });
     if (chatHistory.length > 16) chatHistory = chatHistory.slice(-16);
     return reply;
   }
 
-  /* ── Send message ─────────────────────────────────────────── */
   async function sendMessage(text) {
     text = (text || input.value).trim();
     if (!text || isProcessing) return;
-
-    // Guard: require API key before sending
-    if (!hasKey()) {
-      openKeyModal(() => sendMessage(text));
-      return;
-    }
-
-    isProcessing = true; sendBtn.disabled = true; input.value = ""; input.style.height = "auto";
-    appendMessage("user", text);
-    showTyping();
+    if (!hasKey()) { openKeyModal(() => sendMessage(text)); return; }
+    isProcessing = true; sendBtn.disabled = true; input.value = ''; input.style.height = 'auto';
+    appendMessage('user', text); showTyping();
     try {
-      const reply = await callGroq(text);
-      hideTyping();
-      appendMessage("bot", reply);
+      hideTyping(); appendMessage('bot', await callGroq(text));
     } catch (err) {
       hideTyping();
-      if (err.message === "invalid_key") {
-        appendMessage("bot", "🔑 <strong>Invalid API key.</strong> Please enter a valid Groq key.");
-        openKeyModal(() => sendMessage(text));
-      } else {
-        appendMessage("bot", "⚠️ <strong>Oops!</strong> Please check your connection and try again.");
-      }
+      appendMessage('bot', err.message === 'invalid_key'
+        ? '🔑 <strong>Invalid API key.</strong> Please enter a valid Groq key.'
+        : '⚠️ <strong>Oops!</strong> Please check your connection and try again.');
+      if (err.message === 'invalid_key') openKeyModal(() => sendMessage(text));
     }
-    isProcessing = false; sendBtn.disabled = input.value.trim() === ""; input.focus();
+    isProcessing = false; sendBtn.disabled = input.value.trim() === ''; input.focus();
   }
 
-  /* ── FAB & panel ──────────────────────────────────────────── */
-  fab.addEventListener("click", () => {
-    const isOpen = panel.classList.toggle("visible");
-    fab.classList.toggle("open", isOpen);
+  fab.addEventListener('click', () => {
+    const isOpen = panel.classList.toggle('visible');
+    fab.classList.toggle('open', isOpen);
     if (isOpen) {
-      if (!messages.children.length) {
-        // Prompt for key on very first open if not set
-        if (!hasKey()) {
-          showWelcome();
-          openKeyModal();
-        } else {
-          showWelcome();
-        }
-      }
+      if (!messages.children.length) { showWelcome(); if (!hasKey()) openKeyModal(); }
       setTimeout(() => input.focus(), 300);
     }
   });
+  clearBtn.addEventListener('click', showWelcome);
+  keyBtn.addEventListener('click', () => openKeyModal());
 
-  /* ── Header buttons ───────────────────────────────────────── */
-  clearBtn.addEventListener("click", showWelcome);
-  keyBtn.addEventListener("click", () => openKeyModal());
-
-  /* ── Input behaviour ──────────────────────────────────────── */
-  input.addEventListener("input", function () {
-    sendBtn.disabled = this.value.trim() === "" || isProcessing;
-    this.style.height = "auto"; this.style.height = Math.min(this.scrollHeight, 110) + "px";
+  input.addEventListener('input', function () {
+    sendBtn.disabled = this.value.trim() === '' || isProcessing;
+    this.style.height = 'auto'; this.style.height = Math.min(this.scrollHeight, 110) + 'px';
   });
-  input.addEventListener("keydown", function (e) {
-    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); if (!sendBtn.disabled) sendMessage(); }
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); if (!sendBtn.disabled) sendMessage(); }
   });
-  sendBtn.addEventListener("click", () => sendMessage());
+  sendBtn.addEventListener('click', () => sendMessage());
 })();
 </script>
 </body>
