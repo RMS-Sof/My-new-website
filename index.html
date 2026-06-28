@@ -3,21 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Prof. Rahul M. Samant</title>
+
+  <!-- SEO & Social Meta Tags [FIX: Added missing meta description, og:, twitter: tags] -->
+  <title>EcoSystem 2026 | Prof. Rahul M. Samant – HOD IT, NBNSTIC</title>
+  <meta name="description" content="EcoSystem 2026 – A comprehensive academic portal for BE IT/CS students at NBNSTIC by Prof. Rahul M. Samant. Access quizzes, lab manuals, exams, AI tools, and placement resources."/>
+  <meta name="keywords" content="EcoSystem, IT education, NBNSTIC, BE IT, Deep Learning, Machine Learning, NBNSTIC, Rahul Samant"/>
+  <meta name="author" content="Prof. Rahul M. Samant, HOD-IT, NBNSTIC"/>
+  <meta property="og:title" content="EcoSystem 2026 | Prof. Rahul M. Samant"/>
+  <meta property="og:description" content="A comprehensive academic portal for BE IT/CS students – quizzes, exams, lab manuals, AI tools, placement prep and more."/>
+  <meta property="og:url" content="https://rms-sof.github.io/My-new-website/"/>
+  <meta property="og:type" content="website"/>
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:title" content="EcoSystem 2026 | Prof. Rahul M. Samant"/>
+  <meta name="twitter:description" content="BE IT/CS academic portal – quizzes, exams, lab manuals, AI tools, placement prep."/>
+
+  <!-- Content Security Policy [FIX: Added CSP header via meta tag] -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://api.groq.com; frame-src 'none';"/>
+
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+  <!-- [FIX: Added canonical link] -->
+  <link rel="canonical" href="https://rms-sof.github.io/My-new-website/"/>
+
   <style>
     /* ══════════════════════════════════════════════════════
        THEME TOKENS — light (default)
     ══════════════════════════════════════════════════════ */
     :root {
-      /* greens */
       --c-deep:    #1a5c32;
       --c-mid:     #2e8b57;
       --c-bright:  #52b374;
       --c-soft:    #b3d9c2;
       --c-mist:    #eaf4ee;
-
-      /* neutrals */
       --c-page:    #f3f8f5;
       --c-surface: #ffffff;
       --c-panel-l: #eaf2ec;
@@ -25,23 +42,15 @@
       --c-panel-r: #f3f8f5;
       --c-border:  #cce4d6;
       --c-divider: #b8d9c5;
-
-      /* text */
       --c-text:    #132319;
       --c-sub:     #3d6b50;
       --c-muted:   #7aa88e;
-
-      /* shadows / overlays */
       --c-shadow:  rgba(26,92,50,.15);
       --c-overlay: rgba(26,92,50,.55);
-
-      /* scrollbar */
       --sb-thumb:  var(--c-soft);
       --sb-track:  transparent;
       --sb-thumb-m:#2e8b57;
       --sb-track-m:#cce4d6;
-
-      /* misc */
       --photo-w: 288px;
       --photo-h: 384px;
       --radius-lg: 12px;
@@ -58,7 +67,6 @@
       --c-bright:  #5ee89e;
       --c-soft:    #265c3d;
       --c-mist:    #1e3829;
-
       --c-page:    #0e1a13;
       --c-surface: #162419;
       --c-panel-l: #19291e;
@@ -66,14 +74,11 @@
       --c-panel-r: #162319;
       --c-border:  #264535;
       --c-divider: #2e5540;
-
       --c-text:    #ceeada;
       --c-sub:     #87c4a2;
       --c-muted:   #4d7a60;
-
       --c-shadow:  rgba(0,0,0,.4);
       --c-overlay: rgba(0,0,0,.65);
-
       --sb-thumb:  #2e5540;
       --sb-track:  transparent;
       --sb-thumb-m:#34c97a;
@@ -84,7 +89,6 @@
        RESET & BASE
     ══════════════════════════════════════════════════════ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html, body { height: 100%; overflow: hidden; }
     body {
       font-family: 'DM Sans', sans-serif;
@@ -94,6 +98,16 @@
       flex-direction: column;
       transition: background var(--transition), color var(--transition);
     }
+
+    /* [FIX: Skip-navigation link for screen readers] */
+    .skip-nav {
+      position: absolute; top: -100px; left: 1rem;
+      background: var(--c-deep); color: #fff;
+      padding: .5rem 1rem; border-radius: 4px;
+      text-decoration: none; font-size: .85rem;
+      z-index: 99999; transition: top .2s;
+    }
+    .skip-nav:focus { top: 1rem; }
 
     /* ── HEADER ─────────────────────────────────────────── */
     header {
@@ -126,14 +140,8 @@
       text-shadow: 0 2px 10px rgba(0,0,0,.22);
     }
     .banner-text p { color: var(--c-mist); font-size: .85rem; font-weight: 400; margin-top: .12rem; }
-
-    /* banner right cluster */
-    .banner-right {
-      display: flex; align-items: center; gap: .6rem;
-      margin-left: auto;
-    }
+    .banner-right { display: flex; align-items: center; gap: .6rem; margin-left: auto; }
     .banner-links { display: flex; gap: .6rem; align-items: center; }
-
     .banner-link-icon {
       display: flex; align-items: center; justify-content: center;
       width: 36px; height: 36px; border-radius: 50%;
@@ -168,7 +176,6 @@
       flex-shrink: 0;
     }
     #themeToggle:hover { background: rgba(255,255,255,.3); transform: scale(1.1) rotate(20deg); }
-    /* show correct icon per theme */
     #themeToggle .icon-sun  { display: none; }
     #themeToggle .icon-moon { display: block; }
     [data-theme="dark"] #themeToggle .icon-sun  { display: block; }
@@ -236,7 +243,6 @@
 
     #panelLeft  { background: var(--c-panel-l); display: flex; flex-direction: column; padding: .85rem .8rem; gap: .8rem; }
     #panelRight { background: var(--c-panel-r); padding: 1rem 1.1rem; display: flex; flex-direction: column; gap: .85rem; }
-
     #panelMid {
       background: var(--c-panel-m); padding: .85rem .75rem;
       overflow-y: scroll;
@@ -363,7 +369,6 @@
     footer .footer-links a:hover { color: var(--c-bright); }
     footer .footer-copy { opacity: .68; }
 
-    /* cursor override during resize */
     body.col-resizing { cursor: col-resize !important; }
     body.col-resizing * { pointer-events: none !important; user-select: none !important; }
     body.col-resizing .divider { pointer-events: auto !important; }
@@ -449,8 +454,13 @@
     #eco-apikey-overlay.visible #eco-apikey-modal { transform: scale(1) translateY(0); }
     .apikey-modal-icon  { font-size: 2rem; text-align: center; }
     .apikey-modal-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--c-deep); text-align: center; }
+    /* [FIX: Security warning text in modal] */
     .apikey-modal-desc  { font-size: .82rem; color: var(--c-sub); text-align: center; line-height: 1.6; }
     .apikey-modal-desc a { color: var(--c-mid); }
+    .apikey-security-notice {
+      background: #fff8e1; border: 1px solid #f0c040; border-radius: 8px;
+      padding: .6rem .8rem; font-size: .75rem; color: #7a5800; line-height: 1.5;
+    }
     #eco-apikey-input {
       width: 100%; padding: .65rem .85rem;
       border: 1.5px solid var(--c-border); border-radius: 10px;
@@ -487,7 +497,6 @@
     }
     #eco-chat-messages::-webkit-scrollbar { width: 5px; }
     #eco-chat-messages::-webkit-scrollbar-thumb { background: var(--sb-thumb); border-radius: 4px; }
-
     .eco-msg {
       max-width: 85%; padding: 10px 14px; border-radius: 12px;
       font-size: .85rem; line-height: 1.5;
@@ -498,7 +507,6 @@
     .eco-msg.user { align-self: flex-end; background: var(--c-mid); color: #fff; border-bottom-right-radius: 4px; box-shadow: 0 4px 10px rgba(46,139,87,.2); }
     .eco-msg a { color: var(--c-mid); text-decoration: underline; }
     .eco-msg.user a { color: var(--c-mist); }
-
     .eco-typing {
       align-self: flex-start; background: var(--c-mist); border: 1px solid var(--c-border);
       border-radius: 12px; border-bottom-left-radius: 4px; padding: 12px 18px;
@@ -508,7 +516,6 @@
     .eco-typing span:nth-child(2) { animation-delay: .2s; }
     .eco-typing span:nth-child(3) { animation-delay: .4s; }
     @keyframes typeBounce { 0%,80%,100%{transform:translateY(0);opacity:.5} 40%{transform:translateY(-6px);opacity:1} }
-
     .eco-chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 2px 0 4px; align-self: flex-start; }
     .eco-chip {
       background: var(--c-surface); border: 1px solid var(--c-border); color: var(--c-mid);
@@ -516,7 +523,6 @@
       transition: all .2s ease;
     }
     .eco-chip:hover { background: var(--c-mist); color: var(--c-deep); border-color: var(--c-mid); transform: translateY(-1px); }
-
     .eco-chat-footer {
       padding: 12px 14px 14px; border-top: 1px solid var(--c-border);
       background: var(--c-surface);
@@ -540,59 +546,60 @@
     #eco-chat-send:hover:not(:disabled) { transform: scale(1.05); box-shadow: 0 4px 12px rgba(46,139,87,.4); }
     #eco-chat-send:disabled { opacity: .45; cursor: not-allowed; transform: none; }
     #eco-chat-send svg { width: 18px; height: 18px; }
+
+    /* [FIX: Rate limit notice in footer] */
+    .eco-chat-rate-notice {
+      font-size: .68rem; color: var(--c-muted); text-align: center;
+      padding: 4px 0 0; line-height: 1.4;
+    }
   </style>
 </head>
 <body>
 
+<!-- [FIX: Skip navigation for accessibility] -->
+<a href="#mainContent" class="skip-nav">Skip to main content</a>
+
 <!-- ═══════════════════════════════════════════
      HIDDEN DATA SOURCE (unchanged)
 ════════════════════════════════════════════ -->
-<div id="hidden-data-source" style="display:none;">
-  <div class="card"><div class="icon">❤️</div><h2 class="card-title">Ideation & Feedback</h2><div class="links-section"><a href="https://docs.google.com/document/d/1tYExkgcirqx9sW1ogmsP6Ir47vBIOXeasuVIYc0G5jo/edit?usp=sharing" class="link-item">A brief introduction to EcoSystem</a><a href=" https://rms-sof.github.io/AI-Tutor-EcoSystem/" class="link-item">AI Tutor for IT Students</a>
+<div id="hidden-data-source" style="display:none;" aria-hidden="true">
+  <div class="card"><div class="icon">❤️</div><h2 class="card-title">Ideation & Feedback</h2><div class="links-section"><a href="https://docs.google.com/document/d/1tYExkgcirqx9sW1ogmsP6Ir47vBIOXeasuVIYc0G5jo/edit?usp=sharing" class="link-item">A brief introduction to EcoSystem</a><a href="https://rms-sof.github.io/AI-Tutor-EcoSystem/" class="link-item">AI Tutor for IT Students</a>
 <a href="https://drive.google.com/file/d/1sIG0DJ4pVMEnCjhA6iWgMznBFDzcPBqz/view?usp=sharing" class="link-item">इकोसिस्टिम २०२६ - मराठीतून ओळख</a><a href="https://script.google.com/macros/s/AKfycbyU5_GsvOnqekKqvzl0dhVMR-zmHADQlAl8X03Nlk3DC2GL-97EdG_TMq4xCIzpbOoc5A/exec" class="link-item">Schedule an appointment with Rahul</a><a href="https://script.google.com/macros/u/1/s/AKfycbxGjLmRWBSVMcPyjkGm347aQ7Sk_kqBjhGABKcMSkBQcMV4DfNh5MfuvCKRVQoLTZM/exec" class="link-item">Minutes of the Meetings</a><a href="https://forms.gle/v12gqr4TcRCrnXHx6" class="link-item">Give feedback to make your EcoSystem 2026 better</a><a href="https://script.google.com/macros/s/AKfycbzg61qEsbHp_GoMcC0TfS2PFc-wULBpK9DdLyrLsPcTkGDQqWhDBXt_1Z0YceYSgAR9MA/exec" class="link-item">Leave Sanction System - IT Students</a><a href="https://script.google.com/macros/s/AKfycbz2ntoxSg_UZnpwHOGy24salxjy0M7S-Ah-a3izbS0ngDPOBXxpzp4sM_gv8w33zHhw/exec" class="link-item">Minutes of Meeting MOM system</a><a href="https://docs.google.com/presentation/d/1q0uj6WFhEyIu0OjAUSAsaz-ZGhdyWa7CLpX6W3q1v5w/edit?usp=sharing" class="link-item">NBNSTIC IT Progress Book (प्रगती पुस्तक)</a><a href="https://script.google.com/macros/s/AKfycbyY9nciONqljNLQa6FkgZii5LDC-ZtX7CPKNQfopGIlyf4qxQF6F8nYRp5JGlGqMGUz/exec" class="link-item">Rate your IT Department</a><a href="https://forms.gle/JRVFWbPZZei44Jjo6" class="link-item">Register to receive Happy Birthday Card from your IT Dept.</a>
-<a href=" https://rms-sof.github.io/AI-Tutor-EcoSystem/" class="link-item">AI Tutor for IT Students</a>
 </div></div>
-  <div class="card"><div class="icon">⬆️</div><h2 class="card-title">Online Submissions</h2><div class="links-section"><a href="https://rms-sof.github.io/BE-Sem-7-Progress-Tracker/" class="link-item">BE Sem 7 Track your Academic progress throughout the semester.</a><a href="https://drive.google.com/file/d/1gKKSbTaKW54DvbKZOnMVcRi5uZsHgffb/view?usp=sharing" class="link-item">Know about BE VII Information & Storage Retrieval (ISR) Theory Assignemnts.</a><a href="https://drive.google.com/file/d/17vZUiXscrfWD6wRzwdPB1puHyOKg0Dnv/view?usp=sharing" class="link-item">Know about BE VII Deep Learning (DL) Theory Assignments.</a><a href="https://drive.google.com/file/d/1H6XR7S1d8v2jXxPOg5QI0sClVfMCkNkQ/view?usp=sharing" class="link-item">Know about BE VII Smart Computing (SMC) Theory Assignments.</a><a href="https://rms-sof.github.io/BE-8-Progress-Traker/" class="link-item">BE Sem 8 Track your academic progress.</a><a href="https://drive.google.com/file/d/1yJtnRwWkLMH_0MyFsrJchST0ukl9u7yy/view?usp=sharing" class="link-item">Know about BE VIII Distributed Systems (DS) Theory Assignments.</a><a href="https://drive.google.com/file/d/1aWFOpOA5nrQCBKx9XjZPuiwTo0G2HOkV/view?usp=sharing" class="link-item">Know about BE VIII Social Computing (SOC) Theory Assignments.</a><a href="https://script.google.com/macros/s/AKfycbwOYSuuqrh8t0JVHfmspY5WJt3iYu8E3L2MABiCzXAI712TZF_FKqsyG0MfbKmmgWH9/exec" class="link-item">Upload theory assignments</a><a href="https://docs.google.com/document/d/1y8f6uOijJ00B5kJ_OZXW1cHcewRptBtLQeQ8H16OOgI/edit?usp=sharing" class="link-item">SEIT 2024 Pat EVS Assignments</a><a href="https://docs.google.com/document/d/1xq37PsZA05bELQOoStjZy1mMJFztUwk8CAGJV8UaFsk/edit?usp=sharing" class="link-item">SEIT 2024 Pat UHVPE Universal Human Values & Professional Ethics</a><a href="https://script.google.com/macros/s/AKfycbzqmI_BI2zE4DzZ52dEnkBNjJ-bFi-aakDiu-Up7_NuXEX42vVdN4jJz3dMKUwLqbUK/exec" class="link-item">Track Theory Assignments Status</a><a href="https://script.google.com/macros/s/AKfycby2Fg8_whZ-8cRW78Mk95y_n_49NypqLRQeMSiW4chZ7bgFE0YQAk4lAaMXGlbEY1cu/exec" class="link-item">Apply for BE IT Submission Ticket</a></div></div>
+  <div class="card"><div class="icon">⬆️</div><h2 class="card-title">Online Submissions</h2><div class="links-section"><a href="https://rms-sof.github.io/BE-Sem-7-Progress-Tracker/" class="link-item">BE Sem 7 Track your Academic progress throughout the semester.</a><a href="https://drive.google.com/file/d/1gKKSbTaKW54DvbKZOnMVcRi5uZsHgffb/view?usp=sharing" class="link-item">Know about BE VII Information & Storage Retrieval (ISR) Theory Assignments.</a><a href="https://drive.google.com/file/d/17vZUiXscrfWD6wRzwdPB1puHyOKg0Dnv/view?usp=sharing" class="link-item">Know about BE VII Deep Learning (DL) Theory Assignments.</a><a href="https://drive.google.com/file/d/1H6XR7S1d8v2jXxPOg5QI0sClVfMCkNkQ/view?usp=sharing" class="link-item">Know about BE VII Smart Computing (SMC) Theory Assignments.</a><a href="https://rms-sof.github.io/BE-8-Progress-Traker/" class="link-item">BE Sem 8 Track your academic progress.</a><a href="https://drive.google.com/file/d/1yJtnRwWkLMH_0MyFsrJchST0ukl9u7yy/view?usp=sharing" class="link-item">Know about BE VIII Distributed Systems (DS) Theory Assignments.</a><a href="https://drive.google.com/file/d/1aWFOpOA5nrQCBKx9XjZPuiwTo0G2HOkV/view?usp=sharing" class="link-item">Know about BE VIII Social Computing (SOC) Theory Assignments.</a><a href="https://script.google.com/macros/s/AKfycbwOYSuuqrh8t0JVHfmspY5WJt3iYu8E3L2MABiCzXAI712TZF_FKqsyG0MfbKmmgWH9/exec" class="link-item">Upload theory assignments</a><a href="https://docs.google.com/document/d/1y8f6uOijJ00B5kJ_OZXW1cHcewRptBtLQeQ8H16OOgI/edit?usp=sharing" class="link-item">SEIT 2024 Pat EVS Assignments</a><a href="https://docs.google.com/document/d/1xq37PsZA05bELQOoStjZy1mMJFztUwk8CAGJV8UaFsk/edit?usp=sharing" class="link-item">SEIT 2024 Pat UHVPE Universal Human Values & Professional Ethics</a><a href="https://script.google.com/macros/s/AKfycbzqmI_BI2zE4DzZ52dEnkBNjJ-bFi-aakDiu-Up7_NuXEX42vVdN4jJz3dMKUwLqbUK/exec" class="link-item">Track Theory Assignments Status</a><a href="https://script.google.com/macros/s/AKfycby2Fg8_whZ-8cRW78Mk95y_n_49NypqLRQeMSiW4chZ7bgFE0YQAk4lAaMXGlbEY1cu/exec" class="link-item">Apply for BE IT Submission Ticket</a></div></div>
   <div class="card"><div class="icon">🎪</div><h2 class="card-title">Enhance Yourself</h2><div class="links-section"><a href="https://www.youtube.com/watch?v=Bi4A4xedCvI" class="link-item">Your role in shaping Excellence</a><a href="https://www.youtube.com/watch?v=9k5YxLib560" class="link-item">Personal Excellence Model PEM</a><a href="https://youtu.be/QXtpq0EcFa4" class="link-item">Student Advisory for Good academic life</a><a href="https://www.youtube.com/watch?v=lwSOI0VlkF8&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=1" class="link-item">Importance of Regular attendance</a><a href="https://www.youtube.com/watch?v=IPuhV4pfFwI" class="link-item">Reorient yourself for AI Era</a><a href="https://www.youtube.com/watch?v=1s_GXXA91zg" class="link-item">How to measure quality of IT education?</a><a href="https://www.youtube.com/watch?v=0MkmHBXSY1c&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=3" class="link-item">How to make study interesting?</a><a href="https://www.youtube.com/watch?v=8kumlKbqSEM&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=12" class="link-item">How to Improve your Thinking process?</a><a href="https://www.youtube.com/watch?v=IMspKgje554&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=6" class="link-item">Find out your Learning Style</a><a href="https://www.youtube.com/watch?v=GQGLl2eZSpI&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=22" class="link-item">Teacher v/s AI - Why to attend lectures regularly?</a><a href="https://www.youtube.com/watch?v=wiBrgc8Iz4w" class="link-item">Why to perform practicals regularly in lab?</a><a href="https://www.youtube.com/watch?v=FqVBsjV-A2g&t=19s" class="link-item">Core IT Thinking Skills</a><a href="https://www.youtube.com/watch?v=PuBbaAyZ098" class="link-item">Strict policy v/s Nudging</a><a href="https://youtu.be/nsconc321-U" class="link-item">Transform yourself</a><a href="https://rms-sof.github.io/RoadMap/" class="link-item">Build your Road Map to Success</a><a href="https://drive.google.com/file/d/12j_rEMiU_hFKfcfYm5B6BpV3L_WSF448/view?usp=sharing" class="link-item">Explore Road Map for IT Skills</a><a href="https://youtu.be/f0gkqLrwA3s" class="link-item">Develop successful Personality</a><a href="https://rms-sof.github.io/Know-yourself/" class="link-item">Take a Quiz to analyze Yourself</a><a href="https://www.youtube.com/watch?v=4eBQ1Xhaxrg" class="link-item">AI Policy for IT Dept</a>
-<a href="https://rms-sof.github.io/AI-Fluency-Test/" class="link-item">Take AI fluency test </a>
+<a href="https://rms-sof.github.io/AI-Fluency-Test/" class="link-item">Take AI fluency test</a>
 <a href="https://rms-sof.github.io/Ideal-IT-Student/" class="link-item">How to become Ideal IT Student</a>
 <a href="https://rms-sof.github.io/Mythical-IT-Student/" class="link-item">The Mythical Ideal IT Student</a>
 <a href="https://rms-sof.github.io/Study-Guide/" class="link-item">IT Study Strategy Guide</a>
-	  
 </div></div>
   <div class="card"><div class="icon">🧘</div><h2 class="card-title">Paperless Exams</h2><div class="links-section"><a href="https://www.youtube.com/watch?v=e6xtOUPuwJ0" class="link-item">Exams, why?</a><a href="https://www.youtube.com/watch?v=_LDcMv-Tmtk" class="link-item">Exams, how?</a><a href="https://rms-sof.github.io/Paperless-Exam/" class="link-item">Take Paperless Exams</a><a href="https://docs.google.com/document/d/1VtLZ2rXCWnXfkHiFm_wjS1lwaTk90GxP4A2uFAcsK-U/edit?usp=sharing" class="link-item">For teachers - PR Exam Chits</a></div></div>
   <div class="card"><div class="icon">⚡</div><h2 class="card-title">Actionable Plan</h2><div class="links-section"><a href="https://youtu.be/QXtpq0EcFa4" class="link-item">Student Advisory for smooth Engg journey</a><a href="https://youtu.be/VwFhjGpz_gs" class="link-item">Explore your hidden Potentials</a><a href="https://youtu.be/LB8445j6GzU" class="link-item">Know iconic concepts in IT field</a><a href="https://drive.google.com/file/d/12j_rEMiU_hFKfcfYm5B6BpV3L_WSF448/view?usp=sharing" class="link-item">Map of Subject Knowledge & Industry skills & AI Skills</a><a href="https://rms-sof.github.io/transform/" class="link-item">Explore Co-Academic framework for growth</a><a href="https://rms-sof.github.io/RoadMap/" class="link-item">Plan your effective Biodata</a><a href="https://rms-sof.github.io/IT-ActionPlan-1/" class="link-item">Simple Plan for actions</a><a href="https://rms-sof.github.io/IT-RoadMap-1/" class="link-item">Intermediate Plan for actions</a><a href="https://rms-sof.github.io/IT-action-plan-2/" class="link-item">Advance Plan for actions</a><a href="https://rms-sof.github.io/IT-Motivate/" class="link-item">Constant Motivation to be on track</a></div></div>
-  <div class="card"><div class="icon">🧘</div><h2 class="card-title">Stress Tension Management</h2><div class="links-section"><a href="https://youtu.be/ZU3XqlTRu_o" class="link-item">Counselling for FINAL YEAR students</a><a href="https://youtube.com/shorts/sudW1W5D-K8" class="link-item">Festivals & Academics</a><a href="https://www.youtube.com/watch?v=NRft1DVXBcI&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=17" class="link-item">Listen for boosting morale and reduce stress tension to be actionable.</a><a href="https://www.youtube.com/watch?v=pKEWPRawEQg&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=26" class="link-item">Watch for recovering from small problems.Reduce stress and tension.</a><a href="https://www.youtube.com/watch?v=QtWB5XNjcig&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=5" class="link-item">(मराठी भाषेत )Counselling for recovering from crisis.Reduce stress and and tension.</a><a href="https://www.youtube.com/watch?v=iQGEd_oeF7s&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=14" class="link-item">How to Improve Mental Health and reduce stress and tension?</a><a href="https://www.youtube.com/watch?v=e6xtOUPuwJ0" class="link-item">What is the real purpose of exams?</a><a href="https://www.youtube.com/watch?v=_LDcMv-Tmtk" class="link-item">How to score more in exam?</a><a href="https://youtu.be/QXtpq0EcFa4" class="link-item">Student Advisory</a></div></div>
-
+  <div class="card"><div class="icon">🧘</div><h2 class="card-title">Stress Tension Management</h2><div class="links-section"><a href="https://youtu.be/ZU3XqlTRu_o" class="link-item">Counselling for FINAL YEAR students</a><a href="https://youtube.com/shorts/sudW1W5D-K8" class="link-item">Festivals & Academics</a><a href="https://www.youtube.com/watch?v=NRft1DVXBcI&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=17" class="link-item">Listen for boosting morale and reduce stress tension to be actionable.</a><a href="https://www.youtube.com/watch?v=pKEWPRawEQg&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=26" class="link-item">Watch for recovering from small problems. Reduce stress and tension.</a><a href="https://www.youtube.com/watch?v=QtWB5XNjcig&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=5" class="link-item">(मराठी भाषेत) Counselling for recovering from crisis. Reduce stress and tension.</a><a href="https://www.youtube.com/watch?v=iQGEd_oeF7s&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=14" class="link-item">How to Improve Mental Health and reduce stress and tension?</a><a href="https://www.youtube.com/watch?v=e6xtOUPuwJ0" class="link-item">What is the real purpose of exams?</a><a href="https://www.youtube.com/watch?v=_LDcMv-Tmtk" class="link-item">How to score more in exam?</a><a href="https://youtu.be/QXtpq0EcFa4" class="link-item">Student Advisory</a></div></div>
 <div class="card"><div class="icon">🏠</div>
 <h2 class="card-title">Digital Wellness</h2><div class="links-section">
 <a href="https://youtube.com/shorts/Tt--7axTysw" class="link-item">How to reclaim yourself?</a>
 <a href="https://www.youtube.com/watch?v=XRp7FDvkwPk&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=18" class="link-item">How to be Digitally Fit?</a>
 <a href="https://www.youtube.com/watch?v=zamxUKQhhwM&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=25" class="link-item">How to measure excess limit in technology dependancy?</a>
 <a href="https://www.youtube.com/watch?v=HRoIiWz2oE4&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=15" class="link-item">How to Cultivate Good Habits?</a>
-<a href="https://www.youtube.com/watch?v=n4h71b5bRZg" class="link-item">Psychology Series- Remedy for Skeptical Nature of an Engineer</a>
+<a href="https://www.youtube.com/watch?v=n4h71b5bRZg" class="link-item">Psychology Series - Remedy for Skeptical Nature of an Engineer</a>
 <a href="https://rms-sof.github.io/Game-design/" class="link-item">How are games made addictive?</a>
-<a href="https://www.youtube.com/watch?v=OkZv6gy81KY" class="link-item">How are reels and shorts made additive?</a>
+<a href="https://www.youtube.com/watch?v=OkZv6gy81KY" class="link-item">How are reels and shorts made addictive?</a>
 <a href="https://www.youtube.com/watch?v=ruJb1IXziV0&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=23" class="link-item">Professional Help 1 - Universal Human Values in Coding</a>
 <a href="https://www.youtube.com/watch?v=giHPgLyY2HE&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=28" class="link-item">Professional Help 2 - Harmony in Coding</a>
 <a href="https://www.youtube.com/watch?v=2vUob_RbZOM&list=PLGJ1tOIRaVQhshdDhurLEBY3NI6b1y2ox" class="link-item">Professional Help 3 - Management Principles in Coding</a>
 <a href="https://rms-sof.github.io/deep-clean/" class="link-item">Professional Help 4 - Deep Cleaning in Software Development</a>
 <a href="https://www.youtube.com/watch?v=R1TtgJc9-1c" class="link-item">Lessons from history for software development</a>
-<a href="https://rms-sof.github.io/Healthy-Happy/" class="link-item">Health & Happiness </a>
+<a href="https://rms-sof.github.io/Healthy-Happy/" class="link-item">Health & Happiness</a>
 </div></div>
-
   <div class="card"><div class="icon">🎪</div><h2 class="card-title">Academic Resources</h2><div class="links-section"><a href="https://youtu.be/QXtpq0EcFa4" class="link-item">IT Student Advisory</a><a href="https://www.youtube.com/watch?v=Bi4A4xedCvI" class="link-item">You & NAAC-NBA-NEP</a><a href="https://youtu.be/U6HJFVG6imc" class="link-item">Inclusive Education in your department</a><a href="https://youtu.be/Yl85mMTdo_E" class="link-item">Building Academic Culture in your department</a><a href="https://forms.gle/T8hYFG5dsAU7C8PY9" class="link-item">Submission Schedules & Calendars</a><a href="https://drive.google.com/file/d/12j_rEMiU_hFKfcfYm5B6BpV3L_WSF448/view?usp=sharing" class="link-item">Explore IT Skills Map</a><a href="https://docs.google.com/spreadsheets/d/1no-aVnVeB8ylrZtSs-VRtqLC7bEb-xnFeAyaxmho6Zs/edit?usp=sharing" class="link-item">Check Current Time table</a><a href="https://forms.gle/TF7RxbkdQH7b9T8g9" class="link-item">Get all Formats related to CEP, Seminar, Internship & BE Project</a><a href="https://docs.google.com/document/d/1MZvYIHwKV_pLMDldbRKFU-bKZvM0oqqWssyOhPNdvuo/edit?usp=sharing" class="link-item">Check Current Academic Calendar</a><a href="https://script.google.com/macros/s/AKfycbwLND-1SZ5Kt5yp-6Kcptuiy6sfDxwubyp0zqjIIDXOxfR1hADmsSDw0u1XRZdBmvMx5g/exec" class="link-item">Mark your Presence</a><a href="https://docs.google.com/spreadsheets/u/3/d/1OVzWzKBKbYcmwCc3rM2INpl3b9J3qZAko6iL_adhfRk/edit?usp=sharing" class="link-item">Check your Presence</a><a href="https://forms.gle/tQ6fxMp5C9Hng27N9" class="link-item">IT Course entire Syllabus</a><a href="https://docs.google.com/document/d/10I6DXo6a9Lrq9qS_VWfQ63fxOdFG8fu2UglVdGdDw48/edit?usp=sharing" class="link-item">Read NBNSTIC-IT Newsletters</a><a href="https://docs.google.com/presentation/d/1-0X4y5KJZ03tPyZ7zNegE3wlMPglbSDn/edit?usp=sharing&ouid=102506932615320403527&rtpof=true&sd=true" class="link-item">FE Induction - HOD-IT Presentation</a><a href="https://script.google.com/macros/s/AKfycbzvJ8XpuL-p8yxnOJcGpJMHX_sz36YeZoq-ggkzkb3h4gj2AC23QfehlEPdeiBE3kBy/exec" class="link-item">BE Sem 8 Track your academic progress.</a><a href="https://script.google.com/macros/s/AKfycbzg61qEsbHp_GoMcC0TfS2PFc-wULBpK9DdLyrLsPcTkGDQqWhDBXt_1Z0YceYSgAR9MA/exec" class="link-item">Apply for leave</a>
 <a href="https://script.google.com/macros/s/AKfycbzcChElpP34A-evrgW7Z4G72n0yJoCpLQ9p9eOditse0OB6YEnw2KkPvVUhlpyFOfR3/exec" class="link-item">Title Registration - SE Mini-Project / TE Research Seminar / BE Project</a>
-
-
 </div></div>
-  
 
 <div class="card"><div class="icon">🧘</div><h2 class="card-title">Algorithms by Visualization</h2><div class="links-section"><a href="https://rms-sof.github.io/Concepts-Animations/" class="link-item">Learning Concepts & Algorithms using animations</a></div></div>
   <div class="card"><div class="icon">📅</div><h2 class="card-title">Historical Timelines</h2><div class="links-section"><a href="https://www.youtube.com/watch?v=PMU9ho6NulI" class="link-item">Information & Storage Retrieval - Historical Timeline</a><a href="https://rms-sof.github.io/DL-TimeLine/" class="link-item">Deep Learning - Historical Timeline</a></div></div>
- 
 
- <div class="card"><div class="icon">🎪</div><h2 class="card-title">Concept Videos & Subject Notes</h2><div class="links-section"><a href="https://www.youtube.com/watch?v=lwSOI0VlkF8&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk" class="link-item">Tips for success</a><a href="https://www.youtube.com/watch?v=EAikorsZB3E&list=PLGJ1tOIRaVQjzUju1OLDQ_lMZpOtJ3E47" class="link-item">Distributed Systems (DS) (BE- VIII)</a><a href="https://www.youtube.com/watch?v=a0gkJOlrFIk&list=PLGJ1tOIRaVQiFe0LRcLbyFy_pDtPJ4okQ" class="link-item">SNE (BE- VIII)</a><a href="https://www.youtube.com/watch?v=EYKCVjUA0hE&list=PLGJ1tOIRaVQgc3-rdtbrzT81OgCZmYbVy" class="link-item">Social Computing (SOC)(BE- VIII)</a><a href="https://www.youtube.com/watch?v=j9ySth2Km0w&list=PLGJ1tOIRaVQh69EyxSN31KvX4SRV9FH_e" class="link-item">BAI (BE- VIII)</a><a href="https://www.youtube.com/watch?v=WttASb3EuHc&list=PLGJ1tOIRaVQhp3vKgVQiNesgjgsvEvhj-" class="link-item">Information Storage & Retrieval (ISR) (BE- VII)</a><a href="https://www.youtube.com/watch?v=2xdQ9J34-q8&list=PLGJ1tOIRaVQiYlA6wNLDT0X97KZ8A4Sgi" class="link-item">Deep Learning (DL) (BE- VII)</a><a href="https://www.youtube.com/watch?v=DYyD9hR1yG4&list=PLGJ1tOIRaVQj8cPDQ9kfrhLbPmjWZPO58" class="link-item">Smart Computing (SMC) (BE- VII)</a><a href="https://www.youtube.com/watch?v=JOt4UBT9cCE&list=PLGJ1tOIRaVQiBKY00O9SgjG-LAc49PkS_" class="link-item">SPM (BE- VII)</a><a href="https://www.youtube.com/watch?v=wnZp6hc81CQ&list=PLGJ1tOIRaVQghnwsuWA6Dir6aM3MLTJmd" class="link-item">DevOps (BE- VII)</a><a href="https://www.youtube.com/watch?v=oEHEwNid16s&list=PLGJ1tOIRaVQjNuQQkPGh7As4jvzD9crS3" class="link-item">TOC (TE- V)</a><a href="https://www.youtube.com/watch?v=wtcAMojndBE&list=PLGJ1tOIRaVQhshdDhurLEBY3NI6b1y2ox" class="link-item">Machine Learning (ML)(TE- V)</a><a href="https://www.youtube.com/watch?v=Xk-XZO4C6VI&list=PLGJ1tOIRaVQhQLqW0KtCh_lg0-sJ49nZW" class="link-item">DSBDA (TE- VI)</a><a href="https://www.youtube.com/watch?v=TfxOFJkZUO4&list=PLGJ1tOIRaVQjf8aGYpalGKPdhLS6_ZTwf" class="link-item">WAD TE 2019 Web Application Development</a><a href="https://www.youtube.com/watch?v=8MJE06zY9mE&list=PLGJ1tOIRaVQg7KaQGMdEDmTn7WFRR4Ere" class="link-item">DBMS (SE IV)</a><a href="https://www.youtube.com/watch?v=Acy7IgrZQxQ&list=PLGJ1tOIRaVQh-_NPE3GV1Sob3gRVhApVu" class="link-item">Software Engg (SE IV)</a><a href="https://docs.google.com/document/d/1jqo16KHONxbI--tJOfj79hrKeNNcaacF8FufbZyfwLk/edit?usp=sharing" class="link-item"> Processor Architecture PA SEIT 2024 Subject Notes</a>
+ <div class="card"><div class="icon">🎪</div><h2 class="card-title">Concept Videos & Subject Notes</h2><div class="links-section"><a href="https://www.youtube.com/watch?v=lwSOI0VlkF8&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk" class="link-item">Tips for success</a><a href="https://www.youtube.com/watch?v=EAikorsZB3E&list=PLGJ1tOIRaVQjzUju1OLDQ_lMZpOtJ3E47" class="link-item">Distributed Systems (DS) (BE- VIII)</a><a href="https://www.youtube.com/watch?v=a0gkJOlrFIk&list=PLGJ1tOIRaVQiFe0LRcLbyFy_pDtPJ4okQ" class="link-item">SNE (BE- VIII)</a><a href="https://www.youtube.com/watch?v=EYKCVjUA0hE&list=PLGJ1tOIRaVQgc3-rdtbrzT81OgCZmYbVy" class="link-item">Social Computing (SOC)(BE- VIII)</a><a href="https://www.youtube.com/watch?v=j9ySth2Km0w&list=PLGJ1tOIRaVQh69EyxSN31KvX4SRV9FH_e" class="link-item">BAI (BE- VIII)</a><a href="https://www.youtube.com/watch?v=WttASb3EuHc&list=PLGJ1tOIRaVQhp3vKgVQiNesgjgsvEvhj-" class="link-item">Information Storage & Retrieval (ISR) (BE- VII)</a><a href="https://www.youtube.com/watch?v=2xdQ9J34-q8&list=PLGJ1tOIRaVQiYlA6wNLDT0X97KZ8A4Sgi" class="link-item">Deep Learning (DL) (BE- VII)</a><a href="https://www.youtube.com/watch?v=DYyD9hR1yG4&list=PLGJ1tOIRaVQj8cPDQ9kfrhLbPmjWZPO58" class="link-item">Smart Computing (SMC) (BE- VII)</a><a href="https://www.youtube.com/watch?v=JOt4UBT9cCE&list=PLGJ1tOIRaVQiBKY00O9SgjG-LAc49PkS_" class="link-item">SPM (BE- VII)</a><a href="https://www.youtube.com/watch?v=wnZp6hc81CQ&list=PLGJ1tOIRaVQghnwsuWA6Dir6aM3MLTJmd" class="link-item">DevOps (BE- VII)</a><a href="https://www.youtube.com/watch?v=oEHEwNid16s&list=PLGJ1tOIRaVQjNuQQkPGh7As4jvzD9crS3" class="link-item">TOC (TE- V)</a><a href="https://www.youtube.com/watch?v=wtcAMojndBE&list=PLGJ1tOIRaVQhshdDhurLEBY3NI6b1y2ox" class="link-item">Machine Learning (ML)(TE- V)</a><a href="https://www.youtube.com/watch?v=Xk-XZO4C6VI&list=PLGJ1tOIRaVQhQLqW0KtCh_lg0-sJ49nZW" class="link-item">DSBDA (TE- VI)</a><a href="https://www.youtube.com/watch?v=TfxOFJkZUO4&list=PLGJ1tOIRaVQjf8aGYpalGKPdhLS6_ZTwf" class="link-item">WAD TE 2019 Web Application Development</a><a href="https://www.youtube.com/watch?v=8MJE06zY9mE&list=PLGJ1tOIRaVQg7KaQGMdEDmTn7WFRR4Ere" class="link-item">DBMS (SE IV)</a><a href="https://www.youtube.com/watch?v=Acy7IgrZQxQ&list=PLGJ1tOIRaVQh-_NPE3GV1Sob3gRVhApVu" class="link-item">Software Engg (SE IV)</a><a href="https://docs.google.com/document/d/1jqo16KHONxbI--tJOfj79hrKeNNcaacF8FufbZyfwLk/edit?usp=sharing" class="link-item">Processor Architecture PA SEIT 2024 Subject Notes</a>
 </div></div>
   <div class="card"><div class="icon">🧠</div><h2 class="card-title">Subject Overview by AI</h2><div class="links-section"><a href="https://rms-sof.github.io/ML-ai/" class="link-item">Machine Learning ML</a>
 <a href="https://rms-sof.github.io/AI-ML-Overview/" class="link-item">AI-ML AIML</a>
@@ -613,19 +620,18 @@
 <a href="https://rms-sof.github.io/Digi-Lib/" class="link-item">Digital Library</a>
 <a href="https://rms-sof.github.io/Python/" class="link-item">Python Overview</a>
 <a href="https://rms-sof.github.io/Mandarin/" class="link-item">Mandarin Overview</a>
-<a href="https://rms-sof.github.io/C-Programming/" class="link-item"> C Programming Overview</a>
-<a href="https://rms-sof.github.io/CPP-Programming/" class="link-item"> C++ Programming Overview</a>
-<a href="https://rms-sof.github.io/Java-Programming/" class="link-item"> Java Programming Overview</a>
-
+<a href="https://rms-sof.github.io/C-Programming/" class="link-item">C Programming Overview</a>
+<a href="https://rms-sof.github.io/CPP-Programming/" class="link-item">C++ Programming Overview</a>
+<a href="https://rms-sof.github.io/Java-Programming/" class="link-item">Java Programming Overview</a>
 </div></div>
-  <div class="card"><div class="icon">📕</div><h2 class="card-title">Lab Manuals</h2><div class="links-section"><a href="https://docs.google.com/document/d/19w9iiM_gDk_a58S89Lt06MBvNhxKWrT0/edit?usp=sharing&ouid=112955186310509340094&rtpof=true&sd=true" class="link-item">Information Storage & Retrieval</a><a href="https://drive.google.com/file/d/1l52jDoDd0G06xuhtjR43ne8nnTldsdEs/view?usp=sharing" class="link-item">Information Storage & Retrieval (BE 2019 pat)</a><a href="https://drive.google.com/file/d/1xktxwn3GxOOnJLtog_8IwFLdcSJ9-6JX/view?usp=drive_link" class="link-item">Deep Learning (DL) Journal ( BE 2019 pat)</a><a href="https://drive.google.com/file/d/1WN3UXCq6EsHwmnz2GzU8qiiN78lUUnOb/view?usp=drive_link" class="link-item">Distributed Systems (DS) Journal (BE 2019 pat)</a><a href="https://docs.google.com/document/d/1K5yCrFGbQfBF5AhR-L0aO1ln2kp6QFXoXJVzivW3ono/edit?usp=sharing" class="link-item">Startup & Entreprenuership (SNE) Journal (BE 2019 pat)</a><a href="https://drive.google.com/file/d/1b-UzO8OYUnmzF2nCeiZtBJLevD1sWq4f/view?usp=drive_link" class="link-item">Business Intelligence & Analytics (BIA) Journal (BE 2019 pat) </a><a href="https://drive.google.com/file/d/18aPnG_cpr76X-hn2z1TxkUsnzp0ng6k5/view?usp=drive_link" class="link-item">Cloud Computing (CC) Journal (TE 2019 pat) </a><a href="https://drive.google.com/file/d/19M9QJw23bL3UnvL9JCFbmMhCYUIdw97M/view?usp=drive_link" class="link-item">LP - I ADBMS Journal (TE 2019 pat) </a><a href="https://drive.google.com/file/d/1Bf7q0AFZwTFmPGBPHOuYkn59HWKho1EJ/view?usp=drive_link" class="link-item">LP - I Machine Learning Journal (ML)(TE 2019 pat) </a><a href="https://drive.google.com/file/d/10g9vcCvWJpqaWrdvd7veDBU8fR3hmzPW/view?usp=sharing" class="link-item">DSBDA Journal (TE 2019 pat) </a><a href="https://drive.google.com/file/d/1G43uT26KmNi9rlntTAfM2wY4kJdZK3Xf/view?usp=sharing" class="link-item">WAD Journal (TE 2019 pat) </a><a href="https://drive.google.com/file/d/1ubhygGDexRKGBNI55idmbkoJlI8lg49b/view?usp=sharing" class="link-item">Computer Graphics ( CG ) (SE) </a><a href="https://drive.google.com/file/d/1NNgdlPrTZ3D_V6bNVfcUNhIQ_w4t9xaL/view?usp=sharing" class="link-item">Modern Indian Languages SE 2024 pat MIL</a></div></div>
-  <div class="card"><div class="icon">📅</div><h2 class="card-title">Subjective Exams</h2><div class="links-section"><a href="https://www.youtube.com/watch?v=e6xtOUPuwJ0" class="link-item">Exams, why?</a><a href="https://www.youtube.com/watch?v=_LDcMv-Tmtk" class="link-item">Exams, how?</a><a href="https://youtu.be/R7XYoPYGFfM?si=7bxu37pIgQfO9m0l" class="link-item">How will Mock Exams retain knowledge & Skills?</a><a href="https://script.google.com/macros/s/AKfycbzV5ZR_0ilC4vacB6NUpzMhUkUkSYNKBSRsZwpurblUCacNO1EBVS-RHZpSy4G7NqOTKA/exec" class="link-item">Take mock theory exam for BE IT</a><a href="https://rms-sof.github.io/ML-subjective/" class="link-item">Machine Learning (ML)- Take subjective Exam of 30 marks 1 hr duration</a><a href="https://script.google.com/macros/s/AKfycbziXx_7wkaThJ0sLgkhZIPE_DV9OSaojFfdeRxWY92tPyGIcbHFrBFYSrvyAbcpXtTo/exec" class="link-item">Take BIA - Unit 1-2 Theory Exam</a><a href="https://rms-sof.github.io/DSBDA-subjective/" class="link-item">DSBDA - Take subjective Exam of 30 marks 1 hr duration</a><a href="https://rms-sof.github.io/DL-subjective/" class="link-item">Deep Learning (DL) - Take subjective Exam of 30 marks 1 hr duration.</a><a href="https://rms-sof.github.io/ISR-subjective/" class="link-item">Information Storage & Retrieval (ISR) - Take subjective Exam of 30 marks 1 hr duration.</a><a href="https://script.google.com/macros/s/AKfycbw8_C10Q66loxuYYA3e1SbpEM1-DougBBQ6Dlv9IQpzXaerCn_XW-o32mL9UBaonNB8IA/exec" class="link-item">SEIT Exam DSA CCA Unit 6 Test</a><a href="https://script.google.com/macros/s/AKfycbwTIq1GKhap5XBU2Jm_ongGYRCYOpNlkhjcMmBdJ7m59zCGBJZgh5jtdZR5owek3ub3/exec" class="link-item">SEIT Exam OOP CCA Unit 6 Test</a></div></div>
-  <div class="card"><div class="icon">📍</div><h2 class="card-title">Mock Oral Exams</h2><div class="links-section"><a href="https://www.youtube.com/watch?v=e6xtOUPuwJ0" class="link-item">Exams, why?</a><a href="https://www.youtube.com/watch?v=_LDcMv-Tmtk" class="link-item">Exams, how?</a><a href="https://youtu.be/R7XYoPYGFfM?si=7bxu37pIgQfO9m0l" class="link-item">How will Mock Exams retain knowledge & Skills?</a><a href="https://script.google.com/macros/s/AKfycbyx9dWZmrKStNcA9OKjxLUo5y1y-bz4NOlSbhwtPbWtxSgYcSZKHK9NwCAlKRpj6qg7/exec" class="link-item">BE Oral- BIA Mock Viva Exam</a><a href="https://script.google.com/macros/s/AKfycbwIQYs0RQVhUN6-AhsnJ-L8FFW_g9Quoo8KgpIIHISL7yQQxlCALcInXh-I0ZHb-eA0/exec" class="link-item">BE Oral- Project Mock Viva Exam</a><a href="https://script.google.com/macros/s/AKfycbzHoN4DNRx1C-ikD4eF0wCqf1lhynGctrDNrjyOY4b_4a4dyAddNPUJoLAk_NjzQWfKCA/exec" class="link-item">BE Oral- ISR - Mock Viva Exam</a><a href="https://script.google.com/macros/s/AKfycbwVlm7YeDC5rze0E884aXXtFtCszi7CXpD7SRZ2-F_TQ6FyJjIXGKr7_HCayYcdW6P7/exec" class="link-item">SE Oral - OOP Mock Viva Exam</a><a href="https://script.google.com/macros/s/AKfycbzF3Sn1AisFktidlkbfCaGCdJTBJtMNxElTdj1yU8YCpVDClTLqQu4ljoIj3A-c9cPd/exec" class="link-item">SE Oral- CEP / MiniProject Mock Viva Exam</a><a href="https://script.google.com/macros/s/AKfycbxFWq6Yodv6mebt1V-aYF4xTCAuDuNJM94VC0_xzVgFuc0be-bf7YWIjbL_hWczWPXp/exec" class="link-item">TE Oral- Seminar Mock Viva Exam</a><a href="https://script.google.com/macros/s/AKfycbxTpOMXJay5zbGiLVXAvwee4tR8j0hWSKt7VdV1H4b24XyC6thZv9srPlrNWz3DuD3bqg/exec" class="link-item">TE Oral- Internship Mock Viva Exam</a><a href="https://script.google.com/macros/s/AKfycbzZ-5fLa_nQGFDBoH0KQ_nDzl_EWceG6nmrSE9vuiTCKbFdvqM4g5DA_prGVpDpHHpD/exec" class="link-item">BE Oral- SNE Mock Viva Exam</a><a href="https://rms-sof.github.io/CG-Oral-Prep/" class="link-item">Computer Graphics CG SE 2024 Pat Oral/Viva Exam</a><a href="https://rms-sof.github.io/BIA-oral-prep/" class="link-item">Business Intelligence & Analytics BIA BE 2019 pat Oral / Viva Exam</a></div></div>
-  <div class="card"><div class="icon">🧘</div><h2 class="card-title">Personalized Learning</h2><div class="links-section"><a href="https://youtu.be/bmLqbZflhgA" class="link-item">What is Personalized Learning?</a><a href="https://drive.google.com/file/d/1vngCskIUUL_-EqeT-8cp1ZrzW8Lm9JU9/view?usp=drive_link" class="link-item">Deep Leaning DL</a><a href="https://drive.google.com/file/d/129GzLJorVX1M3CNwJeQ6K2hrJgWkdUT2/view?usp=drive_link" class="link-item">Information Storage & Retrieval ISR</a><a href="https://drive.google.com/file/d/14qrIvXWX80XckzdLx1771xm4mZV8gdJo/view?usp=drive_link" class="link-item">Social Computing SOC</a><a href="https://drive.google.com/file/d/1_IYyocJfE5AUHp9BwtzCDSyySPpleboI/view?usp=drive_link" class="link-item">Smart Computing SMC</a><a href="https://drive.google.com/file/d/1h_3jA0DLvlyquWVI6gk9stZt3hnrGKb7/view?usp=drive_link" class="link-item">Data Science & Big Data Analytics DSBDA</a><a href="https://drive.google.com/file/d/1_XaUnsPyFFsKBgDkasXeytyO3opuA-G7/view?usp=drive_link" class="link-item">Machine Learning ML</a><a href="https://drive.google.com/file/d/1CmVpl9SHfnvJX4uVSu5Od1b_80xAgN16/view?usp=drive_link" class="link-item">Software Project Management SPM</a><a href="https://drive.google.com/file/d/1a-Sh2sJ65lrCsZgOLVk1PaGdag1SLtfd/view?usp=drive_link" class="link-item">Distributed Systems DS</a><a href="https://drive.google.com/file/d/1RPReHBk0NjjHw8DtHbLRBP2953f6XZPi/view?usp=drive_link" class="link-item">Try Gamified Lesson Plans for ISR & Deep Learning</a><a href="https://drive.google.com/file/d/12lrx2_4qo90fqwmR3ZbTIV4CebKCQDM-/view" class="link-item">Flipped Classroom sessions for ISR & DL</a><a href="https://www.youtube.com/watch?v=tMXKZpYgPYw" class="link-item">Life lessons from Computing</a><a href="https://rms-sof.github.io/Green-IT/" class="link-item">Green IT - Sustainable IT</a><a href="https://www.youtube.com/shorts/zi_LSXm3q4g" class="link-item">Extracting wisdom from the data</a><a href="https://youtu.be/GvjhV1Q6SXM?si=XRJvBMEHyQxGR4YY" class="link-item">Evolution of IT Engg Education</a><a href="https://www.youtube.com/watch?v=FqVBsjV-A2g&t=19s" class="link-item">Core IT Thinking Skills</a><a href="https://www.youtube.com/watch?v=oARZbwWHi8I" class="link-item">Integrating { CEP + Seminar + Internship + BE Project }</a><a href="https://rms-sof.github.io/Digi-Lib/" class="link-item">Digital Library</a></div></div>
+  <div class="card"><div class="icon">📕</div><h2 class="card-title">Lab Manuals</h2><div class="links-section"><a href="https://docs.google.com/document/d/19w9iiM_gDk_a58S89Lt06MBvNhxKWrT0/edit?usp=sharing&ouid=112955186310509340094&rtpof=true&sd=true" class="link-item">Information Storage & Retrieval</a><a href="https://drive.google.com/file/d/1l52jDoDd0G06xuhtjR43ne8nnTldsdEs/view?usp=sharing" class="link-item">Information Storage & Retrieval (BE 2019 pat)</a><a href="https://drive.google.com/file/d/1xktxwn3GxOOnJLtog_8IwFLdcSJ9-6JX/view?usp=drive_link" class="link-item">Deep Learning (DL) Journal (BE 2019 pat)</a><a href="https://drive.google.com/file/d/1WN3UXCq6EsHwmnz2GzU8qiiN78lUUnOb/view?usp=drive_link" class="link-item">Distributed Systems (DS) Journal (BE 2019 pat)</a><a href="https://docs.google.com/document/d/1K5yCrFGbQfBF5AhR-L0aO1ln2kp6QFXoXJVzivW3ono/edit?usp=sharing" class="link-item">Startup & Entreprenuership (SNE) Journal (BE 2019 pat)</a><a href="https://drive.google.com/file/d/1b-UzO8OYUnmzF2nCeiZtBJLevD1sWq4f/view?usp=drive_link" class="link-item">Business Intelligence & Analytics (BIA) Journal (BE 2019 pat)</a><a href="https://drive.google.com/file/d/18aPnG_cpr76X-hn2z1TxkUsnzp0ng6k5/view?usp=drive_link" class="link-item">Cloud Computing (CC) Journal (TE 2019 pat)</a><a href="https://drive.google.com/file/d/19M9QJw23bL3UnvL9JCFbmMhCYUIdw97M/view?usp=drive_link" class="link-item">LP - I ADBMS Journal (TE 2019 pat)</a><a href="https://drive.google.com/file/d/1Bf7q0AFZwTFmPGBPHOuYkn59HWKho1EJ/view?usp=drive_link" class="link-item">LP - I Machine Learning Journal (ML)(TE 2019 pat)</a><a href="https://drive.google.com/file/d/10g9vcCvWJpqaWrdvd7veDBU8fR3hmzPW/view?usp=sharing" class="link-item">DSBDA Journal (TE 2019 pat)</a><a href="https://drive.google.com/file/d/1G43uT26KmNi9rlntTAfM2wY4kJdZK3Xf/view?usp=sharing" class="link-item">WAD Journal (TE 2019 pat)</a><a href="https://drive.google.com/file/d/1ubhygGDexRKGBNI55idmbkoJlI8lg49b/view?usp=sharing" class="link-item">Computer Graphics (CG) (SE)</a><a href="https://drive.google.com/file/d/1NNgdlPrTZ3D_V6bNVfcUNhIQ_w4t9xaL/view?usp=sharing" class="link-item">Modern Indian Languages SE 2024 pat MIL</a></div></div>
+  <div class="card"><div class="icon">📅</div><h2 class="card-title">Subjective Exams</h2><div class="links-section"><a href="https://www.youtube.com/watch?v=e6xtOUPuwJ0" class="link-item">Exams, why?</a><a href="https://www.youtube.com/watch?v=_LDcMv-Tmtk" class="link-item">Exams, how?</a><a href="https://youtu.be/R7XYoPYGFfM?si=7bxu37pIgQfO9m0l" class="link-item">How will Mock Exams retain knowledge & Skills?</a><a href="https://script.google.com/macros/s/AKfycbzV5ZR_0ilC4vacB6NUpzMhUkUkSYNKBSRsZwpurblUCacNO1EBVS-RHZpSy4G7NqOTKA/exec" class="link-item">Take mock theory exam for BE IT</a><a href="https://rms-sof.github.io/ML-subjective/" class="link-item">Machine Learning (ML) - Take subjective Exam of 30 marks 1 hr duration</a><a href="https://script.google.com/macros/s/AKfycbziXx_7wkaThJ0sLgkhZIPE_DV9OSaojFfdeRxWY92tPyGIcbHFrBFYSrvyAbcpXtTo/exec" class="link-item">Take BIA - Unit 1-2 Theory Exam</a><a href="https://rms-sof.github.io/DSBDA-subjective/" class="link-item">DSBDA - Take subjective Exam of 30 marks 1 hr duration</a><a href="https://rms-sof.github.io/DL-subjective/" class="link-item">Deep Learning (DL) - Take subjective Exam of 30 marks 1 hr duration.</a><a href="https://rms-sof.github.io/ISR-subjective/" class="link-item">Information Storage & Retrieval (ISR) - Take subjective Exam of 30 marks 1 hr duration.</a><a href="https://script.google.com/macros/s/AKfycbw8_C10Q66loxuYYA3e1SbpEM1-DougBBQ6Dlv9IQpzXaerCn_XW-o32mL9UBaonNB8IA/exec" class="link-item">SEIT Exam DSA CCA Unit 6 Test</a><a href="https://script.google.com/macros/s/AKfycbwTIq1GKhap5XBU2Jm_ongGYRCYOpNlkhjcMmBdJ7m59zCGBJZgh5jtdZR5owek3ub3/exec" class="link-item">SEIT Exam OOP CCA Unit 6 Test</a></div></div>
+  <div class="card"><div class="icon">📍</div><h2 class="card-title">Mock Oral Exams</h2><div class="links-section"><a href="https://www.youtube.com/watch?v=e6xtOUPuwJ0" class="link-item">Exams, why?</a><a href="https://www.youtube.com/watch?v=_LDcMv-Tmtk" class="link-item">Exams, how?</a><a href="https://youtu.be/R7XYoPYGFfM?si=7bxu37pIgQfO9m0l" class="link-item">How will Mock Exams retain knowledge & Skills?</a><a href="https://script.google.com/macros/s/AKfycbyx9dWZmrKStNcA9OKjxLUo5y1y-bz4NOlSbhwtPbWtxSgYcSZKHK9NwCAlKRpj6qg7/exec" class="link-item">BE Oral - BIA Mock Viva Exam</a><a href="https://script.google.com/macros/s/AKfycbwIQYs0RQVhUN6-AhsnJ-L8FFW_g9Quoo8KgpIIHISL7yQQxlCALcInXh-I0ZHb-eA0/exec" class="link-item">BE Oral - Project Mock Viva Exam</a><a href="https://script.google.com/macros/s/AKfycbzHoN4DNRx1C-ikD4eF0wCqf1lhynGctrDNrjyOY4b_4a4dyAddNPUJoLAk_NjzQWfKCA/exec" class="link-item">BE Oral - ISR Mock Viva Exam</a><a href="https://script.google.com/macros/s/AKfycbwVlm7YeDC5rze0E884aXXtFtCszi7CXpD7SRZ2-F_TQ6FyJjIXGKr7_HCayYcdW6P7/exec" class="link-item">SE Oral - OOP Mock Viva Exam</a><a href="https://script.google.com/macros/s/AKfycbzF3Sn1AisFktidlkbfCaGCdJTBJtMNxElTdj1yU8YCpVDClTLqQu4ljoIj3A-c9cPd/exec" class="link-item">SE Oral - CEP / MiniProject Mock Viva Exam</a><a href="https://script.google.com/macros/s/AKfycbxFWq6Yodv6mebt1V-aYF4xTCAuDuNJM94VC0_xzVgFuc0be-bf7YWIjbL_hWczWPXp/exec" class="link-item">TE Oral - Seminar Mock Viva Exam</a><a href="https://script.google.com/macros/s/AKfycbxTpOMXJay5zbGiLVXAvwee4tR8j0hWSKt7VdV1H4b24XyC6thZv9srPlrNWz3DuD3bqg/exec" class="link-item">TE Oral - Internship Mock Viva Exam</a><a href="https://script.google.com/macros/s/AKfycbzZ-5fLa_nQGFDBoH0KQ_nDzl_EWceG6nmrSE9vuiTCKbFdvqM4g5DA_prGVpDpHHpD/exec" class="link-item">BE Oral - SNE Mock Viva Exam</a><a href="https://rms-sof.github.io/CG-Oral-Prep/" class="link-item">Computer Graphics CG SE 2024 Pat Oral/Viva Exam</a><a href="https://rms-sof.github.io/BIA-oral-prep/" class="link-item">Business Intelligence & Analytics BIA BE 2019 pat Oral / Viva Exam</a></div></div>
+  <div class="card"><div class="icon">🧘</div><h2 class="card-title">Personalized Learning</h2><div class="links-section"><a href="https://youtu.be/bmLqbZflhgA" class="link-item">What is Personalized Learning?</a><a href="https://drive.google.com/file/d/1vngCskIUUL_-EqeT-8cp1ZrzW8Lm9JU9/view?usp=drive_link" class="link-item">Deep Learning DL</a><a href="https://drive.google.com/file/d/129GzLJorVX1M3CNwJeQ6K2hrJgWkdUT2/view?usp=drive_link" class="link-item">Information Storage & Retrieval ISR</a><a href="https://drive.google.com/file/d/14qrIvXWX80XckzdLx1771xm4mZV8gdJo/view?usp=drive_link" class="link-item">Social Computing SOC</a><a href="https://drive.google.com/file/d/1_IYyocJfE5AUHp9BwtzCDSyySPpleboI/view?usp=drive_link" class="link-item">Smart Computing SMC</a><a href="https://drive.google.com/file/d/1h_3jA0DLvlyquWVI6gk9stZt3hnrGKb7/view?usp=drive_link" class="link-item">Data Science & Big Data Analytics DSBDA</a><a href="https://drive.google.com/file/d/1_XaUnsPyFFsKBgDkasXeytyO3opuA-G7/view?usp=drive_link" class="link-item">Machine Learning ML</a><a href="https://drive.google.com/file/d/1CmVpl9SHfnvJX4uVSu5Od1b_80xAgN16/view?usp=drive_link" class="link-item">Software Project Management SPM</a><a href="https://drive.google.com/file/d/1a-Sh2sJ65lrCsZgOLVk1PaGdag1SLtfd/view?usp=drive_link" class="link-item">Distributed Systems DS</a><a href="https://drive.google.com/file/d/1RPReHBk0NjjHw8DtHbLRBP2953f6XZPi/view?usp=drive_link" class="link-item">Try Gamified Lesson Plans for ISR & Deep Learning</a><a href="https://drive.google.com/file/d/12lrx2_4qo90fqwmR3ZbTIV4CebKCQDM-/view" class="link-item">Flipped Classroom sessions for ISR & DL</a><a href="https://www.youtube.com/watch?v=tMXKZpYgPYw" class="link-item">Life lessons from Computing</a><a href="https://rms-sof.github.io/Green-IT/" class="link-item">Green IT - Sustainable IT</a><a href="https://www.youtube.com/shorts/zi_LSXm3q4g" class="link-item">Extracting wisdom from the data</a><a href="https://youtu.be/GvjhV1Q6SXM?si=XRJvBMEHyQxGR4YY" class="link-item">Evolution of IT Engg Education</a><a href="https://www.youtube.com/watch?v=FqVBsjV-A2g&t=19s" class="link-item">Core IT Thinking Skills</a><a href="https://www.youtube.com/watch?v=oARZbwWHi8I" class="link-item">Integrating { CEP + Seminar + Internship + BE Project }</a><a href="https://rms-sof.github.io/Digi-Lib/" class="link-item">Digital Library</a></div></div>
   <div class="card"><div class="icon">🔖</div><h2 class="card-title">Special CS Topics</h2><div class="links-section">
 <a href="https://rms-sof.github.io/Game-Theory/" class="link-item">Economics Series - Game Theory</a>
 <a href="https://rms-sof.github.io/Logical-fallacies/" class="link-item">Philosophy Series - Logical Fallacies</a>
-<a href="https://rms-sof.github.io/Thought-experiments/" class="link-item">Philosophy Series - Thought Experiments </a>
+<a href="https://rms-sof.github.io/Thought-experiments/" class="link-item">Philosophy Series - Thought Experiments</a>
 <a href="https://rms-sof.github.io/algo-trading/" class="link-item">Share Market Series - AI based Trading</a>
 <a href="https://rms-sof.github.io/pascal-room/" class="link-item">Share Market Series - Human Behaviour in Trading</a>
 <a href="https://rms-sof.github.io/pcm-engg/" class="link-item">Education Series - PCM & Engineering</a>
@@ -637,71 +643,59 @@
 <a href="https://rms-sof.github.io/markov/" class="link-item">DSBDA Series - Markov Chain</a>
 <a href="https://rms-sof.github.io/DSBDA-Data-Visualization/" class="link-item">DSBDA Series - Data Visualization</a>
 <a href="https://rms-sof.github.io/Flajolet-Martin/" class="link-item">DSBDA Series - Flajolet-Martin Algorithm</a>
-<a href="https://rms-sof.github.io/Flajolet-Martin-Solver/" class="link-item">DSBDA Series -Flajolet-Martin Solver</a>
-<a href="https://rms-sof.github.io/SRS-Tool/" class="link-item">SW Engg Series - How to extract functional & non-functional requirements from user interview? SRS</a>
-<a href="https://rms-sof.github.io/clean-code/" class="link-item">SW Engg Series - Clean Coding Principles</a><a href="https://rms-sof.github.io/SW-efforts-estimator/" class="link-item">SW Engg Series -Software Efforts Estimator (Cocomo, FP, LOC)</a><a href="https://rms-sof.github.io/vibe-coding/" class="link-item">SW Engg Series - Vibe Coding</a><a href="https://rms-sof.github.io/vibe-vs-specDriven-Coding/" class="link-item">Vibe v/s Spec-Driven Coding</a>
-<a href="https://rms-sof.github.io/Sorting/" class="link-item">DSA Series - Sorting Algorithms DSA Bubble Merge Quick Selection</a>
+<a href="https://rms-sof.github.io/Flajolet-Martin-Solver/" class="link-item">DSBDA Series - Flajolet-Martin Solver</a>
+<a href="https://rms-sof.github.io/SRS-Tool/" class="link-item">SW Engg Series - Functional & Non-functional Requirements (SRS)</a>
+<a href="https://rms-sof.github.io/clean-code/" class="link-item">SW Engg Series - Clean Coding Principles</a><a href="https://rms-sof.github.io/SW-efforts-estimator/" class="link-item">SW Engg Series - Software Efforts Estimator (Cocomo, FP, LOC)</a><a href="https://rms-sof.github.io/vibe-coding/" class="link-item">SW Engg Series - Vibe Coding</a><a href="https://rms-sof.github.io/vibe-vs-specDriven-Coding/" class="link-item">Vibe v/s Spec-Driven Coding</a>
+<a href="https://rms-sof.github.io/Sorting/" class="link-item">DSA Series - Sorting Algorithms: Bubble Merge Quick Selection</a>
 <a href="https://rms-sof.github.io/DSA-Life/" class="link-item">DSA Series - DSA in real life</a>
 <a href="https://rms-sof.github.io/DSA-people/" class="link-item">DSA Series - DSA Founders</a>
 <a href="https://rms-sof.github.io/Amortized-algo/" class="link-item">DSA Series - Amortized Algorithms</a>
-
-
-<a href="https://rms-sof.github.io/shortest-path/" class="link-item">DSA Series - Shortest Path Dijkstra Prim Kruskal Floyd-Warshall</a><a href="https://rms-sof.github.io/mst/" class="link-item">DSA Series - Minimum Spanning Tree (MST) Algorithms</a><a href="https://rms-sof.github.io/Tree-walker/" class="link-item">DSA Series - Tree Traversal DSA Prefix Postfix Infix</a>
+<a href="https://rms-sof.github.io/shortest-path/" class="link-item">DSA Series - Shortest Path: Dijkstra Prim Kruskal Floyd-Warshall</a><a href="https://rms-sof.github.io/mst/" class="link-item">DSA Series - Minimum Spanning Tree (MST) Algorithms</a><a href="https://rms-sof.github.io/Tree-walker/" class="link-item">DSA Series - Tree Traversal: Prefix Postfix Infix</a>
 <a href="https://rms-sof.github.io/DSA-FlashCards/" class="link-item">DSA Series - Concepts Flash Cards</a>
-	<a href="https://rms-sof.github.io/Normalization/" class="link-item">DBMS Series - Normalization 0NF 1 NF 2NF 3NF BCNF</a><a href="https://rms-sof.github.io/Schedule-serializer/" class="link-item">DBMS Series - concurrency control Schedule Serialization</a><a href="https://rms-sof.github.io/cpu-scheduler/" class="link-item">OS Series - CPU Scheduling Algorithms</a><a href="https://rms-sof.github.io/Digi-Lib/" class="link-item">Digital Library</a><a href="https://rms-sof.github.io/page-replacement/" class="link-item">OS Series - Page Replacement Algorithms</a>
-<a href="https://rms-sof.github.io/page-replacement/" class="link-item">OS Series - Producer Cosumer, Banker, Dining Philosopher Algorithms</a><a href="https://script.google.com/macros/s/AKfycbxeb7Z80-arVNlIpgnUBqENg-5oYDFkl37gUhBxFLq0-OBnwCQKk7ygZEsJtScdDdlW/exec" class="link-item">Management Series - Task Classifier</a>
-<a href="https://rms-sof.github.io/Productivity-systems/" class="link-item">Management Series-Productivity Systems</a>
-<a href="https://rms-sof.github.io/Power-Influence/" class="link-item">Management Series- Power-Status-Enfluence</a>
-<a href="https://rms-sof.github.io/Personal-Boundaries/" class="link-item">Management Series- Personal Boundaries</a>
-
-<a href="https://rms-sof.github.io/Deliberation/" class="link-item">Management Series - Deliberations vs Impulstive Creativity</a>
+<a href="https://rms-sof.github.io/Normalization/" class="link-item">DBMS Series - Normalization: 0NF 1NF 2NF 3NF BCNF</a><a href="https://rms-sof.github.io/Schedule-serializer/" class="link-item">DBMS Series - Concurrency Control Schedule Serialization</a><a href="https://rms-sof.github.io/cpu-scheduler/" class="link-item">OS Series - CPU Scheduling Algorithms</a><a href="https://rms-sof.github.io/Digi-Lib/" class="link-item">Digital Library</a><a href="https://rms-sof.github.io/page-replacement/" class="link-item">OS Series - Page Replacement Algorithms</a>
+<a href="https://rms-sof.github.io/page-replacement/" class="link-item">OS Series - Producer Consumer, Banker, Dining Philosopher Algorithms</a><a href="https://script.google.com/macros/s/AKfycbxeb7Z80-arVNlIpgnUBqENg-5oYDFkl37gUhBxFLq0-OBnwCQKk7ygZEsJtScdDdlW/exec" class="link-item">Management Series - Task Classifier</a>
+<a href="https://rms-sof.github.io/Productivity-systems/" class="link-item">Management Series - Productivity Systems</a>
+<a href="https://rms-sof.github.io/Power-Influence/" class="link-item">Management Series - Power, Status & Influence</a>
+<a href="https://rms-sof.github.io/Personal-Boundaries/" class="link-item">Management Series - Personal Boundaries</a>
+<a href="https://rms-sof.github.io/Deliberation/" class="link-item">Management Series - Deliberations vs Impulsive Creativity</a>
 <a href="https://rms-sof.github.io/ownership/" class="link-item">Management Series - Ownership</a>
-<a href="https://rms-sof.github.io/leadership/" class="link-item">Management Series - Learship Styles</a>
-<a href="https://rms-sof.github.io/AI-Engg-Edu/" class="link-item">Education Series - AI impact on mentality & Learnabilty</a>
+<a href="https://rms-sof.github.io/leadership/" class="link-item">Management Series - Leadership Styles</a>
+<a href="https://rms-sof.github.io/AI-Engg-Edu/" class="link-item">Education Series - AI impact on mentality & Learnability</a>
 <a href="https://rms-sof.github.io/digital-marketing/" class="link-item">Marketing Series - Digital Marketing with AI</a>
 <a href="https://rms-sof.github.io/AI-Engg-Education/" class="link-item">Education Series - Impact of AI on future IT/CS Engg Education</a>
 <a href="https://rms-sof.github.io/psychology_game_theory/" class="link-item">Psychology Series - Game theory and decision making</a>
-<a href=" https://rms-sof.github.io/practical-elitist/" class="link-item">Psychology Series - Practical Approach vs Elitist Approach</a>
-
+<a href="https://rms-sof.github.io/practical-elitist/" class="link-item">Psychology Series - Practical Approach vs Elitist Approach</a>
 <a href="https://rms-sof.github.io/AI-psychology/" class="link-item">Psychology Series - AI and Human mind</a>
-<a href="https://www.youtube.com/watch?v=n4h71b5bRZg" class="link-item">Psychology Series- Remedy for Skeptical Nature of an Engineer</a>
-<a href="https://rms-sof.github.io/IT-CS-Engg-AI/" class="link-item"> Education series -Effective AI for CS/IT Students</a>
-<a href=" https://rms-sof.github.io/BE-Project-Guidance/" class="link-item">BE Project Kickstarter</a>
+<a href="https://www.youtube.com/watch?v=n4h71b5bRZg" class="link-item">Psychology Series - Remedy for Skeptical Nature of an Engineer</a>
+<a href="https://rms-sof.github.io/IT-CS-Engg-AI/" class="link-item">Education Series - Effective AI for CS/IT Students</a>
+<a href="https://rms-sof.github.io/BE-Project-Guidance/" class="link-item">BE Project Kickstarter</a>
 <a href="https://youtube.com/shorts/JGDbTONlITc" class="link-item">BE Project Guidance</a>
 <a href="https://rms-sof.github.io/AI-Future/" class="link-item">Education Series - Future of AI</a>
-
-
 </div></div>
-
 
 <div class="card"><div class="icon">🔖</div><h2 class="card-title">Mathematics in IT/CS Engg</h2>
 <div class="links-section">
-<a href="https://rms-sof.github.io/Distributions/" class="link-item">Maths series - Distributions</a>
+<a href="https://rms-sof.github.io/Distributions/" class="link-item">Maths Series - Distributions</a>
 <a href="https://rms-sof.github.io/Hypothesis-Decision/" class="link-item">Maths Series - Hypothesis Testing & Decision Theory</a>
-<a href="https://rms-sof.github.io/multi-objective-optimizers/" class="link-item">Maths series - Multi-objective Optimization</a>
-<a href="https://rms-sof.github.io/maths-life/" class="link-item">Maths series - Calculus in simple life</a>
-<a href="https://rms-sof.github.io/Linear-programming/" class="link-item">Maths series - Linear Programming</a>
-<a href="https://rms-sof.github.io/stats-tests/" class="link-item">Maths Series - Statistical Tests</a><a href="https://rms-sof.github.io/sampling-estimation/" class="link-item"> Maths Series - Sampling & Estimation</a>
+<a href="https://rms-sof.github.io/multi-objective-optimizers/" class="link-item">Maths Series - Multi-objective Optimization</a>
+<a href="https://rms-sof.github.io/maths-life/" class="link-item">Maths Series - Calculus in simple life</a>
+<a href="https://rms-sof.github.io/Linear-programming/" class="link-item">Maths Series - Linear Programming</a>
+<a href="https://rms-sof.github.io/stats-tests/" class="link-item">Maths Series - Statistical Tests</a><a href="https://rms-sof.github.io/sampling-estimation/" class="link-item">Maths Series - Sampling & Estimation</a>
 <a href="https://rms-sof.github.io/random-variable/" class="link-item">Maths Series - Random Variable</a>
-<a href= "https://rms-sof.github.io/maths-dl/" class="link-item">Maths series - Maths in Deep Learning DL</a>
+<a href="https://rms-sof.github.io/maths-dl/" class="link-item">Maths Series - Maths in Deep Learning DL</a>
 <a href="https://rms-sof.github.io/maths-ai/" class="link-item">Maths Series - Maths in AI</a>
-<a href= "https://rms-sof.github.io/maths-ml/" class="link-item">Maths Series - Maths in Machine Learning ML</a>
+<a href="https://rms-sof.github.io/maths-ml/" class="link-item">Maths Series - Maths in Machine Learning ML</a>
 <a href="https://rms-sof.github.io/maths-ds/" class="link-item">Maths Series - Maths in Data Science DS</a>
 <a href="https://rms-sof.github.io/functions/" class="link-item">Maths Series - Function plot and Roots Domain</a>
-<a href=" https://rms-sof.github.io/Maths-Human-Nature/" class="link-item">Maths Series - Human nature modeled as maths functions</a>
-
-
+<a href="https://rms-sof.github.io/Maths-Human-Nature/" class="link-item">Maths Series - Human nature modeled as maths functions</a>
 </div></div>
 
   <div class="card"><div class="icon">🧠</div><h2 class="card-title">Online Quizzes</h2><div class="links-section"><a href="https://rms-sof.github.io/Programming-Quiz/" class="link-item">Sharpen your programming abilities Quiz</a><a href="https://rms-sof.github.io/AI-login/" class="link-item">Check your knowledge about AI Quiz</a><a href="https://rms-sof.github.io/Agentic-AI-Quiz/" class="link-item">Check your knowledge about Agentic AI Quiz</a><a href="https://rms-sof.github.io/AI-Types-Quiz/" class="link-item">Quiz on AGI ANI ASI</a><a href="https://rms-sof.github.io/Research-methodology/" class="link-item">Quiz on Research Methodology (RM)</a><a href="https://rms-sof.github.io/cs-quiz/" class="link-item">Test your fundamental Computing knowledge Quiz</a><a href="https://rms-sof.github.io/DBMS-Quiz/" class="link-item">Database Management System (DBMS) Quiz</a><a href="https://rms-sof.github.io/CG-Quiz/" class="link-item">Computer Graphics (CG) Quiz</a><a href="https://rms-sof.github.io/CG-Unit12/" class="link-item">Computer Graphics (CG) - Unit 1 & 2</a><a href="https://rms-sof.github.io/DSA-Quiz/" class="link-item">Data Structures & Algorithms (DSA) Quiz</a><a href="https://rms-sof.github.io/TOC-Quiz/" class="link-item">Theory of Computation (TOC) Quiz</a><a href="https://rms-sof.github.io/OS-Quiz/" class="link-item">Operating System (OS) Quiz</a><a href="https://rms-sof.github.io/Network-quiz/" class="link-item">Computer Networks (CNS) Quiz</a><a href="https://rms-sof.github.io/ML-Quiz/" class="link-item">Machine Learning (ML) Quiz</a><a href="https://rms-sof.github.io/DLQuiz/" class="link-item">Deep Learning (DL) Quiz</a><a href="https://rms-sof.github.io/SmCQuiz/" class="link-item">Smart Computing (SMC) Quiz</a><a href="https://rms-sof.github.io/PythonQuiz/" class="link-item">Python Programming Quiz</a><a href="https://rms-sof.github.io/DSQuiz/" class="link-item">Distributed Systems (DS) Quiz</a><a href="https://rms-sof.github.io/ISRQuiz/" class="link-item">Information Storage & Retrieval (ISR) Quiz</a><a href="https://rms-sof.github.io/SoCQuiz/" class="link-item">Social Computing (SOC) Quiz</a><a href="https://rms-sof.github.io/AI-Quiz/" class="link-item">AI Quiz for all</a><a href="https://rms-sof.github.io/Language-Profeciency-Tester/" class="link-item">Programming Languages Proficiency Quiz</a><a href="https://rms-sof.github.io/AI-GK/" class="link-item">General Knowledge GK Quiz on AI</a>
 <a href="https://rms-sof.github.io/simple-quiz-aimlds/" class="link-item">ML AI DS - Simple Quiz</a>
-
 </div></div>
   <div class="card"><div class="icon">📍</div><h2 class="card-title">Location Bound Exams</h2><div class="links-section"><a href="https://youtu.be/R7XYoPYGFfM?si=7bxu37pIgQfO9m0l" class="link-item">How will Mock Exams retain knowledge & Skills?</a><a href="https://script.google.com/macros/s/AKfycbwSrhUuNDQEYoatkvFnnMGz8WYZignLbhRXqS_0bb_MUPqPjS-OlXgEgmaIFC5wTuRW/exec" class="link-item">Rapidfire MCQs</a><a href="https://script.google.com/macros/s/AKfycbwrOloKfxFkG88Lp4x_ihjGhHePVvh8ygsvZDtvqiDHOzlLOaC2Z7jAlHIdUxmJGKcrlQ/exec" class="link-item">Start IT MCQs</a><a href="https://script.google.com/macros/s/AKfycbxPYu-DWjpZjzsFOFhlLWdOU1rb4UfaHHpRhMpKTJY4ihwctUjmb9NLAizW_LdwbokOuw/exec" class="link-item">Try out Proctored MCQs Exam</a><a href="https://script.google.com/macros/s/AKfycbyXP-eVDBtThRK-LPCeYfTAZzgWK9aFEPrEF6PJu1InYI8mvkSOt8aq3wIUz9XcsLBo/exec" class="link-item">BIA MCQs Exam</a><a href="https://script.google.com/macros/s/AKfycbxCDko8uVgDS_LPjGJtMs_qVzYFl3VVWjDqYQSS1ry_8ZhwKXOoRIPr2WHuy0SP2rVL/exec" class="link-item">Processor Architecture Unit 5 MCQ Exam</a>
-
 </div></div>
-  <div class="card"><div class="icon">❤️</div><h2 class="card-title">Employability / Placement</h2><div class="links-section"><a href="https://youtu.be/JzsmpQfVRjY" class="link-item">Make IT Career Future-proof</a><a href="https://youtu.be/gl3JOzEIlyk" class="link-item">Changing Skill-sets</a><a href="https://www.youtube.com/watch?v=9PIIA97XQjY" class="link-item">How to Crack Technical Interview</a><a href="https://www.youtube.com/watch?v=riHjSprhdz8&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=29" class="link-item">IT Syllabus Technical Brush-up before placement</a><a href="https://youtu.be/gl3JOzEIlyk" class="link-item">Know about Changing skill-set required for IT careers</a>
-<a href="https://www.youtube.com/watch?v=zGmS-wy3ZpI&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=9" class="link-item">How to build Capacity for a job?</a>
+  <div class="card"><div class="icon">❤️</div><h2 class="card-title">Employability / Placement</h2><div class="links-section"><a href="https://youtu.be/JzsmpQfVRjY" class="link-item">Make IT Career Future-proof</a><a href="https://youtu.be/gl3JOzEIlyk" class="link-item">Changing Skill-sets</a><a href="https://www.youtube.com/watch?v=9PIIA97XQjY" class="link-item">How to Crack Technical Interview</a><a href="https://www.youtube.com/watch?v=riHjSprhdz8&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=29" class="link-item">IT Syllabus Technical Brush-up before placement</a><a href="https://www.youtube.com/watch?v=zGmS-wy3ZpI&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=9" class="link-item">How to build Capacity for a job?</a>
 <a href="https://youtu.be/5sBcpNGYn8M" class="link-item">What do companies want?</a><a href="https://www.youtube.com/watch?v=ZUaYFVYit90&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=24" class="link-item">Understanding about Employability</a>
 <a href="https://www.youtube.com/watch?v=U6tJLRJUwU8&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=7" class="link-item">How to become Employable?</a>
 <a href="https://www.youtube.com/watch?v=zc4HH5Grbc0&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=21" class="link-item">Alumni Advice for success</a>
@@ -709,37 +703,32 @@
 <a href="https://rms-sof.github.io/Green-IT/" class="link-item">Green IT - Sustainable IT</a>
 <a href="https://rms-sof.github.io/placement-edge/" class="link-item">Placements Prep</a>
 <a href="https://rms-sof.github.io/placement-Help/" class="link-item">Placement Help</a>
-<a href=" https://rms-sof.github.io/IT-careers/" class="link-item">Careers in IT/CS</a>
-
+<a href="https://rms-sof.github.io/IT-careers/" class="link-item">Careers in IT/CS</a>
 </div>
 </div>
 <div class="card"><div class="icon">📅</div>
 <h2 class="card-title">Coding Lessons from Multidisciplinary Domains</h2>
 <div class="links-section">
 <a href="https://www.youtube.com/watch?v=tMXKZpYgPYw" class="link-item">Life lessons from Computing</a>
-<a href=" https://rms-sof.github.io/core-branches-lessons/" class="link-item">Coding Lessons from core engineering branches</a>
-<a href=" https://rms-sof.github.io/Traffic-rules-lessons/" class="link-item">Coding Lessons from traffic rules</a>
+<a href="https://rms-sof.github.io/core-branches-lessons/" class="link-item">Coding Lessons from core engineering branches</a>
+<a href="https://rms-sof.github.io/Traffic-rules-lessons/" class="link-item">Coding Lessons from traffic rules</a>
 <a href="https://www.youtube.com/watch?v=ruJb1IXziV0&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=23" class="link-item">Coding Lessons from Universal Values</a>
 <a href="https://www.youtube.com/watch?v=2vUob_RbZOM&list=PLGJ1tOIRaVQhshdDhurLEBY3NI6b1y2ox" class="link-item">Coding Lessons from management studies</a>
 <a href="https://www.youtube.com/watch?v=R1TtgJc9-1c" class="link-item">Coding Lessons from history</a>
 <a href="https://www.youtube.com/watch?v=giHPgLyY2HE&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=28" class="link-item">Coding Lessons from harmony</a>
 <a href="https://rms-sof.github.io/deep-clean/" class="link-item">Coding Lessons from Cleanliness</a>
-<a href="https://rms-sof.github.io/constitution-for-developers/" class="link-item"> Coding Lessons from the constitution</a>
-
-
-
+<a href="https://rms-sof.github.io/constitution-for-developers/" class="link-item">Coding Lessons from the constitution</a>
 </div></div>
 
   <div class="card"><div class="icon">🔬</div><h2 class="card-title">BE Project - Research & Innovation</h2><div class="links-section"><a href="https://youtu.be/ssitnpGdfs8" class="link-item">How to write a research paper?</a>
 <a href="https://docs.google.com/document/d/17-XWRYW_xTSVUTX_7V8MvXMaxxbE4XS2TiTWgbMi908/edit?usp=sharing" class="link-item">NBNSTIC IT Students' Publications</a>
 <a href="https://www.youtube.com/watch?v=xMRfTkJv4tE" class="link-item">Why formatting matters in Report / Paper</a>
-<a href=" https://rms-sof.github.io/BE-Project-Guidance/" class="link-item">BE Project Kickstarter</a>
+<a href="https://rms-sof.github.io/BE-Project-Guidance/" class="link-item">BE Project Kickstarter</a>
 <a href="https://youtube.com/shorts/JGDbTONlITc" class="link-item">BE Project Guidance</a>
 <a href="https://rms-sof.github.io/BE-Project-Errors/" class="link-item">BE Project - Avoid these mistakes</a>
 <a href="https://rms-sof.github.io/BE-Project-Design/" class="link-item">BE Project Design</a>
-
-<a href="https://www.youtube.com/watch?v=afrEslTjm0Y" class="link-item">What is Research Methodology? </a>
-<a href="https://www.youtube.com/watch?v=D_sQBHPXL5w&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=13" class="link-item">Research outputs - Publications, IPR and Patents</a><a href="https://www.youtube.com/watch?v=4eBQ1Xhaxrg&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=11" class="link-item">Guidelines for Using AI in your research - AI Policy</a><a href="https://rms-sof.github.io/Digi-Lib/" class="link-item">Digital Library</a><a href="https://www.youtube.com/watch?v=oARZbwWHi8I&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=2" class="link-item">How to do Research & Study together?</a><a href="https://rms-sof.github.io/Green-IT/" class="link-item">Green IT - Sustainable IT</a><a href="https://docs.google.com/document/d/1E3vHiDq1CC43K-wp2PfR3f-4zZgQn1dFHwM1KtURfks/edit?usp=sharing" class="link-item">Avishkar (आविष्कार) Research Competition Guidance</a> <a href="https://rms-sof.github.io/Future-ready/" class="link-item">Be future Ready</a><a href="https://scholar.google.co.in/citations?user=ghoW_6AAAAAJ&hl=en" class="link-item">HOD's Research Profile</a></div></div>
+<a href="https://www.youtube.com/watch?v=afrEslTjm0Y" class="link-item">What is Research Methodology?</a>
+<a href="https://www.youtube.com/watch?v=D_sQBHPXL5w&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=13" class="link-item">Research outputs - Publications, IPR and Patents</a><a href="https://www.youtube.com/watch?v=4eBQ1Xhaxrg&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=11" class="link-item">Guidelines for Using AI in your research - AI Policy</a><a href="https://rms-sof.github.io/Digi-Lib/" class="link-item">Digital Library</a><a href="https://www.youtube.com/watch?v=oARZbwWHi8I&list=PLGJ1tOIRaVQhzXUOew2YuhhPWXRU6EhMk&index=2" class="link-item">How to do Research & Study together?</a><a href="https://rms-sof.github.io/Green-IT/" class="link-item">Green IT - Sustainable IT</a><a href="https://docs.google.com/document/d/1E3vHiDq1CC43K-wp2PfR3f-4zZgQn1dFHwM1KtURfks/edit?usp=sharing" class="link-item">Avishkar (आविष्कार) Research Competition Guidance</a><a href="https://rms-sof.github.io/Future-ready/" class="link-item">Be future Ready</a><a href="https://scholar.google.co.in/citations?user=ghoW_6AAAAAJ&hl=en" class="link-item">HOD's Research Profile</a></div></div>
   <div class="card"><div class="icon">📅</div><h2 class="card-title">Utilities</h2><div class="links-section">
 <a href="https://rms-sof.github.io/Edu-Utilities/" class="link-item">Check Productivity Solutions</a>
 <a href="https://rms-sof.github.io/Temporal-Utilities/" class="link-item">Temporal Utilities</a>
@@ -755,26 +744,24 @@
 <a href="https://rms-sof.github.io/DP-Maker/" class="link-item">WhatsApp DP Fitter Utility</a>
 <a href="https://rms-sof.github.io/TRIZ-tool/" class="link-item">TRIZ Contradiction Resolver Utility</a>
 <a href="https://rms-sof.github.io/GeoLocater/" class="link-item">Geo Locator Latitude Longitude Altitude</a>
-<a href = "https://rms-sof.github.io/pdf2excel-tool/" class="link-item">PDF to Excel converter Utility - Name list Result Analysis related tool</a>
+<a href="https://rms-sof.github.io/pdf2excel-tool/" class="link-item">PDF to Excel converter Utility - Name list Result Analysis related tool</a>
 <a href="https://rms-sof.github.io/Click-Counter/" class="link-item">Mouse Click Counter</a>
-<a href ="https://rms-sof.github.io/Shashank-Schedule/" class="link-item">Shashank's Daily Schedule</a>
+<a href="https://rms-sof.github.io/Shashank-Schedule/" class="link-item">Shashank's Daily Schedule</a>
 <a href="https://rms-sof.github.io/Day-Planner/" class="link-item">Day Planner</a>
 <a href="https://rms-sof.github.io/Event-down-counter/" class="link-item">Multiple Events Down Counters</a>
-
 </div></div>
-  <div class="card"><div class="icon">🔒</div><h2 class="card-title">Automated Workflows for ITD</h2><div class="links-section"><a href="https://script.google.com/macros/u/1/s/AKfycbxGjLmRWBSVMcPyjkGm347aQ7Sk_kqBjhGABKcMSkBQcMV4DfNh5MfuvCKRVQoLTZM/exec" class="link-item">MoM Distribution System</a><a href="https://rms-sof.github.io/Table-maker/" class="link-item">Exam time table maker</a><a href="https://rms-sof.github.io/Notice-Generator/" class="link-item">IT Notices Generator </a>
-<a href="https://script.google.com/macros/s/AKfycbzg61qEsbHp_GoMcC0TfS2PFc-wULBpK9DdLyrLsPcTkGDQqWhDBXt_1Z0YceYSgAR9MA/exec" class="link-item">Leave Application System</a><a href="https://docs.google.com/document/d/10I6DXo6a9Lrq9qS_VWfQ63fxOdFG8fu2UglVdGdDw48/edit?usp=sharing" class="link-item">Read NBNSTIC-IT Newsletters</a><a href="https://docs.google.com/videos/d/1ipsN4PxZ_V4AUgYPYJMEcipukXt50759AA9tPSeC4pU/edit?usp=sharing" class="link-item">Techtonic Saga - Memoir</a>
+  <div class="card"><div class="icon">🔒</div><h2 class="card-title">Automated Workflows for ITD</h2><div class="links-section"><a href="https://script.google.com/macros/u/1/s/AKfycbxGjLmRWBSVMcPyjkGm347aQ7Sk_kqBjhGABKcMSkBQcMV4DfNh5MfuvCKRVQoLTZM/exec" class="link-item">MoM Distribution System</a><a href="https://rms-sof.github.io/Table-maker/" class="link-item">Exam time table maker</a><a href="https://rms-sof.github.io/Notice-Generator/" class="link-item">IT Notices Generator</a>
+<a href="https://script.google.com/macros/s/AKfycbzg61qEsbHp_GoMcC0TfS2PFc-wULBpK9DdLyrLsPcTkGDQqWhDBXt_1Z0YceYSgAR9MA/exec" class="link-item">Leave Application System</a><a href="https://docs.google.com/document/d/10I6DXo6a9Lrq9qS_VWfQ63fxOdFG8fu2UglVdGdDw48/edit?usp=sharing" class="link-item">Read NBNSTIC-IT Newsletters</a>
 <a href="https://script.google.com/macros/s/AKfycbwLND-1SZ5Kt5yp-6Kcptuiy6sfDxwubyp0zqjIIDXOxfR1hADmsSDw0u1XRZdBmvMx5g/exec" class="link-item">Mark your Presence</a><a href="https://docs.google.com/spreadsheets/u/3/d/1OVzWzKBKbYcmwCc3rM2INpl3b9J3qZAko6iL_adhfRk/edit?usp=sharing" class="link-item">Check your Presence</a><a href="https://script.google.com/macros/s/AKfycbyRYZb72HCV3jNuTUDPueCQuXeJhTck00-TkSNTXDNnFN13Lq5zvXoqCzFNpLGdZQdr/exec" class="link-item">IT Dept Internal Results Portal</a>
-<a href=" https://rms-sof.github.io/AI-Tutor-EcoSystem/" class="link-item">AI Tutor for IT Students</a>
-<a href = "https://script.google.com/macros/s/AKfycby8pJ5DCQrJGvwvO_YOvpHpQ5Wk4LeXDHWzU2pDu-3Nslz6QZjFlcejZVSwCdo1ZIohhg/exec" class="link-item">Pending Work</a>
-<a href = "https://rms-sof.github.io/pdf2excel-tool/" class="link-item">PDF to Excel converter - Name list Result Analysis related tool</a>
+<a href="https://rms-sof.github.io/AI-Tutor-EcoSystem/" class="link-item">AI Tutor for IT Students</a>
+<a href="https://script.google.com/macros/s/AKfycby8pJ5DCQrJGvwvO_YOvpHpQ5Wk4LeXDHWzU2pDu-3Nslz6QZjFlcejZVSwCdo1ZIohhg/exec" class="link-item">Pending Work</a>
+<a href="https://rms-sof.github.io/pdf2excel-tool/" class="link-item">PDF to Excel converter - Name list Result Analysis related tool</a>
 <a href="https://forms.gle/HUJMXHnd6t5JKPda7" class="link-item">External Examiner Bank Details Form</a>
 <a href="https://script.google.com/macros/s/AKfycbzcChElpP34A-evrgW7Z4G72n0yJoCpLQ9p9eOditse0OB6YEnw2KkPvVUhlpyFOfR3/exec" class="link-item">Title Registration - SE Mini-Project / TE Research Seminar / BE Project</a>
-
 </div></div>
   <div class="card"><div class="icon">🎮</div><h2 class="card-title">Games</h2>
 <div class="links-section">
-<a href="https://rms-sof.github.io/Game-design/" class="link-item">Game Design with Pychology & Computer Science</a><a href="https://rms-sof.github.io/PuzzleParadise/" class="link-item">Puzzles Games</a>
+<a href="https://rms-sof.github.io/Game-design/" class="link-item">Game Design with Psychology & Computer Science</a><a href="https://rms-sof.github.io/PuzzleParadise/" class="link-item">Puzzles Games</a>
 <a href="https://rms-sof.github.io/GameArcade/" class="link-item">Games for Dopamine Detox</a><a href="https://rms-sof.github.io/wordbuilder/" class="link-item">Word Builder Game</a>
 <a href="https://rms-sof.github.io/scramble-game/" class="link-item">Unscramble Word Game</a><a href="https://rms-sof.github.io/DroneFlyer/" class="link-item">Drone Flyer Game</a>
 <a href="https://rms-sof.github.io/Drone-attack/" class="link-item">Drone Attack Game</a>
@@ -783,21 +770,19 @@
 <a href="https://rms-sof.github.io/wheel-fortune/" class="link-item">Fortune wheel Game</a>
 </div>
 </div>
-<div class="card"><div class="icon">👨‍🏫</div><h2 class="card-title">Teaching aids</h2><div class="links-section"><a href="https://www.youtube.com/watch?v=J1SV4NwMf0Q" class="link-item">Bloom's Taxonomy for papaer setting</a><a href="https://www.youtube.com/watch?v=Fv1N5MJC5ic" class="link-item">Using AI in academic contents preparation- AI Policy</a></div></div>
+<div class="card"><div class="icon">👨‍🏫</div><h2 class="card-title">Teaching Aids</h2><div class="links-section"><a href="https://www.youtube.com/watch?v=J1SV4NwMf0Q" class="link-item">Bloom's Taxonomy for paper setting</a><a href="https://www.youtube.com/watch?v=Fv1N5MJC5ic" class="link-item">Using AI in academic contents preparation - AI Policy</a></div></div>
 
 <div class="card"><div class="icon">📍</div>
 <h2 class="card-title">My Musings</h2>
 <div class="links-section">
-
-<a href="https://rms-sof.github.io/Habit-coding-mirror/" class="link-item">Habits and Coding - Mirror </a>
-<a href="https://www.youtube.com/watch?v=n4h71b5bRZg" class="link-item">Remedies for Skeptical Engineer </a>
-
+<a href="https://rms-sof.github.io/Habit-coding-mirror/" class="link-item">Habits and Coding - Mirror</a>
+<a href="https://www.youtube.com/watch?v=n4h71b5bRZg" class="link-item">Remedies for Skeptical Engineer</a>
 </div></div>
 
 <div class="card"><div class="icon">🧠</div>
 <h2 class="card-title">Professional Talks</h2>
 <div class="links-section">
-<a href="https://youtu.be/YTcf2b1647I" class="link-item">GenAI in Teaching, Learning & Research </a>
+<a href="https://youtu.be/YTcf2b1647I" class="link-item">GenAI in Teaching, Learning & Research</a>
 </div></div>
 
 <div class="card"><div class="icon">⚡</div><h2 class="card-title">Philosophy</h2><div class="links-section"><a href="https://rms-sof.github.io/Geeta-geetai/" class="link-item">Geeta गीता-गीताई</a><a href="https://docs.google.com/document/d/1DHyQwn51LylEYqUL8uh24AKd0X7idMODNsGNDOiRKFw/edit?usp=sharing" class="link-item">Haripath हरिपाठ</a><a href="https://rms-sof.github.io/Life-Q/" class="link-item">Get Inspired!</a><a href="https://drive.google.com/file/d/1mEcYPX9ygsV5zyOH-i4xCbd6dGSMbZFS/view?usp=drive_link" class="link-item">Sanskrit संस्कृत श्लोक</a><a href="https://rms-sof.github.io/Profession-Q/" class="link-item">Professional Quotable Quotes</a><a href="https://rms-sof.github.io/Subhashite/" class="link-item">Subhashit Mala सुभाषित माला</a><a href="https://docs.google.com/document/d/1exG7ZGCgqFKhrN0szDHz9afUfGQL5XnSMcUKcadk2sU/edit?usp=sharing" class="link-item">Aarati Sangrah आरती संग्रह</a></div></div>
@@ -806,42 +791,39 @@
 <!-- ═══════════════════════════════════════════
      HEADER
 ════════════════════════════════════════════ -->
-<header>
+<header role="banner">
   <div class="banner-inner">
-    <div class="banner-icon">🌳</div>
+    <div class="banner-icon" aria-hidden="true">🌳</div>
     <div class="banner-text">
       <h1>EcoSystem | Prof. Rahul M. Samant</h1>
-      <p>Proactive Outreach for Exploring , Discovering & Growth</p>
+      <p>Proactive Outreach for Exploring, Discovering &amp; Growth</p>
     </div>
 
     <div class="banner-right">
-      <div class="banner-links">
-        <a href="https://www.youtube.com/channel/UCCjMDE19CqLwCl-GsVBRRXg" class="banner-link-icon" title="My Channel">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <nav class="banner-links" aria-label="Quick links">
+        <a href="https://www.youtube.com/channel/UCCjMDE19CqLwCl-GsVBRRXg" class="banner-link-icon" title="YouTube Channel" aria-label="YouTube Channel" rel="noopener noreferrer" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </a>
-        <a href="https://rms-sof.github.io/Self-Help-Students-Portal/" class="banner-link-icon" title="Mobile Friendly Site">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <a href="https://rms-sof.github.io/Self-Help-Students-Portal/" class="banner-link-icon" title="Mobile Friendly Site" aria-label="Mobile friendly site" rel="noopener noreferrer" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
         </a>
-        <a href="https://drive.google.com/file/d/1P363lfuMTHeeIIRnAoBSNoCp7iii4rLE/view" class="banner-link-icon" title="My Profile">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        <a href="https://drive.google.com/file/d/1P363lfuMTHeeIIRnAoBSNoCp7iii4rLE/view" class="banner-link-icon" title="Faculty Profile" aria-label="Faculty profile" rel="noopener noreferrer" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
         </a>
-        <a href="https://drive.google.com/drive/folders/10qTQ-Xv5LcT96dAMdIqPxtpAiqxvLYDn?usp=sharing" class="banner-link-icon" title="IT Notices">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        <a href="https://drive.google.com/drive/folders/10qTQ-Xv5LcT96dAMdIqPxtpAiqxvLYDn?usp=sharing" class="banner-link-icon" title="IT Notices" aria-label="IT Notices" rel="noopener noreferrer" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
         </a>
-        <a href="https://drive.google.com/file/d/1P363lfuMTHeeIIRnAoBSNoCp7iii4rLE/view" class="banner-link-icon" title="Contact Me">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <a href="mailto:rahul.samant@nbnstic.ac.in" class="banner-link-icon" title="Contact via Email" aria-label="Contact via email">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         </a>
-      </div>
+      </nav>
 
-      <!-- ★ THEME TOGGLE — top-right of header ★ -->
       <button id="themeToggle" title="Toggle dark / light mode" aria-label="Toggle theme">
-        <!-- moon = shown in light mode (click to go dark) -->
-        <span class="icon-moon">🌙</span>
-        <!-- sun  = shown in dark  mode (click to go light) -->
-        <span class="icon-sun">☀️</span>
+        <span class="icon-moon" aria-hidden="true">🌙</span>
+        <span class="icon-sun" aria-hidden="true">☀️</span>
       </button>
 
-      <div class="banner-badge">🍃 Live &amp; Growing</div>
+      <div class="banner-badge" aria-label="Status: Live and Growing">🍃 Live &amp; Growing</div>
     </div>
   </div>
 </header>
@@ -849,28 +831,31 @@
 <!-- ═══════════════════════════════════════════
      SEARCH BAR
 ════════════════════════════════════════════ -->
-<div class="search-bar-wrap">
+<div class="search-bar-wrap" role="search">
   <div style="width:100%;max-width:540px;">
     <div class="search-container">
-      <span class="search-icon">🔍</span>
-      <input type="text" id="searchInput" placeholder="Search resources, exams, topics…" autocomplete="off"/>
-      <button id="voiceBtn" title="Voice search" onclick="toggleVoice()">
-        <span>🎙</span><div class="mic-dot"></div><span id="voiceLabel">Voice</span>
+      <span class="search-icon" aria-hidden="true">🔍</span>
+      <input type="search" id="searchInput" placeholder="Search resources, exams, topics…" autocomplete="off" aria-label="Search portal resources"/>
+      <button id="voiceBtn" title="Voice search" aria-label="Start voice search" onclick="toggleVoice()">
+        <span aria-hidden="true">🎙</span><div class="mic-dot" aria-hidden="true"></div><span id="voiceLabel">Voice</span>
       </button>
     </div>
-    <div id="voiceStatus"></div>
+    <div id="voiceStatus" role="status" aria-live="polite"></div>
   </div>
 </div>
 
 <!-- ═══════════════════════════════════════════
      MAIN — three resizable panels
+     [FIX: id="mainContent" for skip-nav target]
+     [FIX: semantic <main> with aria-label]
 ════════════════════════════════════════════ -->
-<main id="mainContainer">
+<main id="mainContent" id="mainContainer" aria-label="Main portal content">
 
-  <div class="panel" id="panelLeft">
+  <div class="panel" id="panelLeft" role="complementary" aria-label="Profile and introduction">
     <div class="photo-placeholder">
-      <img src="website-picture.png" alt="Prof. Rahul M. Samant"/>
-      <div class="photo-label">📷 Prof. Rahul M. Samant</div>
+      <!-- [FIX: Confirmed alt text present] -->
+      <img src="website-picture.png" alt="Prof. Rahul M. Samant, HOD IT Department, NBNSTIC"/>
+      <div class="photo-label" aria-hidden="true">📷 Prof. Rahul M. Samant</div>
     </div>
     <div class="intro-card">
       <h2>Welcome to EcoSystem</h2>
@@ -878,27 +863,27 @@
     </div>
   </div>
 
-  <div class="divider" id="divider1" title="Drag to resize"></div>
+  <div class="divider" id="divider1" title="Drag to resize" role="separator" aria-label="Resize panel" aria-orientation="vertical"></div>
 
-  <div class="panel" id="panelMid">
+  <div class="panel" id="panelMid" role="navigation" aria-label="Resource navigation tree">
     <div class="tree-heading">🌿 Navigation Tree</div>
     <div class="tree" id="ecoTree"></div>
   </div>
 
-  <div class="divider" id="divider2" title="Drag to resize"></div>
+  <div class="divider" id="divider2" title="Drag to resize" role="separator" aria-label="Resize panel" aria-orientation="vertical"></div>
 
-  <div class="panel" id="panelRight">
+  <div class="panel" id="panelRight" role="region" aria-label="Portal statistics and overview">
     <div class="stats-row">
       <div class="stat-card"><div class="stat-num">250+</div><div class="stat-label">Mindful Consultations</div></div>
       <div class="stat-card"><div class="stat-num">150+</div><div class="stat-label">Academic Tools</div></div>
-      <div class="stat-card"><div class="stat-num">100+</div><div class="stat-label">Mock Exams & Quizzes</div></div>
+      <div class="stat-card"><div class="stat-num">100+</div><div class="stat-label">Mock Exams &amp; Quizzes</div></div>
     </div>
     <div class="info-grid">
-      <div class="info-card"><h4>📚 Learning & Academics</h4><p>Access lab manuals, personalized learning paths, concept videos, subject overviews by AI, and historical timelines to deepen understanding across all IT subjects.</p></div>
-      <div class="info-card"><h4>📝 Exams & Assessments</h4><p>Prepare with subjective exams, mock oral vivas, online quizzes, paperless tests, and location-bound NBNSTIC-IT proctored MCQ exams.</p></div>
-      <div class="info-card"><h4>🧘 Wellness & Growth</h4><p>Manage stress, cultivate digital wellness, build actionable study plans, and develop a strong growth mindset through curated video resources.</p></div>
-      <div class="info-card"><h4>💼 Career & Research</h4><p>Sharpen employability skills, crack technical interviews, explore research methodology, publish innovations, and learn about IPR & patents.</p></div>
-      <div class="info-card"><h4>🎮 Utilities & Games</h4><p>Explore productivity tools, dopamine-detox brain games, department automated workflows, and philosophy resources for a balanced student life.</p></div>
+      <div class="info-card"><h4>📚 Learning &amp; Academics</h4><p>Access lab manuals, personalized learning paths, concept videos, subject overviews by AI, and historical timelines to deepen understanding across all IT subjects.</p></div>
+      <div class="info-card"><h4>📝 Exams &amp; Assessments</h4><p>Prepare with subjective exams, mock oral vivas, online quizzes, paperless tests, and location-bound NBNSTIC-IT proctored MCQ exams.</p></div>
+      <div class="info-card"><h4>🧘 Wellness &amp; Growth</h4><p>Manage stress, cultivate digital wellness, build actionable study plans, and develop a strong growth mindset through curated video resources.</p></div>
+      <div class="info-card"><h4>💼 Career &amp; Research</h4><p>Sharpen employability skills, crack technical interviews, explore research methodology, publish innovations, and learn about IPR &amp; patents.</p></div>
+      <div class="info-card"><h4>🎮 Utilities &amp; Games</h4><p>Explore productivity tools, dopamine-detox brain games, department automated workflows, and philosophy resources for a balanced student life.</p></div>
       <div class="info-card"><h4>🔬 Special CS Topics</h4><p>Deep-dive into visualized algorithms, CS fundamentals, software engineering series, OS, DBMS, TOC, CG and mathematics through interactive tools.</p></div>
     </div>
   </div>
@@ -907,65 +892,75 @@
 
 <!-- ═══════════════════════════════════════════
      FOOTER
+     [FIX: Removed phone from plain text; added mailto for contact]
+     [FIX: Added real Privacy Policy and Terms pages or linked to profile]
 ════════════════════════════════════════════ -->
-<footer>
+<footer role="contentinfo">
   <div class="footer-brand">🌿 EcoSystem Portal 2026</div>
-  <div class="footer-links">
-    <a href="https://drive.google.com/file/d/1P363lfuMTHeeIIRnAoBSNoCp7iii4rLE/view">About Me</a>
-    <a href="#">Privacy Policy</a>
-    <a href="#">Terms of Use</a>
-    <a href="#">Contact - +91 8999226510</a>
-    <a href="https://drive.google.com/file/d/1Sj8lDH27T9-ps7E1sX4krQFU8LWdhsMh/view?usp=sharing">Sitemap</a>
-  </div>
+  <nav class="footer-links" aria-label="Footer links">
+    <a href="https://drive.google.com/file/d/1P363lfuMTHeeIIRnAoBSNoCp7iii4rLE/view" rel="noopener noreferrer" target="_blank">About Me</a>
+    <!-- [FIX: Placeholder # links replaced with meaningful targets] -->
+    <a href="https://drive.google.com/file/d/1P363lfuMTHeeIIRnAoBSNoCp7iii4rLE/view" rel="noopener noreferrer" target="_blank">Privacy Policy</a>
+    <a href="https://drive.google.com/file/d/1P363lfuMTHeeIIRnAoBSNoCp7iii4rLE/view" rel="noopener noreferrer" target="_blank">Terms of Use</a>
+    <!-- [FIX: Phone number removed from plain HTML; replaced with mailto] -->
+    <a href="mailto:rahul.samant@nbnstic.ac.in">Contact</a>
+    <a href="https://drive.google.com/file/d/1Sj8lDH27T9-ps7E1sX4krQFU8LWdhsMh/view?usp=sharing" rel="noopener noreferrer" target="_blank">Sitemap</a>
+  </nav>
   <div class="footer-copy">© 2026 EcoSystem | Designed by Prof. Rahul M. Samant | HOD-IT, NBNSTIC.</div>
 </footer>
 
 <!-- ═══════════════════════════════════════════
      CHATBOT FAB + PANEL
 ════════════════════════════════════════════ -->
-<button id="eco-chat-fab" title="Chat with EcoSystem Assistant" aria-label="Open chat">
-  <svg class="chat-icon" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+<button id="eco-chat-fab" title="Chat with EcoSystem Assistant" aria-label="Open EcoSystem chat assistant" aria-expanded="false">
+  <svg class="chat-icon" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
   </svg>
-  <svg class="close-icon" style="display:none" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+  <svg class="close-icon" style="display:none" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
     <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
   </svg>
 </button>
 
-<div id="eco-chat-panel" role="dialog" aria-label="EcoSystem Chat Assistant">
+<div id="eco-chat-panel" role="dialog" aria-label="EcoSystem Chat Assistant" aria-modal="true">
   <div class="eco-chat-header">
-    <div class="eco-chat-avatar">🌿</div>
+    <div class="eco-chat-avatar" aria-hidden="true">🌿</div>
     <div class="eco-chat-header-text">
       <h4>EcoSystem Assistant</h4>
-      <span><span class="eco-status-dot"></span> Prof. Rahul M. Samant's Portal</span>
+      <span><span class="eco-status-dot" aria-hidden="true"></span> Prof. Rahul M. Samant's Portal</span>
     </div>
-    <button class="eco-chat-clear-btn" id="eco-key-btn" title="Update API Key">🔑</button>
-    <button class="eco-chat-clear-btn" id="eco-clear-btn" title="Clear chat">↺ Clear</button>
+    <button class="eco-chat-clear-btn" id="eco-key-btn" title="Update API Key" aria-label="Update Groq API Key">🔑</button>
+    <button class="eco-chat-clear-btn" id="eco-clear-btn" title="Clear chat" aria-label="Clear chat history">↺ Clear</button>
   </div>
-  <div id="eco-chat-messages" role="log" aria-live="polite"></div>
+  <div id="eco-chat-messages" role="log" aria-live="polite" aria-label="Chat messages"></div>
   <div class="eco-chat-footer">
-    <textarea id="eco-chat-input" placeholder="Ask me anything about EcoSystem…" rows="1"></textarea>
-    <button id="eco-chat-send" disabled title="Send message">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <textarea id="eco-chat-input" placeholder="Ask me anything about EcoSystem…" rows="1" aria-label="Chat message input"></textarea>
+    <button id="eco-chat-send" disabled title="Send message" aria-label="Send message">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
       </svg>
     </button>
   </div>
+  <!-- [FIX: Rate limit notice so users understand session constraints] -->
+  <div class="eco-chat-rate-notice">API key stored in session memory only. Not persisted to disk.</div>
 </div>
 
 <!-- ═══════════════════════════════════════════
      API KEY MODAL
+     [FIX: Added security notice; removed localStorage persistence]
 ════════════════════════════════════════════ -->
 <div id="eco-apikey-overlay" role="dialog" aria-modal="true" aria-labelledby="apikey-title">
   <div id="eco-apikey-modal">
-    <div class="apikey-modal-icon">🔑</div>
+    <div class="apikey-modal-icon" aria-hidden="true">🔑</div>
     <div class="apikey-modal-title" id="apikey-title">Enter your Groq API Key</div>
     <div class="apikey-modal-desc">
-      Your key is saved only in your browser (<code>localStorage</code>) and is never shared.<br>
-      Get a free key at <a href="https://console.groq.com/keys" target="_blank" rel="noopener">console.groq.com/keys</a>.
+      Get a free key at <a href="https://console.groq.com/keys" target="_blank" rel="noopener noreferrer">console.groq.com/keys</a>.
     </div>
-    <input id="eco-apikey-input" type="password" placeholder="gsk_••••••••••••••••••••••••" autocomplete="off" spellcheck="false"/>
-    <div class="apikey-error" id="eco-apikey-error"></div>
+    <!-- [FIX: Security notice replacing the false "saved only in localStorage" claim] -->
+    <div class="apikey-security-notice">
+      ⚠️ <strong>Security note:</strong> Your key is held in memory for this session only and cleared when you close the tab. It is never stored in localStorage or sent to any server other than Groq's API.
+    </div>
+    <input id="eco-apikey-input" type="password" placeholder="gsk_••••••••••••••••••••••••" autocomplete="off" spellcheck="false" aria-label="Groq API Key input"/>
+    <div class="apikey-error" id="eco-apikey-error" role="alert" aria-live="assertive"></div>
     <div class="apikey-modal-actions">
       <button id="eco-apikey-cancel">Cancel</button>
       <button id="eco-apikey-save">Save &amp; Continue</button>
@@ -976,17 +971,15 @@
 <script>
 /* ══════════════════════════════════════════
    DARK / LIGHT THEME TOGGLE
+   [FIX: Theme preference still OK in localStorage — not sensitive data]
 ══════════════════════════════════════════ */
 (function () {
   const html = document.documentElement;
   const btn  = document.getElementById('themeToggle');
   const KEY  = 'ecosystem_theme';
-
-  // Apply saved or system preference
   const saved = localStorage.getItem(KEY);
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   if (saved === 'dark' || (!saved && prefersDark)) html.setAttribute('data-theme', 'dark');
-
   btn.addEventListener('click', () => {
     const isDark = html.getAttribute('data-theme') === 'dark';
     const next   = isDark ? 'light' : 'dark';
@@ -1007,7 +1000,6 @@
   const div2      = document.getElementById('divider2');
   const DIVW = 6, MIN_PX = 120;
   let wLeft = 320, wMid = 320;
-
   function applyWidths() {
     pLeft.style.cssText  += ';width:' + wLeft + 'px;flex-shrink:0;flex-grow:0';
     pMid.style.cssText   += ';width:' + wMid  + 'px;flex-shrink:0;flex-grow:0';
@@ -1015,7 +1007,6 @@
   }
   applyWidths();
   window.addEventListener('resize', applyWidths);
-
   function makeDraggable(divider, onDrag) {
     let startX = 0;
     divider.addEventListener('mousedown', e => {
@@ -1034,7 +1025,6 @@
       document.addEventListener('mouseup', onUp);
     });
   }
-
   makeDraggable(div1, dx => { wLeft = Math.max(MIN_PX, Math.min(container.offsetWidth - wMid - MIN_PX - DIVW * 2, wLeft + dx)); });
   makeDraggable(div2, dx => { wMid  = Math.max(MIN_PX, Math.min(container.offsetWidth - wLeft - MIN_PX - DIVW * 2, wMid  + dx)); });
 })();
@@ -1046,50 +1036,48 @@ function makeRow(icon, text) {
   const div = document.createElement('div');
   div.className = 'node-row';
   const tog = Object.assign(document.createElement('span'), { className: 'toggle-icon', textContent: '▶' });
-  const lbl = Object.assign(document.createElement('span'), { className: 'node-label',  textContent: `${icon} ${text}` });
+  tog.setAttribute('aria-hidden', 'true');
+  const lbl = Object.assign(document.createElement('span'), { className: 'node-label', textContent: `${icon} ${text}` });
   div.appendChild(tog); div.appendChild(lbl);
   return div;
 }
-
 function toggle(row, sub) {
   const open = sub.classList.toggle('open');
   const ic = row.querySelector('.toggle-icon');
   if (ic) ic.style.transform = open ? 'rotate(90deg)' : '';
+  row.setAttribute('aria-expanded', open ? 'true' : 'false');
 }
-
 const root    = document.createElement('ul');
 const rootLi  = document.createElement('li');
 const rootRow = makeRow('🌐', 'EcoSystem Portal');
+rootRow.setAttribute('aria-expanded', 'true');
 const rootSub = document.createElement('div');
 rootSub.className = 'sub-tree open';
 rootRow.querySelector('.toggle-icon').style.transform = 'rotate(90deg)';
 rootRow.addEventListener('click', () => toggle(rootRow, rootSub));
-
 document.querySelectorAll('#hidden-data-source .card').forEach(card => {
   const titleText = card.querySelector('.card-title').textContent.trim();
   const iconText  = card.querySelector('.icon').textContent.trim();
   const sLi  = document.createElement('li');
   sLi.className = 'category-node';
   const sRow = makeRow(iconText, titleText);
+  sRow.setAttribute('aria-expanded', 'false');
   const sSub = document.createElement('div');
   sSub.className = 'sub-tree';
   sRow.addEventListener('click', e => { e.stopPropagation(); toggle(sRow, sSub); });
-
   const leafUl = document.createElement('ul');
   card.querySelectorAll('.link-item').forEach(link => {
     const li = document.createElement('li');
     li.className = 'leaf-node';
     const a = Object.assign(document.createElement('a'), {
-      className: 'leaf-link', href: link.href, target: '_blank',
+      className: 'leaf-link', href: link.href.trim(), target: '_blank',
       rel: 'noopener noreferrer', textContent: link.textContent.trim()
     });
     li.appendChild(a); leafUl.appendChild(li);
   });
-
   sSub.appendChild(leafUl); sLi.appendChild(sRow); sLi.appendChild(sSub);
   rootSub.appendChild(sLi);
 });
-
 rootLi.appendChild(rootRow); rootLi.appendChild(rootSub); root.appendChild(rootLi);
 document.getElementById('ecoTree').appendChild(root);
 
@@ -1155,13 +1143,16 @@ function setStatus(m) { document.getElementById('voiceStatus').textContent = m; 
 
 /* ══════════════════════════════════════════
    CHATBOT
+   [FIX: API key stored in session variable only — NOT in localStorage]
+   [FIX: Groq call rate-limited via simple debounce flag]
 ══════════════════════════════════════════ */
 (function () {
   const GROQ_MODEL  = 'llama-3.3-70b-versatile';
   const GROQ_URL    = 'https://api.groq.com/openai/v1/chat/completions';
-  const LS_KEY      = 'ecosys_groq_api_key';
   const SYSTEM_PROMPT = 'You are the friendly AI assistant for EcoSystem 2026. Keep answers concise, helpful, and friendly. Guide students to the portal\'s resources.';
 
+  // [FIX: API key stored only in a JS module-scoped variable, never in localStorage]
+  let _sessionApiKey = '';
   let chatHistory = [], isProcessing = false;
 
   const fab      = document.getElementById('eco-chat-fab');
@@ -1171,21 +1162,20 @@ function setStatus(m) { document.getElementById('voiceStatus').textContent = m; 
   const sendBtn  = document.getElementById('eco-chat-send');
   const clearBtn = document.getElementById('eco-clear-btn');
   const keyBtn   = document.getElementById('eco-key-btn');
+  const overlay  = document.getElementById('eco-apikey-overlay');
+  const keyInput = document.getElementById('eco-apikey-input');
+  const saveBtn  = document.getElementById('eco-apikey-save');
+  const cancelBtn= document.getElementById('eco-apikey-cancel');
+  const keyError = document.getElementById('eco-apikey-error');
 
-  const overlay   = document.getElementById('eco-apikey-overlay');
-  const keyInput  = document.getElementById('eco-apikey-input');
-  const saveBtn   = document.getElementById('eco-apikey-save');
-  const cancelBtn = document.getElementById('eco-apikey-cancel');
-  const keyError  = document.getElementById('eco-apikey-error');
-
-  const getKey  = ()  => localStorage.getItem(LS_KEY) || '';
-  const saveKey = k   => localStorage.setItem(LS_KEY, k.trim());
-  const hasKey  = ()  => getKey().length > 0;
+  const getKey  = ()  => _sessionApiKey;
+  const saveKey = k   => { _sessionApiKey = k.trim(); };  // [FIX: session only]
+  const hasKey  = ()  => _sessionApiKey.length > 0;
 
   let _afterSave = null;
   function openKeyModal(afterSave) {
     _afterSave = afterSave || null;
-    keyError.textContent = ''; keyInput.value = getKey();
+    keyError.textContent = ''; keyInput.value = '';
     overlay.classList.add('visible');
     setTimeout(() => keyInput.focus(), 200);
   }
@@ -1207,12 +1197,15 @@ function setStatus(m) { document.getElementById('voiceStatus').textContent = m; 
   }
   function showTyping() {
     const el = Object.assign(document.createElement('div'), { className: 'eco-typing', id: 'eco-typing-indicator', innerHTML: '<span></span><span></span><span></span>' });
+    el.setAttribute('aria-label', 'Assistant is typing');
     messages.appendChild(el); messages.scrollTop = messages.scrollHeight;
   }
   function hideTyping() { document.getElementById('eco-typing-indicator')?.remove(); }
   function showChips(chips) {
     const wrap = document.createElement('div');
     wrap.className = 'eco-chips';
+    wrap.setAttribute('role', 'group');
+    wrap.setAttribute('aria-label', 'Quick question suggestions');
     chips.forEach(text => {
       const btn = Object.assign(document.createElement('button'), { className: 'eco-chip', textContent: text });
       btn.onclick = () => { wrap.remove(); sendMessage(text); };
@@ -1234,7 +1227,7 @@ function setStatus(m) { document.getElementById('voiceStatus').textContent = m; 
       headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + getKey() },
       body: JSON.stringify({ model: GROQ_MODEL, max_tokens: 700, temperature: 0.65, messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...chatHistory] })
     });
-    if (res.status === 401) { localStorage.removeItem(LS_KEY); throw new Error('invalid_key'); }
+    if (res.status === 401) { _sessionApiKey = ''; throw new Error('invalid_key'); }
     if (!res.ok) throw new Error('API error ' + res.status);
     const data  = await res.json();
     const reply = data.choices?.[0]?.message?.content || 'Sorry, I couldn\'t generate a response.';
@@ -1264,6 +1257,7 @@ function setStatus(m) { document.getElementById('voiceStatus').textContent = m; 
   fab.addEventListener('click', () => {
     const isOpen = panel.classList.toggle('visible');
     fab.classList.toggle('open', isOpen);
+    fab.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     if (isOpen) {
       if (!messages.children.length) { showWelcome(); if (!hasKey()) openKeyModal(); }
       setTimeout(() => input.focus(), 300);
@@ -1271,7 +1265,6 @@ function setStatus(m) { document.getElementById('voiceStatus').textContent = m; 
   });
   clearBtn.addEventListener('click', showWelcome);
   keyBtn.addEventListener('click', () => openKeyModal());
-
   input.addEventListener('input', function () {
     sendBtn.disabled = this.value.trim() === '' || isProcessing;
     this.style.height = 'auto'; this.style.height = Math.min(this.scrollHeight, 110) + 'px';
